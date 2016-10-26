@@ -23,7 +23,7 @@ function createCORSRequest(method, url) {
 // Make the actual CORS request.
 function makeCorsRequest() {
   // This is a sample server that supports CORS.
-  var url = 'https://biketrack-api.herokuapp.com/api/users';
+  var url = 'https://biketrack-api.herokuapp.com/api/users/login';
 
   var xhr = createCORSRequest('POST', url);
   if (!xhr) {
