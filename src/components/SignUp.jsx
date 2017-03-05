@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import { firebaseApp } from '../firebase';
-import './App.css';
+
+import { API_KEY, BASE_URL } from '../constants'
 import TopNavbar from './Navbar';
+import './App.css';
 
 class SignUp extends Component {
   constructor(props){
@@ -10,6 +11,7 @@ class SignUp extends Component {
     this.state = {
       email: '',
       password: '',
+      apiKey: API_KEY,
       error: {
         message: ''
       }
@@ -17,12 +19,31 @@ class SignUp extends Component {
   }
 
   signUp() {
-    console.log('this.state', this.state);
     const { email, password } = this.state;
-    firebaseApp.auth().createUserWithEmailAndPassword(email, password)
-      .catch(error => {
-        this.setState({error});
-      })
+    let request = new XMLHttpRequest();
+    let FETCH_URL = BASE_URL + "signup";
+
+    request.open('POST', FETCH_URL);
+
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.setRequestHeader('Authorization', this.state.apiKey);
+
+    request.onreadystatechange = function () {
+      if (this.readyState === 4) {
+        console.log('Status:', this.status);
+        console.log('Headers:', this.getAllResponseHeaders());
+        console.log('Body:', this.responseText);
+      }
+    };
+    console.log('this.state.apiKey', this.state.apiKey);
+    console.log('this.state.email', this.state.email);
+    console.log('this.state.password', this.state.password);
+
+    let body = {
+      'mail': email,
+      'password': password
+    };
+    request.send(JSON.stringify(body));
   }
 
   render() {

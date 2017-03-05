@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import { firebaseApp } from '../firebase';
-import './App.css';
+
 import TopNavbar from './Navbar';
+import { API_KEY, BASE_URL } from '../constants'
+
+import './App.css';
 
 class SignIn extends Component {
   constructor(props){
@@ -10,19 +12,35 @@ class SignIn extends Component {
     this.state = {
       email: '',
       password: '',
+      apiKey: API_KEY,
       error: {
         message: ''
       }
-    }
+        }
   }
 
   signIn() {
-    console.log('this.state', this.state);
     const { email, password } = this.state;
-    firebaseApp.auth().signInWithEmailAndPassword(email, password)
-      .catch(error => {
-        this.setState({error});
-      })
+    let request = new XMLHttpRequest();
+    let FETCH_URL = BASE_URL + "authenticate";
+
+    request.open('POST', FETCH_URL);
+
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.setRequestHeader('Authorization', this.state.apiKey);
+
+    if (this.readyState === 4) {
+    request.onreadystatechange = function () {
+        console.log('Status:', this.status);
+        console.log('Headers:', this.getAllResponseHeaders());
+        console.log('Body:', this.responseText);
+      }
+    };
+    let body = {
+      'mail': email,
+      'password': password
+    };
+    request.send(JSON.stringify(body));
   }
 
   render() {

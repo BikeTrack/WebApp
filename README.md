@@ -2,7 +2,9 @@
 Web Application for BikeTrack (Epitech Innovative Project) using ReactJS technology with redux.
 
 ## Current state
-    + Preparing connection / subscription for the new API
+    + Signup : Done
+    + Authenticate : Done
+    + Signin : Work in progress
 
 ## Features
 
@@ -21,6 +23,8 @@ Web Application for BikeTrack (Epitech Innovative Project) using ReactJS technol
     + npm install react-bootstrap
 
 ## TODO List
+    + working on signin
+    + success page
 
 ## Node Version
     Node v7.5.0
