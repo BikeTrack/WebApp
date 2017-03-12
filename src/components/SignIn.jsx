@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { bake_cookie, read_cookie } from 'sfcookies';
 
 import TopNavbar from './Navbar';
 import { API_KEY, BASE_URL } from '../constants'
-
 import './App.css';
 
 class SignIn extends Component {
@@ -25,21 +25,24 @@ class SignIn extends Component {
     let FETCH_URL = BASE_URL + "authenticate";
 
     request.open('POST', FETCH_URL);
-
     request.setRequestHeader('Content-Type', 'application/json');
     request.setRequestHeader('Authorization', this.state.apiKey);
 
-    if (this.readyState === 4) {
     request.onreadystatechange = function () {
+    if (this.readyState === 4) {
         console.log('Status:', this.status);
         console.log('Headers:', this.getAllResponseHeaders());
         console.log('Body:', this.responseText);
       }
     };
+
     let body = {
       'mail': email,
       'password': password
     };
+    // Cookies to work on
+    // state = read_cookie('reminders');
+    // bake_cookie('reminders', reminders);
     request.send(JSON.stringify(body));
   }
 
@@ -63,6 +66,11 @@ class SignIn extends Component {
               style={{marginRight: '5px'}}
               placeholder="password"
               onChange={event => this.setState({password: event.target.value})}
+              onKeyPress={event => {
+                if (event.key === "Enter") {
+                this.signIn()
+                }
+              }}
             />
             <button
               className="btn btn-primary"

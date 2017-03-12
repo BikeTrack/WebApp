@@ -4,7 +4,6 @@ Web Application for BikeTrack (Epitech Innovative Project) using ReactJS technol
 ## Current state
 + Signup : Done
 + Authenticate : Done
-+ Signin : Work in progress
 
 ## Features
 
@@ -23,7 +22,6 @@ git clone git@github.com:BikeTrack/WebApp.git
 + npm install react-bootstrap
 
 ## TODO List
-+ working on signin
 + success page
 
 ## Node Version

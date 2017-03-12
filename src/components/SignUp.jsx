@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import { API_KEY, BASE_URL } from '../constants'
 import TopNavbar from './Navbar';
 import './App.css';
+import axios from 'axios';
 
 class SignUp extends Component {
   constructor(props){
@@ -44,7 +45,19 @@ class SignUp extends Component {
       'password': password
     };
     request.send(JSON.stringify(body));
-  }
+
+  // let instance = axios.create({
+  //     baseURL: BASE_URL,
+  //     timeout: 1000,
+  //     headers: {'Content-Type': 'application/json',
+  //               'Authorization': this.state.apiKey},
+  //   });
+
+  //   axios.post('/signup', {
+  //     mail: email,
+  //     password: password
+  //     })
+ }
 
   render() {
     return (
@@ -66,6 +79,11 @@ class SignUp extends Component {
               style={{marginRight: '5px'}}
               placeholder="password"
               onChange={event => this.setState({password: event.target.value})}
+              onKeyPress={event => {
+                if (event.key === "Enter") {
+                this.signUp()
+                }
+              }}
             />
             <button
               className="btn btn-primary"
