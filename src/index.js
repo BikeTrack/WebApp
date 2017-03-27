@@ -4,14 +4,15 @@ import { Router, Route, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-import { logUser } from './actions';
-import { firebaseApp } from './firebase'
+//import { logUser } from './actions';
+//import { firebaseApp } from './firebase'
 import reducer from './reducers';
 import App from './components/App';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import Welcome from './components/Welcome';
-
+import Success from './components/Success';
+import Failure from './components/Failure';
 
 const store = createStore(reducer);
 browserHistory.replace('/welcome');
@@ -33,6 +34,8 @@ ReactDOM.render(
       <Route path="/signin" component={SignIn} />
       <Route path="/signup" component={SignUp} />
       <Route path="/welcome" component={Welcome} />
+      <Route path="/success" component={Success} />
+      <Route path="/failure" component={Failure} />
     </Router>
   </Provider>,
   document.getElementById('root')

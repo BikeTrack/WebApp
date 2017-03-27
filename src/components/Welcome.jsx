@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import './App.css';
+import '../img/App.css';
 import TopNavbar from './Navbar';
 
 class Welcome extends Component {
