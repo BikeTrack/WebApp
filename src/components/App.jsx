@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { read_cookie } from 'sfcookies';
+import { browserHistory } from 'react-router';
 
 import '../img/App.css';
 import { API_KEY, BASE_URL } from '../constants'
@@ -41,6 +42,43 @@ class App extends Component {
     request.send(JSON.stringify());
   }
 
+  deleteUser() {
+    let userId = read_cookie('userId');
+    let JWTToken = read_cookie('token');
+    let request = new XMLHttpRequest();
+    let FETCH_URL = BASE_URL + "profile";
+    let success = false;
+
+    console.log('Token', JWTToken);
+    console.log('usrId', userId);
+
+    request.open('DELETE', FETCH_URL);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.setRequestHeader('Authorization', this.state.apiKey);
+    request.setRequestHeader('x-access-token', JWTToken);
+    request.onreadystatechange = function () {
+    if (this.readyState === 4) {
+        console.log('Status:', this.status);
+        console.log('Headers:', this.getAllResponseHeaders());
+        console.log('Body:', this.responseText);
+      }
+    if (this.status === 200) {
+        success = true;
+        }
+    };
+    let body = {
+      'userId': userId,
+    };
+    request.send(JSON.stringify(body));
+    setTimeout(function() {
+        if (success) {
+          browserHistory.push('/delSuccess');
+        } else {
+          browserHistory.push('/failure');
+        }
+      }, 2000)
+  }
+
   render() {
     return (
       <div className="App">
@@ -58,6 +96,13 @@ class App extends Component {
             >
               Retrieve Profile Info
           </button>
+          <button
+            className="btn btn-danger"
+            onClick={() => this.deleteUser()}
+            >
+              Delete User
+          </button>
+
         </div>
       </div>
     )

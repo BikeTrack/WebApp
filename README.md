@@ -5,6 +5,7 @@ Web Application for BikeTrack (Epitech Innovative Project) using ReactJS technol
 + Signup : Done
 + Authenticate : Done
 + Success Page : Done
++ Delete User : Done
 + Retrieve Profile Info : Work in Progress
 
 ## Features
