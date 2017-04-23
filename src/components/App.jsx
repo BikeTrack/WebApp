@@ -5,7 +5,7 @@ import { browserHistory } from 'react-router';
 
 import '../img/App.css';
 import { API_KEY, BASE_URL } from '../constants'
-import TopNavbar from './Navbar';
+import AppNavbar from './AppNavbar';
 
 class App extends Component {
 
@@ -13,13 +13,16 @@ class App extends Component {
     super(props);
     this.state = {
       apiKey: API_KEY,
+      name: '',
+      color: '',
+      brand: '',
       error: {
         message: ''
       }
-        }
+    }
   }
-// signout function here
-  getProfile() {
+
+  componentDidMount() {
     let userId = read_cookie('userId');
     let JWTToken = read_cookie('token');
     let request = new XMLHttpRequest();
@@ -41,6 +44,7 @@ class App extends Component {
     };
     request.send(JSON.stringify());
   }
+// signout function here
 
   deleteUser() {
     let userId = read_cookie('userId');
@@ -79,39 +83,111 @@ class App extends Component {
       }, 2000)
   }
 
+  addBike() {
+    const { name, color, brand } = this.state;
+    let userId = read_cookie('userId');
+    let JWTToken = read_cookie('token');
+    let request = new XMLHttpRequest();
+    let FETCH_URL = BASE_URL + "bike";
+    let success = false;
+
+    console.log('Token', JWTToken);
+    console.log('usrId', userId);
+
+    request.open('POST', FETCH_URL);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.setRequestHeader('Authorization', this.state.apiKey);
+    request.setRequestHeader('x-access-token', JWTToken);
+    request.onreadystatechange = function () {
+    if (this.readyState === 4) {
+        console.log('Status:', this.status);
+        console.log('Headers:', this.getAllResponseHeaders());
+        console.log('Body:', this.responseText);
+      }
+    if (this.status === 200) {
+        success = true;
+        }
+    };
+
+    let body = {
+      'userId': userId,
+      'bikeInfo': {
+        'name': name,
+        'color': color,
+        'brand': brand,
+      }
+    };
+    request.send(JSON.stringify(body));
+    setTimeout(function() {
+        if (success) {
+          browserHistory.push('/delSuccess');
+        } else {
+          browserHistory.push('/failure');
+        }
+      }, 2000)
+  }
+
   render() {
     return (
       <div className="App">
-        <TopNavbar />
-        <div style={{margin: '5px'}}>
-          <h3> Add a Bike </h3>
-          <hr />
-          <h4> Bikes list </h4>
-          <hr />
-          <h4> Deleted Bikes </h4>
-          <hr />
-          <button
-            className="btn bck-btn"
-            onClick={() => this.getProfile()}
-            >
-              Retrieve Profile Info
-          </button>
-          <button
-            className="btn btn-danger"
-            onClick={() => this.deleteUser()}
-            >
-              Delete User
-          </button>
+        <AppNavbar />
+        <div className="form-inline" style={{margin: '5px'}}>
+          <h2 className="intro-text">Welcome to your personal Biketrack space</h2>
+          <div className="form-group">
+            <input
+              className="form-control"
+              type="text"
+              style={{marginRight: '5px'}}
+              placeholder="name"
+              onChange={event => this.setState({name: event.target.value})}
+            />
+            <input
+              className="form-control"
+              type="text"
+              style={{marginRight: '5px'}}
+              placeholder="color"
+              onChange={event => this.setState({color: event.target.value})}
+            />
+            <input
+              className="form-control"
+              style={{marginRight: '5px'}}
+              placeholder="brand"
+              onChange={event => this.setState({brand: event.target.value})}
+              onKeyPress={event => {
+                if (event.key === "Enter") {
+                this.addBike()
+                }
+              }}
+            />
+          <br/>
+            <button
+              className="btn btn-primary"
+              type="button"
+              onClick={() => this.signIn()}
+              style={{marginTop: '10px'}}
+              >
+                Sign In
+            </button>
+            <button
+              className="btn btn-danger"
+              onClick={() => this.deleteUser()}
+              >
+                Delete User
+            </button>
 
+            <button
+              className="btn btn-danger"
+              onClick={() => this.addBike()}
+              >
+                Add a New Bike
+            </button>
+
+          </div>
+          <div>{this.state.error.message}</div>
         </div>
       </div>
     )
   }
 }
 
-function mapStateToProps(state) {
-  // console.log('state', state);
-  return {};
-}
-
-export default connect(mapStateToProps, null)(App);
+export default App;

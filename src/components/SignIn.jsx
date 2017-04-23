@@ -16,7 +16,7 @@ class SignIn extends Component {
       error: {
         message: ''
       }
-        }
+    }
   }
 
   signIn() {

@@ -15,21 +15,9 @@ class SignUp extends Component {
       apiKey: API_KEY,
       error: {
         message: ''
+        }
       }
     }
-  }
-
-  // let instance = axios.create({
-  //     baseURL: BASE_URL,
-  //     timeout: 1000,
-  //     headers: {'Content-Type': 'application/json',
-  //               'Authorization': this.state.apiKey},
-  //   });
-
-  //   axios.post('/signup', {
-  //     mail: email,
-  //     password: password
-  //     })
 
   signUp() {
     const { email, password } = this.state;
@@ -40,7 +28,6 @@ class SignUp extends Component {
 
     request.setRequestHeader('Content-Type', 'application/json');
     request.setRequestHeader('Authorization', this.state.apiKey);
-
     request.onreadystatechange = function () {
       if (this.readyState === 4) {
         console.log('Status:', this.status);
