@@ -161,22 +161,8 @@ class App extends Component {
             />
           <br/>
             <button
-              className="btn btn-primary"
-              type="button"
-              onClick={() => this.signIn()}
+              className="btn btn-danger"
               style={{marginTop: '10px'}}
-              >
-                Sign In
-            </button>
-            <button
-              className="btn btn-danger"
-              onClick={() => this.deleteUser()}
-              >
-                Delete User
-            </button>
-
-            <button
-              className="btn btn-danger"
               onClick={() => this.addBike()}
               >
                 Add a New Bike
