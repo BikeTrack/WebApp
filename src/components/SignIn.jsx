@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
-import { bake_cookie, read_cookie } from 'sfcookies';
+import { bake_cookie} from 'sfcookies';
 
 import TopNavbar from './Navbar';
 import { API_KEY, BASE_URL } from '../constants'

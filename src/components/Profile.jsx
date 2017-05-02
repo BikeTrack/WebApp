@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { read_cookie } from 'sfcookies';
+import { read_cookie, bake_cookie } from 'sfcookies';
 import { browserHistory } from 'react-router';
 
 import '../img/App.css';
@@ -13,6 +12,11 @@ class Profile extends Component {
     super(props);
     this.state = {
       apiKey: API_KEY,
+      mail:'',
+      id:'',
+      created:'',
+      updated:'',
+      bikes: '',
       error: {
         message: ''
       }
@@ -24,6 +28,7 @@ class Profile extends Component {
     let JWTToken = read_cookie('token');
     let request = new XMLHttpRequest();
     let FETCH_URL = BASE_URL + "profile/" + userId;
+    let that = this;
 
     console.log('Token', JWTToken);
     console.log('usrId', userId);
@@ -37,6 +42,22 @@ class Profile extends Component {
         console.log('Status:', this.status);
         console.log('Headers:', this.getAllResponseHeaders());
         console.log('Body:', this.responseText);
+      }
+    if (this.status === 200)  {
+
+      let myObj = JSON.parse(this.response);
+
+      that.setState({
+            id: myObj.user._id,
+            mail: myObj.user.mail,
+            created: myObj.user.created,
+            updated: myObj.user.updated,
+            bikes: myObj.user.bikes
+          });
+
+      console.log('myObj mail : ', myObj.user.mail);
+      console.log('myObj create : ', myObj.user.created);
+      console.log('myObj update : ', myObj.user.updated);
       }
     };
     request.send(JSON.stringify());
@@ -85,10 +106,10 @@ class Profile extends Component {
         <AppNavbar />
         <div className="form-inline" style={{margin: '5px'}}>
           <h2 className="intro-text">Profile Preview</h2>
-          <p>Mail :</p>
-          <p>Id :</p>
-          <p>Creation :</p>
-          <p>Last Modified :</p>
+          <p>Mail : {this.state.mail}</p>
+          <p>Id : {this.state.id}</p>
+          <p>Creation : {this.state.created}</p>
+          <p>Last Modified : {this.state.updated}</p>
           <div className="form-group">
             <button
               className="btn btn-danger"
@@ -96,6 +117,8 @@ class Profile extends Component {
               >
                 Delete User
             </button>
+          </div>
+          <div className="form-group">
           </div>
           <div>{this.state.error.message}</div>
         </div>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { read_cookie } from 'sfcookies';
 import { browserHistory } from 'react-router';
 
@@ -16,6 +15,11 @@ class App extends Component {
       name: '',
       color: '',
       brand: '',
+      mail:'',
+      id:'',
+      created:'',
+      updated:'',
+      bikes: '',
       error: {
         message: ''
       }
@@ -27,6 +31,7 @@ class App extends Component {
     let JWTToken = read_cookie('token');
     let request = new XMLHttpRequest();
     let FETCH_URL = BASE_URL + "profile/" + userId;
+    let that = this;
 
     console.log('Token', JWTToken);
     console.log('usrId', userId);
@@ -40,6 +45,22 @@ class App extends Component {
         console.log('Status:', this.status);
         console.log('Headers:', this.getAllResponseHeaders());
         console.log('Body:', this.responseText);
+      }
+    if (this.status === 200)  {
+
+      let myObj = JSON.parse(this.response);
+
+      that.setState({
+            id: myObj.user._id,
+            mail: myObj.user.mail,
+            created: myObj.user.created,
+            updated: myObj.user.updated,
+            bikes: myObj.user.bikes
+          });
+
+      console.log('myObj mail : ', myObj.user.mail);
+      console.log('myObj create : ', myObj.user.created);
+      console.log('myObj update : ', myObj.user.updated);
       }
     };
     request.send(JSON.stringify());
@@ -133,11 +154,17 @@ class App extends Component {
         <AppNavbar />
         <div className="form-inline" style={{margin: '5px'}}>
           <h2 className="intro-text">Welcome to your personal Biketrack space</h2>
+          <h3 className="intro-text">Bike List</h3>
+          
+          <div className="bike-box">Velo Test1 : Giant</div>
+          <div className="bike-box">Velo Test2 : Specialized</div>
+          <div className="bike-box">Velo Test3 : Decathlon</div>
           <div className="form-group">
+
             <input
               className="form-control"
               type="text"
-              style={{marginRight: '5px'}}
+              style={{marginRight: '7px'}}
               placeholder="name"
               onChange={event => this.setState({name: event.target.value})}
             />

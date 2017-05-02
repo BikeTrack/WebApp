@@ -23,7 +23,7 @@ body {
 
 .header-text, .header-text-website {
   display: inline-block;
-  text-align: left;
+  text-align: right;
   position: relative;
   margin-left: 15px;
 }
@@ -47,7 +47,6 @@ body {
   padding: 50px;
   margin-left: 200px;
   margin-right: 200px;
-  font-family: fantasy;
 }
 
 .bck-btn {
@@ -67,8 +66,16 @@ body {
   font-size: 20px;
   font-style: italic;
   margin: auto;
-  padding: 50px;
+  padding: 10px;
   margin-left: 200px;
   margin-right: 200px;
-  font-family: fantasy;
+}
+
+/* Bike View */
+
+.bike-box {
+  width: 600px;
+  border: 2px solid black;
+  margin: 5px;
+  padding: 30px;
 }
