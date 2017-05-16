@@ -6,7 +6,8 @@ Web Application for BikeTrack (Epitech Innovative Project) using ReactJS technol
 + Authenticate : Done
 + Success Page : Done
 + Delete User : Done
-+ Retrieve Profile Info : Work in Progress
++ Retrieve Profile Info : Done
++ Add Bike : Done
 
 ## Features
 
@@ -17,17 +18,15 @@ git clone git@github.com:BikeTrack/WebApp.git
 ```
 
 ## Libraries
-+ npm install react
-+ npm install react-dom
-+ npm install redux
-+ npm install react-redux
-+ npm install react-router
-+ npm install react-bootstrap
++ react
++ react-dom
++ redux
++ react-bootstrap
 
 ## TODO List
-+ finish Retrieve Profile Info
-+ Get Bike
-+ Work on axios requests
++ Dynamic view of the bikes
++ Token Renew
++ Translation button
 
 ## Node Version
 Node v7.5.0

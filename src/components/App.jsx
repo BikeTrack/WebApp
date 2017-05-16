@@ -136,12 +136,13 @@ class App extends Component {
         'name': name,
         'color': color,
         'brand': brand,
+        'tracker' : userId + "Trxr"
       }
     };
     request.send(JSON.stringify(body));
     setTimeout(function() {
         if (success) {
-          browserHistory.push('/delSuccess');
+          browserHistory.push('/addSuccess');
         } else {
           browserHistory.push('/failure');
         }
@@ -155,10 +156,10 @@ class App extends Component {
         <div className="form-inline" style={{margin: '5px'}}>
           <h2 className="intro-text">Welcome to your personal Biketrack space</h2>
           <h3 className="intro-text">Bike List</h3>
-          
-          <div className="bike-box">Velo Test1 : Giant</div>
-          <div className="bike-box">Velo Test2 : Specialized</div>
-          <div className="bike-box">Velo Test3 : Decathlon</div>
+
+          <div className="bike-box">Velo Test1 : {this.state.id}</div>
+          <div className="bike-box">Velo Test2 : {this.state.id}</div>
+          <div className="bike-box">Velo Test3 : {this.state.id}</div>
           <div className="form-group">
 
             <input

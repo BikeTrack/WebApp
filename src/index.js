@@ -13,6 +13,7 @@ import SignUp from './components/SignUp';
 import Welcome from './components/Welcome';
 import Success from './components/Success';
 import delSuccess from './components/delSuccess';
+import addSuccess from './components/addSuccess';
 import Failure from './components/Failure';
 
 const store = createStore(reducer);
@@ -29,6 +30,7 @@ ReactDOM.render(
       <Route path="/success" component={Success} />
       <Route path="/failure" component={Failure} />
       <Route path="/delsuccess" component={delSuccess} />
+      <Route path="/addsuccess" component={addSuccess} />
     </Router>
   </Provider>,
   document.getElementById('root')
