@@ -4,7 +4,6 @@ import { Link, browserHistory } from 'react-router';
 import { API_KEY, BASE_URL } from '../constants'
 import TopNavbar from './Navbar';
 import '../img/App.css';
-import axios from 'axios';
 
 class SignUp extends Component {
   constructor(props){

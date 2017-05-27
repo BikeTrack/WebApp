@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { read_cookie, bake_cookie } from 'sfcookies';
+import { read_cookie } from 'sfcookies';
 import { browserHistory } from 'react-router';
 
 import '../img/App.css';
