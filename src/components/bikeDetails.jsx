@@ -1,22 +1,25 @@
 import React, { Component } from 'react';
-import { read_cookie, bake_cookie } from 'sfcookies';
+import { read_cookie } from 'sfcookies';
 import { browserHistory } from 'react-router';
 
 import '../img/App.css';
 import { API_KEY, BASE_URL } from '../constants'
 import AppNavbar from './AppNavbar';
 
-class Profile extends Component {
+class bikeDetails extends Component {
 
   constructor(props){
     super(props);
     this.state = {
       apiKey: API_KEY,
-      mail:'',
-      id:'',
+      name: '',
+      color: '',
+      brand: '',
+      userId:'',
+      bikeId:'',
       created:'',
       updated:'',
-      bikes: '',
+      tracker: '',
       error: {
         message: ''
       }
@@ -26,8 +29,9 @@ class Profile extends Component {
   componentDidMount() {
     let userId = read_cookie('userId');
     let JWTToken = read_cookie('token');
+    let bikeId = read_cookie('bike');
     let request = new XMLHttpRequest();
-    let FETCH_URL = BASE_URL + "profile/" + userId;
+    let FETCH_URL = BASE_URL + "bike/" + bikeId;
     let that = this;
 
     console.log('Token', JWTToken);
@@ -47,31 +51,28 @@ class Profile extends Component {
 
       let myObj = JSON.parse(this.response);
 
+      console.log('MyObj : ', myObj);
       that.setState({
-            id: myObj.user._id,
-            mail: myObj.user.mail,
-            created: myObj.user.created,
-            updated: myObj.user.updated,
-            bikes: myObj.user.bikes
+            userID: userId,
+            bikeId: myObj.bike._id,
+            name: myObj.bike.name,
+            color: myObj.bike.color,
+            brand: myObj.bike.brand,
+            created: myObj.bike.created,
+            updated: myObj.bike.updated,
+            tracker: myObj.bike.tracker
           });
-
-      // console.log('myObj mail : ', myObj.user.mail);
-      // console.log('myObj create : ', myObj.user.created);
-      // console.log('myObj update : ', myObj.user.updated);
       }
     };
     request.send(JSON.stringify());
   }
 
-  deleteUser() {
-    let userId = read_cookie('userId');
+  deleteBike(bike) {
     let JWTToken = read_cookie('token');
+    let userId = read_cookie('userId');
     let request = new XMLHttpRequest();
-    let FETCH_URL = BASE_URL + "profile";
+    let FETCH_URL = BASE_URL + "bike";
     let success = false;
-
-    /*console.log('Token', JWTToken);
-    console.log('usrId', userId);*/
 
     request.open('DELETE', FETCH_URL);
     request.setRequestHeader('Content-Type', 'application/json');
@@ -87,13 +88,15 @@ class Profile extends Component {
         success = true;
         }
     };
+
     let body = {
-      'userId': userId,
+      'userId' : userId,
+      'bikeId': bike
     };
     request.send(JSON.stringify(body));
     setTimeout(function() {
         if (success) {
-          browserHistory.push('/delSuccess');
+          browserHistory.push('/delBikeSuccess');
         } else {
           browserHistory.push('/failure');
         }
@@ -105,26 +108,33 @@ class Profile extends Component {
       <div className="App">
         <AppNavbar />
         <div className="form-inline" style={{margin: '5px'}}>
-          <h2 className="intro-text">Profile Preview</h2>
-          <p>Mail : {this.state.mail}</p>
-          <p>Id : {this.state.id}</p>
-          <p>Creation : {this.state.created}</p>
-          <p>Last Modified : {this.state.updated}</p>
-          <div className="form-group">
+          <h3 className="intro-text">Bike Details</h3>
+
+          <div className="bike-box">
+            <div>Name: {this.state.name}</div>
+            <div>Bike ID: {this.state.bikeId}</div>
+            <div>Color: {this.state.color}</div>
+            <div>Brand: {this.state.brand}</div>
+            <div>Tracker: {this.state.tracker}</div>
+            <div>Created: {this.state.created}</div>
+            <div>Updated: {this.state.updated}</div>
+
             <button
               className="btn btn-danger"
-              onClick={() => this.deleteUser()}
+              style={{marginTop: '10px'}}
+              onClick={() => this.deleteBike(this.state.bikeId)}
               >
-                Delete User
+                Delete bike
             </button>
+
           </div>
-          <div className="form-group">
-          </div>
-          <div>{this.state.error.message}</div>
+
+
+
         </div>
       </div>
     )
   }
 }
 
-export default Profile;
+export default bikeDetails;

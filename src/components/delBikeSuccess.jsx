@@ -4,10 +4,10 @@ import { Link, browserHistory } from 'react-router';
 import TopNavbar from './Navbar';
 import '../img/App.css';
 
-class delSuccess extends Component {
+class delBikeSuccess extends Component {
 
   backPage() {
-    browserHistory.replace('/welcome');
+    browserHistory.replace('/app');
   }
 
   render() {
@@ -15,13 +15,13 @@ class delSuccess extends Component {
       <div className="App">
         <TopNavbar />
         <div className="form-inline" style={{margin: '5px'}}>
-          <div className="successTitle">You successfully removed your account from our Application. Hope to see you again! :) </div>
+          <div className="successTitle">You successfully removed your bike from your account ! </div>
           <div style={{textAlign: 'center'}}>
             <button
             className="btn bck-btn"
             type="button"
             onClick={() => this.backPage()}
-            >Back to Home Page
+            >Back to your bikes
             </button>
           </div>
         </div>
@@ -30,4 +30,4 @@ class delSuccess extends Component {
   }
 }
 
-export default delSuccess;
+export default delBikeSuccess;

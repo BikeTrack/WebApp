@@ -7,7 +7,7 @@ import '../img/App.css';
 class addSuccess extends Component {
 
   backPage() {
-    browserHistory.replace('/welcome');
+    browserHistory.replace('/app');
   }
 
   render() {
@@ -21,7 +21,7 @@ class addSuccess extends Component {
             className="btn bck-btn"
             type="button"
             onClick={() => this.backPage()}
-            ><Link to={'/app'}>Back to Home Page</Link>
+            >Back to your list
             </button>
           </div>
         </div>

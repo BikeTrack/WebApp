@@ -1,15 +1,19 @@
 # Biketrack Web Platform
 Web Application for BikeTrack (Epitech Innovative Project) using ReactJS technology with redux.
 
-## Current state
+## Features
 + Signup : Done
 + Authenticate : Done
 + Success Page : Done
 + Delete User : Done
 + Retrieve Profile Info : Done
++ Bike List : Done
 + Add Bike : Done
++ Delete Bike : Done
++ Bike Details : Done
 
-## Features
+## Current state
++ Working on Dynamycity, Performance and Quality of the code
 
 ### Clone the depot
 ```bash
@@ -24,7 +28,8 @@ git clone git@github.com:BikeTrack/WebApp.git
 + react-bootstrap
 
 ## TODO List
-+ Dynamic view of the bikes
++ Modify profile
++ Modify bike
 + Token Renew
 + Translation button
 
