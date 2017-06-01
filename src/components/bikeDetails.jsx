@@ -5,6 +5,7 @@ import { browserHistory } from 'react-router';
 import '../img/App.css';
 import { API_KEY, BASE_URL } from '../constants'
 import AppNavbar from './AppNavbar';
+import Map from './getMap';
 
 class bikeDetails extends Component {
 
@@ -104,7 +105,11 @@ class bikeDetails extends Component {
   }
 
   render() {
+
+    var position = [51.505, -0.09];
+
     return (
+
       <div className="App">
         <AppNavbar />
         <div className="form-inline" style={{margin: '5px'}}>
@@ -126,11 +131,10 @@ class bikeDetails extends Component {
               >
                 Delete bike
             </button>
-
           </div>
-
-
-
+          <div className="mapid">
+            <Map />
+          </div>
         </div>
       </div>
     )

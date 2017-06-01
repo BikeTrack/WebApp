@@ -230,7 +230,7 @@ class App extends Component {
           </div> */}
 
 
-          {/* This is just disgusting, but it's the only way i have now to make it work */}
+          {/* This is just disgusting, but it's the only way i have now to make it work at the moment */}
           {/* Remove ASAP from : */}
           {/* START */}
           {this.state.bikes[0] &&
@@ -250,7 +250,6 @@ class App extends Component {
                 >
                   Delete bike
               </button>
-
             </div>
           }
 
@@ -271,7 +270,6 @@ class App extends Component {
                 >
                   Delete bike
               </button>
-
             </div>
           }
 
@@ -292,7 +290,6 @@ class App extends Component {
                 >
                   Delete bike
               </button>
-
             </div>
           }
 
@@ -314,7 +311,6 @@ class App extends Component {
                 >
                   Delete bike
               </button>
-
             </div>
           }
 
@@ -336,7 +332,6 @@ class App extends Component {
                 >
                   Delete bike
               </button>
-
             </div>
           }
           {/* END */}
@@ -377,6 +372,15 @@ class App extends Component {
               >
                 Add a New Bike
             </button>
+            {/* retirer d'ici */}
+            <button
+              className="btn btn-danger"
+              style={{marginTop: '10px'}}
+              onClick={() => browserHistory.push('/maptest')}
+              >
+                GO TO MAPTEST
+            </button>
+            {/* a ici */}
 
           </div>
           <div>{this.state.error.message}</div>
