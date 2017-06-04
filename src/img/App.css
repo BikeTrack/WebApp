@@ -5,6 +5,8 @@ body {
   padding: 0;
   font-family: sans-serif;
   background-color: lightgrey;
+  background-image: url("./Hiking-Biking-1.jpg");
+  opacity: 0.7;
 }
 
 /* Navbar */
@@ -57,7 +59,6 @@ body {
 
 .log-btn {
   display: inline-block;
-  margin-left: 500px;
   align-items: center;
 }
 
@@ -71,10 +72,24 @@ body {
   margin-right: 200px;
 }
 
+.stores {
+  text-align: center;
+  padding: 100px;
+  opacity: 1;
+}
+
 /* Bike View */
 
 .bike-box {
   width: 600px;
+  border: 2px solid black;
+  margin: 5px;
+  padding: 30px;
+}
+
+.mapid {
+  height: 400px;
+  width: 400px;
   border: 2px solid black;
   margin: 5px;
   padding: 30px;
