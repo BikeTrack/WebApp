@@ -104,6 +104,45 @@ class bikeDetails extends Component {
       }, 2000)
   }
 
+  editBike() {
+    let userId = read_cookie('userId');
+    let JWTToken = read_cookie('token');
+    let request = new XMLHttpRequest();
+    let FETCH_URL = BASE_URL + "bike";
+    let success = false;
+
+    request.open('PATCH', FETCH_URL);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.setRequestHeader('Authorization', this.state.apiKey);
+    request.setRequestHeader('x-access-token', JWTToken);
+    request.onreadystatechange = function () {
+    if (this.readyState === 4) {
+        console.log('Status:', this.status);
+        console.log('Headers:', this.getAllResponseHeaders());
+        console.log('Body:', this.responseText);
+      }
+    if (this.status === 200) {
+        success = true;
+        }
+    };
+    let body = {
+      'bikeId': this.state.bikeId,
+      'update': {
+        name: this.state.name,
+        color: this.state.color,
+        brand: this.state.brand
+      }
+    };
+    request.send(JSON.stringify(body));
+    setTimeout(function() {
+        if (success) {
+          browserHistory.push('/delBikeSuccess');
+        } else {
+          browserHistory.push('/failure');
+        }
+      }, 2000)
+  }
+
   render() {
 
     var position = [51.505, -0.09];
@@ -132,6 +171,53 @@ class bikeDetails extends Component {
                 Delete bike
             </button>
           </div>
+
+          <div className="form-group">
+            <h4 className="intro-text">Modify your bike informations</h4>
+            <input
+              className="form-control"
+              style={{marginRight: '5px'}}
+              placeholder="Name"
+              onChange={event => this.setState({name: event.target.value})}
+              onKeyPress={event => {
+                if (event.key === "Enter") {
+                this.editBike()
+                }
+              }}
+            />
+            <input
+              className="form-control"
+              style={{marginRight: '5px'}}
+              placeholder="Color"
+              onChange={event => this.setState({color: event.target.value})}
+              onKeyPress={event => {
+                if (event.key === "Enter") {
+                this.editBike()
+                }
+              }}
+            />
+            <input
+              className="form-control"
+              style={{marginRight: '5px'}}
+              placeholder="Brand"
+              onChange={event => this.setState({brand: event.target.value})}
+              onKeyPress={event => {
+                if (event.key === "Enter") {
+                this.editBike()
+                }
+              }}
+            />
+
+          <br/>
+            <button
+              className="btn"
+              style={{marginTop: '10px'}}
+              onClick={() => this.editBike()}
+              >
+                Modify User
+            </button>
+          </div>
+
           <div className="mapid">
             <Map />
           </div>

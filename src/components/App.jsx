@@ -47,9 +47,7 @@ class App extends Component {
         console.log('Body:', this.responseText);
       }
     if (this.status === 200)  {
-
       let myObj = JSON.parse(this.response);
-
       that.setState({
             id: myObj.user._id,
             mail: myObj.user.mail,
@@ -57,7 +55,6 @@ class App extends Component {
             updated: myObj.user.updated,
             bikes: myObj.user.bikes
           });
-
       console.log('myObj mail : ', myObj.user.mail);
       console.log('myObj create : ', myObj.user.created);
       console.log('myObj update : ', myObj.user.updated);
@@ -148,7 +145,6 @@ class App extends Component {
       }, 2000)
   }
 
-
   deleteBike(bike) {
     let JWTToken = read_cookie('token');
     let userId = read_cookie('userId');
@@ -170,7 +166,6 @@ class App extends Component {
         success = true;
         }
     };
-
     let body = {
       'userId' : userId,
       'bikeId': bike
@@ -200,7 +195,7 @@ class App extends Component {
     //                 <button
     //                   className="btn"
     //                   style={{marginTop: '10px'}}
-    //                   // onClick={() => this.getBikeDetails(this.state.bikes[0])}
+    //                   // onClick={() => this.bikeDetails(this.state.bikes[0])}
     //                   >
     //                   {this.state.bikes[i]}
     //                 </button>
@@ -255,7 +250,7 @@ class App extends Component {
 
           {this.state.bikes[1] &&
             <div className="bike-box">
-              Velo 1 :
+              Velo 2 :
               <button
                 className="btn"
                 style={{marginTop: '11px'}}
@@ -275,7 +270,7 @@ class App extends Component {
 
           {this.state.bikes[2] &&
             <div className="bike-box">
-              Velo 1 :
+              Velo 3 :
               <button
                 className="btn"
                 style={{marginTop: '12px'}}
@@ -296,7 +291,7 @@ class App extends Component {
 
           {this.state.bikes[3] &&
             <div className="bike-box">
-              Velo 1 :
+              Velo 4 :
               <button
                 className="btn"
                 style={{marginTop: '13px'}}
@@ -317,7 +312,7 @@ class App extends Component {
 
           {this.state.bikes[4] &&
             <div className="bike-box">
-              Velo 1 :
+              Velo 5 :
               <button
                 className="btn"
                 style={{marginTop: '14px'}}
@@ -372,16 +367,6 @@ class App extends Component {
               >
                 Add a New Bike
             </button>
-            {/* retirer d'ici */}
-            <button
-              className="btn btn-danger"
-              style={{marginTop: '10px'}}
-              onClick={() => browserHistory.push('/maptest')}
-              >
-                GO TO MAPTEST
-            </button>
-            {/* a ici */}
-
           </div>
           <div>{this.state.error.message}</div>
         </div>
