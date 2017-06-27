@@ -10,6 +10,7 @@ class addSuccess extends Component {
     browserHistory.replace('/app');
   }
 
+
   render() {
     return (
       <div className="App">
