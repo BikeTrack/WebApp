@@ -11,9 +11,10 @@ Web Application for BikeTrack (Epitech Innovative Project) using ReactJS technol
 + Add Bike : Done
 + Delete Bike : Done
 + Bike Details : Done
++ Bike Location : Done
 
 ## Current state
-+ Working on Dynamycity, Performance and Quality of the code
++ Working on Dynamycity, Performance / Quality of the code and Design for the App
 
 ### Clone the depot
 ```bash
