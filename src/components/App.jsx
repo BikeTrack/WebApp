@@ -63,43 +63,6 @@ class App extends Component {
     request.send(JSON.stringify());
   }
 
-  deleteUser() {
-    let userId = read_cookie('userId');
-    let JWTToken = read_cookie('token');
-    let request = new XMLHttpRequest();
-    let FETCH_URL = BASE_URL + "profile";
-    let success = false;
-
-    console.log('Token', JWTToken);
-    console.log('usrId', userId);
-
-    request.open('DELETE', FETCH_URL);
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.setRequestHeader('Authorization', this.state.apiKey);
-    request.setRequestHeader('x-access-token', JWTToken);
-    request.onreadystatechange = function () {
-    if (this.readyState === 4) {
-        console.log('Status:', this.status);
-        console.log('Headers:', this.getAllResponseHeaders());
-        console.log('Body:', this.responseText);
-      }
-    if (this.status === 200) {
-        success = true;
-        }
-    };
-    let body = {
-      'userId': userId,
-    };
-    request.send(JSON.stringify(body));
-    setTimeout(function() {
-        if (success) {
-          browserHistory.push('/delSuccess');
-        } else {
-          browserHistory.push('/failure');
-        }
-      }, 2000)
-  }
-
   addBike() {
     const { name, color, brand } = this.state;
     let userId = read_cookie('userId');
@@ -142,7 +105,7 @@ class App extends Component {
         } else {
           browserHistory.push('/failure');
         }
-      }, 2000)
+      }, 3000)
   }
 
   deleteBike(bike) {
@@ -177,7 +140,7 @@ class App extends Component {
         } else {
           browserHistory.push('/failure');
         }
-      }, 2000)
+      }, 3000)
   }
 
   bikeDetails(bike) {

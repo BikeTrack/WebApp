@@ -52,7 +52,7 @@ class SignUp extends Component {
         } else {
           browserHistory.push('/failure');
         }
-      }, 2000)
+      }, 3000)
   }
 
   render() {

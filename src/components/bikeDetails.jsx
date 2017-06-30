@@ -101,7 +101,7 @@ class bikeDetails extends Component {
         } else {
           browserHistory.push('/failure');
         }
-      }, 2000)
+      }, 3000)
   }
 
   editBike() {
@@ -140,7 +140,7 @@ class bikeDetails extends Component {
         } else {
           browserHistory.push('/failure');
         }
-      }, 2000)
+      }, 3000)
   }
 
   render() {
@@ -162,6 +162,9 @@ class bikeDetails extends Component {
             <div>Tracker: {this.state.tracker}</div>
             <div>Created: {this.state.created}</div>
             <div>Updated: {this.state.updated}</div>
+            <div className="mapid">
+              <Map />
+            </div>
 
             <button
               className="btn btn-danger"
@@ -171,7 +174,6 @@ class bikeDetails extends Component {
                 Delete bike
             </button>
           </div>
-
           <div className="form-group">
             <h4 className="intro-text">Modify your bike informations</h4>
             <input
@@ -214,12 +216,8 @@ class bikeDetails extends Component {
               style={{marginTop: '10px'}}
               onClick={() => this.editBike()}
               >
-                Modify User
+                Modify Bike
             </button>
-          </div>
-
-          <div className="mapid">
-            <Map />
           </div>
         </div>
       </div>

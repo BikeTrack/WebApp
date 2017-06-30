@@ -143,10 +143,10 @@ class Profile extends Component {
         <AppNavbar />
         <div className="form-inline" style={{margin: '5px'}}>
           <h2 className="intro-text">Profile Preview</h2>
-          <p>Mail : {this.state.mail}</p>
-          <p>Id : {this.state.id}</p>
-          <p>Creation : {this.state.created}</p>
-          <p>Last Modified : {this.state.updated}</p>
+          <p style={{color:'white'}}>Mail : {this.state.mail}</p>
+          <p style={{color:'white'}}>Id : {this.state.id}</p>
+          <p style={{color:'white'}}>Creation : {this.state.created}</p>
+          <p style={{color:'white'}}>Last Modified : {this.state.updated}</p>
           <div className="form-group">
             <button
               className="btn btn-danger"
