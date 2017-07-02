@@ -144,7 +144,6 @@ class bikeDetails extends Component {
   }
 
   render() {
-
     var position = [51.505, -0.09];
 
     return (
@@ -212,7 +211,7 @@ class bikeDetails extends Component {
 
           <br/>
             <button
-              className="btn"
+              className="SignButton"
               style={{marginTop: '10px'}}
               onClick={() => this.editBike()}
               >

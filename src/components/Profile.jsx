@@ -54,10 +54,6 @@ class Profile extends Component {
             updated: myObj.user.updated,
             bikes: myObj.user.bikes
           });
-
-      // console.log('myObj mail : ', myObj.user.mail);
-      // console.log('myObj create : ', myObj.user.created);
-      // console.log('myObj update : ', myObj.user.updated);
       }
     };
     request.send(JSON.stringify());
@@ -142,11 +138,11 @@ class Profile extends Component {
       <div className="App">
         <AppNavbar />
         <div className="form-inline" style={{margin: '5px'}}>
-          <h2 className="intro-text">Profile Preview</h2>
-          <p style={{color:'white'}}>Mail : {this.state.mail}</p>
-          <p style={{color:'white'}}>Id : {this.state.id}</p>
-          <p style={{color:'white'}}>Creation : {this.state.created}</p>
-          <p style={{color:'white'}}>Last Modified : {this.state.updated}</p>
+          <h2 className="App-intro">Profile Preview</h2>
+          <p className="intro-text">Mail : {this.state.mail}</p>
+          <p className="intro-text">Id : {this.state.id}</p>
+          <p className="intro-text">Creation : {this.state.created}</p>
+          <p className="intro-text">Last Modified : {this.state.updated}</p>
           <div className="form-group">
             <button
               className="btn btn-danger"
@@ -171,7 +167,7 @@ class Profile extends Component {
             />
           <br/>
             <button
-              className="btn btn-danger"
+              className="SignButton"
               style={{marginTop: '10px'}}
               onClick={() => this.editUser()}
               >

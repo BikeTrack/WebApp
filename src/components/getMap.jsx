@@ -46,7 +46,7 @@ export default class getMap extends Component {
         lng: 3.066667,
       },
       key: `Taiwan`,
-      defaultAnimation: 2,
+      defaultAnimation: 4,
     }],
   };
 

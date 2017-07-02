@@ -60,7 +60,7 @@ class SignUp extends Component {
       <div className="App">
         <TopNavbar />
         <div className="form-inline" style={{margin: '5px'}}>
-          <h2 className="intro-text">Sign up for Biketrack's Web Platform</h2>
+          <h2 className="App-intro ">Sign up for Biketrack's Web Platform</h2>
           <div className="form-group">
             <input
               className="form-control"
@@ -82,7 +82,7 @@ class SignUp extends Component {
               }}
             />
             <button
-              className="btn btn-primary"
+              className="SignButton"
               type="button"
               onClick={() => this.signUp()}
               >

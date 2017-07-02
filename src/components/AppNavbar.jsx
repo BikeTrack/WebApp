@@ -1,21 +1,32 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { browserHistory } from 'react-router';
+import { delete_cookie } from 'sfcookies';
 import '../img/App.css';
 import logo from '../img/logo.png'
 
 class AppNavbar extends Component {
+  changePage(page) {
+    browserHistory.push(page)
+  }
+
+  destroyToken() {
+    delete_cookie("token");
+    delete_cookie("userId");
+    browserHistory.push("welcome")
+  }
+
   render() {
     return (
       <div className="App">
-        <div className="navbar-inverse navbar-default" role="navigation">
+        <div className="App-header" role="navigation">
           <ul>
             <li className="App-logo" style={{marginTop: '4px', marginBottom: '4px'}}><img src={logo} alt="logo" /></li>
-            {/* <li className="header-text-website"><a href="https://www.biketrack.eu">WebSite</a></li> */}
-            {/* <li className="header-text-website"><a href="http://eip.epitech.eu/2018/biketrack/">WebSite</a></li> */}
-            <li className="header-text"><Link to={'/profile'}>Profile</Link></li>
-            <li className="header-text"><Link to={'/app'}>Bike List</Link></li>
-            <li className="header-text"><Link to={'/signup'}>Logout</Link></li>
+            <button className="SignButtonNav" onClick={() => this.changePage("profile")}>Profile</button>
+            <button className="SignButtonNav" onClick={() => this.changePage("app")}>Bikes</button>
+            <button className="SignButtonOut" onClick={() => this.destroyToken()}></button>
           </ul>
+        <div>
+        </div>
         </div>
       </div>
     )

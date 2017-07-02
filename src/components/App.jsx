@@ -6,6 +6,12 @@ import '../img/App.css';
 import { API_KEY, BASE_URL } from '../constants'
 import AppNavbar from './AppNavbar';
 
+import low from '../img/batteryLow.png';
+import normal from '../img/battery.png';
+import critical from '../img/batteryCritical.png';
+import plus from '../img/add.png';
+import bike from '../img/bicycle.png';
+
 class App extends Component {
 
   constructor(props){
@@ -20,6 +26,7 @@ class App extends Component {
       created:'',
       updated:'',
       bikes: '',
+      bName: '',
       error: {
         message: ''
       }
@@ -108,45 +115,41 @@ class App extends Component {
       }, 3000)
   }
 
-  deleteBike(bike) {
-    let JWTToken = read_cookie('token');
-    let userId = read_cookie('userId');
-    let request = new XMLHttpRequest();
-    let FETCH_URL = BASE_URL + "bike";
-    let success = false;
-
-    request.open('DELETE', FETCH_URL);
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.setRequestHeader('Authorization', this.state.apiKey);
-    request.setRequestHeader('x-access-token', JWTToken);
-    request.onreadystatechange = function () {
-    if (this.readyState === 4) {
-        console.log('Status:', this.status);
-        console.log('Headers:', this.getAllResponseHeaders());
-        console.log('Body:', this.responseText);
-      }
-    if (this.status === 200) {
-        success = true;
-        }
-    };
-    let body = {
-      'userId' : userId,
-      'bikeId': bike
-    };
-    request.send(JSON.stringify(body));
-    setTimeout(function() {
-        if (success) {
-          browserHistory.push('/delbikesuccess');
-        } else {
-          browserHistory.push('/failure');
-        }
-      }, 3000)
-  }
-
   bikeDetails(bike) {
     bake_cookie('bike', bike);
     browserHistory.push('/bikedetails');
   }
+
+  // getName(bikeId) {
+  //   let userId = read_cookie('userId');
+  //   let JWTToken = read_cookie('token');
+  //   let request = new XMLHttpRequest();
+  //   let FETCH_URL = BASE_URL + "bike/" + bikeId;
+  //
+  //   console.log('Token', JWTToken);
+  //   console.log('usrId', userId);
+  //
+  //   request.open('GET', FETCH_URL);
+  //   request.setRequestHeader('Content-Type', 'application/json');
+  //   request.setRequestHeader('Authorization', this.state.apiKey);
+  //   request.setRequestHeader('x-access-token', JWTToken);
+  //   request.onreadystatechange = function () {
+  //   if (this.readyState === 4) {
+  //       console.log('Status:', this.status);
+  //       console.log('Headers:', this.getAllResponseHeaders());
+  //       console.log('Body:', this.responseText);
+  //     }
+  //   if (this.status === 200)  {
+  //
+  //     let myObj = JSON.parse(this.response);
+  //
+  //     console.log('PITRIPITRIPITRIPITRIPITRIPITRIPITRIPITRIPITRIPITRI');
+  //     return (myObj.bike.brand + "-" + myObj.bike.name);
+  //     }
+  //   };
+  //   request.send(JSON.stringify());
+  // }
+
 
   render() {
     /* This brings dynamicity and performance to the code but still don't know how to implement it properly for it to work on DELETES and DETAILS of bikes */
@@ -162,14 +165,6 @@ class App extends Component {
     //                   >
     //                   {this.state.bikes[i]}
     //                 </button>
-    //                 <button
-    //                   className="btn btn-danger"
-    //                   style={{marginTop: '10px'}}
-    //                   onClick={() => this.deleteBike(this.state.bikes[i])}
-    //                   >
-    //                     Delete bike
-    //                 </button>
-    //
     //               </div>
     //             );
     // }
@@ -178,7 +173,7 @@ class App extends Component {
       <div className="App">
         <AppNavbar />
         <div className="form-inline" style={{margin: '5px'}}>
-          <h2 className="intro-text">Welcome to your personal Biketrack space</h2>
+          <h2 className="App-intro">Welcome to your personal Biketrack space</h2>
           <h3 className="intro-text">Bike List</h3>
 
           {/* Part 2 of the dynamicity of the code*/}
@@ -193,88 +188,69 @@ class App extends Component {
           {/* START */}
           {this.state.bikes[0] &&
             <div className="bike-box">
+              <img src={bike} role="presentation" className="iconDiv"/>
               Velo 1 :
               <button
-                className="btn"
+                className="SignButton"
                 style={{marginTop: '10px'}}
                 onClick={() => this.bikeDetails(this.state.bikes[0])}
                 >
                 {this.state.bikes[0]}
               </button>
-              <button
-                className="btn btn-danger"
-                style={{marginTop: '10px'}}
-                onClick={() => this.deleteBike(this.state.bikes[0])}
-                >
-                  Delete bike
-              </button>
+              <img src={normal} role="presentation" className="iconDiv"/>
             </div>
           }
 
           {this.state.bikes[1] &&
             <div className="bike-box">
+              <img src={bike} role="presentation" className="iconDiv" />
               Velo 2 :
               <button
-                className="btn"
+                className="SignButton"
                 style={{marginTop: '11px'}}
                 onClick={() => this.bikeDetails(this.state.bikes[1])}
                 >
                 {this.state.bikes[1]}
               </button>
-              <button
-                className="btn btn-danger"
-                style={{marginTop: '11px'}}
-                onClick={() => this.deleteBike(this.state.bikes[1])}
-                >
-                  Delete bike
-              </button>
+              <img src={low} role="presentation" className="iconDiv"/>
             </div>
           }
 
           {this.state.bikes[2] &&
             <div className="bike-box">
+              <img src={bike} role="presentation" className="iconDiv"/>
               Velo 3 :
               <button
-                className="btn"
+                className="SignButton"
                 style={{marginTop: '12px'}}
                 onClick={() => this.bikeDetails(this.state.bikes[2])}
                 >
                 {this.state.bikes[2]}
               </button>
-              <button
-                className="btn btn-danger"
-                style={{marginTop: '12px'}}
-                onClick={() => this.deleteBike(this.state.bikes[2])}
-                >
-                  Delete bike
-              </button>
+              <img src={critical} role="presentation" className="iconDiv"/>
             </div>
           }
 
 
           {this.state.bikes[3] &&
             <div className="bike-box">
-              Velo 4 :
+              <img src={bike} role="presentation" className="iconDiv"/>
+                   Velo 4 :
               <button
-                className="btn"
+                className="SignButton"
                 style={{marginTop: '13px'}}
                 onClick={() => this.bikeDetails(this.state.bikes[3])}
                 >
                 {this.state.bikes[3]}
               </button>
-              <button
-                className="btn btn-danger"
-                style={{marginTop: '13px'}}
-                onClick={() => this.deleteBike(this.state.bikes[3])}
-                >
-                  Delete bike
-              </button>
+              <img src={low} role="presentation" className="iconDiv"/>
             </div>
           }
 
 
           {this.state.bikes[4] &&
             <div className="bike-box">
+              <img src={bike} role="presentation" className="iconDiv"/>
               Velo 5 :
               <button
                 className="btn"
@@ -283,19 +259,12 @@ class App extends Component {
                 >
                 {this.state.bikes[4]}
               </button>
-              <button
-                className="btn btn-danger"
-                style={{marginTop: '14px'}}
-                onClick={() => this.deleteBike(this.state.bikes[4])}
-                >
-                  Delete bike
-              </button>
+              <img src={low} role="presentation" className="iconDiv"/>
             </div>
           }
           {/* END */}
-
-
-
+        <br/><br/><br/>
+          <img src={plus} alt="Add a New Bike"  className="iconDiv"/>
           <div className="form-group">
             <input
               className="form-control"
@@ -324,7 +293,7 @@ class App extends Component {
             />
           <br/>
             <button
-              className="btn btn-danger"
+              className="SignButton"
               style={{marginTop: '10px'}}
               onClick={() => this.addBike()}
               >
