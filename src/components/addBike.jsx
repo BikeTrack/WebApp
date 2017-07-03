@@ -1,33 +1,46 @@
 import React, { Component } from 'react';
-import { Link, browserHistory } from 'react-router';
-import { bake_cookie} from 'sfcookies';
+import { read_cookie } from 'sfcookies';
+import { browserHistory } from 'react-router';
 
-import TopNavbar from './Navbar';
-import { API_KEY, BASE_URL } from '../constants'
 import '../img/App.css';
+import { API_KEY, BASE_URL } from '../constants'
+import AppNavbar from './AppNavbar';
 
-class SignIn extends Component {
+class addBike extends Component {
+
   constructor(props){
     super(props);
     this.state = {
-      email: '',
-      password: '',
       apiKey: API_KEY,
+      name: '',
+      brand: '',
+      mail:'',
+      id:'',
+      created:'',
+      updated:'',
+      bikes: '',
+      bName: '',
       error: {
         message: ''
       }
     }
   }
 
-  signIn() {
-    const { email, password } = this.state;
+  addBike() {
+    const { name, brand } = this.state;
+    let userId = read_cookie('userId');
+    let JWTToken = read_cookie('token');
     let request = new XMLHttpRequest();
-    let FETCH_URL = BASE_URL + "authenticate";
+    let FETCH_URL = BASE_URL + "bike";
     let success = false;
+
+    console.log('Token', JWTToken);
+    console.log('usrId', userId);
 
     request.open('POST', FETCH_URL);
     request.setRequestHeader('Content-Type', 'application/json');
     request.setRequestHeader('Authorization', this.state.apiKey);
+    request.setRequestHeader('x-access-token', JWTToken);
     request.onreadystatechange = function () {
     if (this.readyState === 4) {
         console.log('Status:', this.status);
@@ -36,19 +49,22 @@ class SignIn extends Component {
       }
     if (this.status === 200) {
         success = true;
-        let myObj = JSON.parse(this.response);
-        bake_cookie('token', myObj.token);
-        bake_cookie('userId', myObj.userId);
-      }
+        }
     };
+
     let body = {
-      'mail': email,
-      'password': password
+      'userId': userId,
+      'bikeInfo': {
+        'name': name,
+        'brand': brand,
+        'tracker': "7462C"
+        // 'tracker' : userId + "Trxr"
+      }
     };
     request.send(JSON.stringify(body));
     setTimeout(function() {
         if (success) {
-          browserHistory.push('/app');
+          browserHistory.push('/addSuccess');
         } else {
           browserHistory.push('/failure');
         }
@@ -58,43 +74,44 @@ class SignIn extends Component {
   render() {
     return (
       <div className="App">
-        <TopNavbar />
+        <AppNavbar />
         <div className="form-inline" style={{margin: '5px'}}>
-          <h2 className="App-intro ">Log on the Biketrack's Web Platform</h2>
+          <h2 className="App-intro">Add a new bike</h2>
           <div className="gen-box">
             <div className="log-box">
               <input
                 className="form-control"
                 type="text"
-                placeholder="email"
-                onChange={event => this.setState({email: event.target.value})}
+                style={{marginRight: '7px'}}
+                placeholder="name"
+                onChange={event => this.setState({name: event.target.value})}
               /><br/><br/>
               <input
                 className="form-control"
-                type="password"
-                placeholder="password"
-                onChange={event => this.setState({password: event.target.value})}
+                style={{marginRight: '5px'}}
+                placeholder="brand"
+                onChange={event => this.setState({brand: event.target.value})}
                 onKeyPress={event => {
                   if (event.key === "Enter") {
-                  this.signIn()
+                  this.addBike()
                   }
                 }}
-              /><br/>
-            </div><br/>
+              />
+            <br/>
+            </div>
             <button
               className="SignButton"
-              type="button"
-              onClick={() => this.signIn()}
+              style={{marginTop: '10px'}}
+              onClick={() => this.addBike()}
               >
-                Sign In
+                Add a Bike
             </button>
+            <div>{this.state.error.message}</div>
           </div>
-          <div>{this.state.error.message}</div>
-          <div type="text" className="center"><Link to={'/signup'}>Signup Instead</Link></div>
         </div>
       </div>
     )
   }
 }
 
-export default SignIn;
+export default addBike;

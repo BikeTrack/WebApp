@@ -14,9 +14,12 @@ class Profile extends Component {
       apiKey: API_KEY,
       mail:'',
       id:'',
+      fname:'',
+      lname:'',
       created:'',
       updated:'',
       bikes: '',
+      birthday: '',
       error: {
         message: ''
       }
@@ -50,9 +53,12 @@ class Profile extends Component {
       that.setState({
             id: myObj.user._id,
             mail: myObj.user.mail,
+            fname: myObj.user.name,
+            lname: myObj.user.lastname,
             created: myObj.user.created,
             updated: myObj.user.updated,
-            bikes: myObj.user.bikes
+            bikes: myObj.user.bikes,
+            birthday: myObj.user.dob
           });
       }
     };
@@ -120,13 +126,16 @@ class Profile extends Component {
     let body = {
       'userId': userId,
       'update': {
-        mail: this.state.mail
+        mail: this.state.mail,
+        name: this.state.fname,
+        lastname: this.state.lname,
+        dob: this.state.birthday
       }
     };
     request.send(JSON.stringify(body));
     setTimeout(function() {
         if (success) {
-          browserHistory.push('/delSuccess');
+          browserHistory.push('/editSuccess');
         } else {
           browserHistory.push('/failure');
         }
@@ -137,45 +146,84 @@ class Profile extends Component {
     return (
       <div className="App">
         <AppNavbar />
-        <div className="form-inline" style={{margin: '5px'}}>
-          <h2 className="App-intro">Profile Preview</h2>
-          <p className="intro-text">Mail : {this.state.mail}</p>
-          <p className="intro-text">Id : {this.state.id}</p>
-          <p className="intro-text">Creation : {this.state.created}</p>
-          <p className="intro-text">Last Modified : {this.state.updated}</p>
-          <div className="form-group">
-            <button
-              className="btn btn-danger"
-              onClick={() => this.deleteUser()}
-              >
-                Delete User
-            </button>
-          </div>
-          <br/>
-          <div className="form-group">
-            <h4 className="intro-text">Modify your profile informations</h4>
-            <input
-              className="form-control"
-              style={{marginRight: '5px'}}
-              placeholder="mail"
-              onChange={event => this.setState({mail: event.target.value})}
-              onKeyPress={event => {
-                if (event.key === "Enter") {
-                this.editUser()
-                }
-              }}
-            />
-          <br/>
-            <button
-              className="SignButton"
-              style={{marginTop: '10px'}}
-              onClick={() => this.editUser()}
-              >
-                Modify User
-            </button>
-          </div>
+        <div className="gen-box">
+          <div className="form-inline" style={{margin: '5px'}}>
+            <h2 className="App-intro">Profile Preview</h2>
+            <p className="intro-text">First Name : {this.state.fname}</p>
+            <p className="intro-text">Last Name : {this.state.lname}</p>
+            <p className="intro-text">Birthday : {this.state.birthday}</p>
+            <p className="intro-text">Mail : {this.state.mail}</p>
+            <p className="intro-text">Id : {this.state.id}</p>
+            <p className="intro-text">Creation : {this.state.created}</p>
+            <p className="intro-text">Last Modified : {this.state.updated}</p>
+            <div className="form-group">
+              <br/><br/><br/>
+              <button
+                className="btn btn-danger"
+                onClick={() => this.deleteUser()}
+                >
+                  Delete User
+              </button>
+            </div>
+            <br/>
+            <div className="form-group">
+              <h4 className="intro-text">Modify your profile informations</h4>
+              <input
+                className="form-control"
+                style={{marginRight: '5px'}}
+                placeholder="First Name"
+                onChange={event => this.setState({fname: event.target.value})}
+                onKeyPress={event => {
+                  if (event.key === "Enter") {
+                  this.editUser()
+                  }
+                }}
+              />
+              <input
+                className="form-control"
+                style={{marginRight: '5px'}}
+                placeholder="Last Name"
+                onChange={event => this.setState({lname: event.target.value})}
+                onKeyPress={event => {
+                  if (event.key === "Enter") {
+                  this.editUser()
+                  }
+                }}
+              />
+              <input
+                className="form-control"
+                style={{marginRight: '5px'}}
+                placeholder="Birthday"
+                onChange={event => this.setState({birthday: event.target.value})}
+                onKeyPress={event => {
+                  if (event.key === "Enter") {
+                  this.editUser()
+                  }
+                }}
+              />
+              <input
+                className="form-control"
+                style={{marginRight: '5px'}}
+                placeholder="mail"
+                onChange={event => this.setState({mail: event.target.value})}
+                onKeyPress={event => {
+                  if (event.key === "Enter") {
+                  this.editUser()
+                  }
+                }}
+              />
+            <br/>
+              <button
+                className="SignButton"
+                style={{marginTop: '10px'}}
+                onClick={() => this.editUser()}
+                >
+                  Modify User
+              </button>
+            </div>
 
-          <div>{this.state.error.message}</div>
+            <div>{this.state.error.message}</div>
+          </div>
         </div>
       </div>
     )

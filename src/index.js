@@ -15,8 +15,10 @@ import Success from './components/Success';
 import delSuccess from './components/delSuccess';
 import delBikeSuccess from './components/delBikeSuccess';
 import addSuccess from './components/addSuccess';
+import editSuccess from './components/editSuccess';
 import Failure from './components/Failure';
 import bikeDetails from './components/bikeDetails';
+import addBike from './components/addBike';
 
 const store = createStore(reducer);
 browserHistory.replace('/welcome');
@@ -32,9 +34,11 @@ ReactDOM.render(
       <Route path="/success" component={Success} />
       <Route path="/failure" component={Failure} />
       <Route path="/delsuccess" component={delSuccess} />
+      <Route path="/editsuccess" component={editSuccess} />
       <Route path="/delbikesuccess" component={delBikeSuccess} />
       <Route path="/addsuccess" component={addSuccess} />
       <Route path="/bikedetails" component={bikeDetails} />
+      <Route path="/addbike" component={addBike} />
     </Router>
   </Provider>,
   document.getElementById('root')

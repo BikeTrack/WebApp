@@ -11,6 +11,9 @@ class SignUp extends Component {
     this.state = {
       email: '',
       password: '',
+      lname: '',
+      fname: '',
+      birthday: '',
       apiKey: API_KEY,
       error: {
         message: ''
@@ -19,7 +22,7 @@ class SignUp extends Component {
     }
 
   signUp() {
-    const { email, password } = this.state;
+    const { email, password, lname, fname, birthday} = this.state;
     let request = new XMLHttpRequest();
     let FETCH_URL = BASE_URL + "signup";
     let success = false;
@@ -43,7 +46,10 @@ class SignUp extends Component {
 
     let body = {
       'mail': email,
-      'password': password
+      'password': password,
+      'lastname': lname,
+      'name': fname,
+      'dob': birthday,
     };
     request.send(JSON.stringify(body));
     setTimeout(function() {
@@ -60,27 +66,45 @@ class SignUp extends Component {
       <div className="App">
         <TopNavbar />
         <div className="form-inline" style={{margin: '5px'}}>
-          <h2 className="App-intro ">Sign up for Biketrack's Web Platform</h2>
-          <div className="form-group">
-            <input
-              className="form-control"
-              type="text"
-              style={{marginRight: '5px'}}
-              placeholder="email"
-              onChange={event => this.setState({email: event.target.value})}
-            />
-            <input
-              className="form-control"
-              type="password"
-              style={{marginRight: '5px'}}
-              placeholder="password"
-              onChange={event => this.setState({password: event.target.value})}
-              onKeyPress={event => {
-                if (event.key === "Enter") {
-                this.signUp()
-                }
-              }}
-            />
+          <h2 className="App-intro ">Join the BikeTrack dream!</h2>
+          <div className="gen-box">
+            <div className="log-box">
+              <input
+                className="form-control"
+                type="text"
+                placeholder="First Name"
+                onChange={event => this.setState({lname: event.target.value})}
+              /><br/><br/>
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Last Name"
+                onChange={event => this.setState({fname: event.target.value})}
+              /><br/><br/>
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Bithday"
+                onChange={event => this.setState({birthday: event.target.value})}
+              /><br/><br/>
+              <input
+                className="form-control"
+                type="text"
+                placeholder="email"
+                onChange={event => this.setState({email: event.target.value})}
+              /><br/><br/>
+              <input
+                className="form-control"
+                type="password"
+                placeholder="password"
+                onChange={event => this.setState({password: event.target.value})}
+                onKeyPress={event => {
+                  if (event.key === "Enter") {
+                  this.signUp()
+                  }
+                }}
+              /><br/>
+            </div><br/>
             <button
               className="SignButton"
               type="button"
@@ -90,7 +114,7 @@ class SignUp extends Component {
             </button>
           </div>
         <div>{this.state.error.message}</div>
-        <div><Link to={'/signin'}>Already a user?</Link></div>
+        <div type="text" className="center"><Link to={'/signin'}>Already a user?</Link></div>
       </div>
     </div>
     )

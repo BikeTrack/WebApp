@@ -19,7 +19,7 @@ class addSuccess extends Component {
           <div className="successTitle">You successfully added a new bike ! </div>
           <div style={{textAlign: 'center'}}>
             <button
-            className="btn bck-btn"
+            className="SignButton"
             type="button"
             onClick={() => this.backPage()}
             >Back to your list

@@ -18,7 +18,7 @@ class Success extends Component {
           <div className="successTitle">You successfully signed up on BikeTrack! Have fun cycling and be safe!</div>
           <div style={{textAlign: 'center'}}>
             <button
-            className="btn bck-btn"
+            className="SignButton center"
             type="button"
             onClick={() => this.backPage()}
             ><Link to={'/welcome'}>Back to Home Page</Link>

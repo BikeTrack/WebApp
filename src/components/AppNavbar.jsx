@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import { delete_cookie } from 'sfcookies';
 import '../img/App.css';
-import logo from '../img/logo.png'
+import logo from '../img/logo-small.png'
 
 class AppNavbar extends Component {
   changePage(page) {

@@ -14,7 +14,6 @@ class bikeDetails extends Component {
     this.state = {
       apiKey: API_KEY,
       name: '',
-      color: '',
       brand: '',
       userId:'',
       bikeId:'',
@@ -57,7 +56,6 @@ class bikeDetails extends Component {
             userID: userId,
             bikeId: myObj.bike._id,
             name: myObj.bike.name,
-            color: myObj.bike.color,
             brand: myObj.bike.brand,
             created: myObj.bike.created,
             updated: myObj.bike.updated,
@@ -105,7 +103,6 @@ class bikeDetails extends Component {
   }
 
   editBike() {
-    let userId = read_cookie('userId');
     let JWTToken = read_cookie('token');
     let request = new XMLHttpRequest();
     let FETCH_URL = BASE_URL + "bike";
@@ -129,14 +126,13 @@ class bikeDetails extends Component {
       'bikeId': this.state.bikeId,
       'update': {
         name: this.state.name,
-        color: this.state.color,
         brand: this.state.brand
       }
     };
     request.send(JSON.stringify(body));
     setTimeout(function() {
         if (success) {
-          browserHistory.push('/delBikeSuccess');
+          browserHistory.push('/editSuccess');
         } else {
           browserHistory.push('/failure');
         }
@@ -144,27 +140,21 @@ class bikeDetails extends Component {
   }
 
   render() {
-    var position = [51.505, -0.09];
-
     return (
 
       <div className="App">
         <AppNavbar />
-        <div className="form-inline" style={{margin: '5px'}}>
-          <h3 className="intro-text">Bike Details</h3>
+        <div className="form-inline" type="text">
+          <div className="center">
+          <h3 className="App-intro">Bike Details</h3>
 
-          <div className="bike-box">
+          <div className="bike-detail-box">
             <div>Name: {this.state.name}</div>
             <div>Bike ID: {this.state.bikeId}</div>
-            <div>Color: {this.state.color}</div>
             <div>Brand: {this.state.brand}</div>
             <div>Tracker: {this.state.tracker}</div>
             <div>Created: {this.state.created}</div>
             <div>Updated: {this.state.updated}</div>
-            <div className="mapid">
-              <Map />
-            </div>
-
             <button
               className="btn btn-danger"
               style={{marginTop: '10px'}}
@@ -173,6 +163,9 @@ class bikeDetails extends Component {
                 Delete bike
             </button>
           </div>
+          <div className="mapid">
+            <Map />
+          </div><br/>
           <div className="form-group">
             <h4 className="intro-text">Modify your bike informations</h4>
             <input
@@ -180,17 +173,6 @@ class bikeDetails extends Component {
               style={{marginRight: '5px'}}
               placeholder="Name"
               onChange={event => this.setState({name: event.target.value})}
-              onKeyPress={event => {
-                if (event.key === "Enter") {
-                this.editBike()
-                }
-              }}
-            />
-            <input
-              className="form-control"
-              style={{marginRight: '5px'}}
-              placeholder="Color"
-              onChange={event => this.setState({color: event.target.value})}
               onKeyPress={event => {
                 if (event.key === "Enter") {
                 this.editBike()
@@ -218,6 +200,7 @@ class bikeDetails extends Component {
                 Modify Bike
             </button>
           </div>
+        </div>
         </div>
       </div>
     )

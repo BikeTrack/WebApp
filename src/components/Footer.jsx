@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import '../img/App.css';
 import logo from '../img/logo-small.png'
 
-class TopNavbar extends Component {
+class BotFooter extends Component {
   changePage(page) {
     browserHistory.push(page)
   }
@@ -27,4 +27,4 @@ class TopNavbar extends Component {
   }
 }
 
-export default TopNavbar;
+export default BotFooter;

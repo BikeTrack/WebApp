@@ -19,7 +19,6 @@ class App extends Component {
     this.state = {
       apiKey: API_KEY,
       name: '',
-      color: '',
       brand: '',
       mail:'',
       id:'',
@@ -70,54 +69,13 @@ class App extends Component {
     request.send(JSON.stringify());
   }
 
-  addBike() {
-    const { name, color, brand } = this.state;
-    let userId = read_cookie('userId');
-    let JWTToken = read_cookie('token');
-    let request = new XMLHttpRequest();
-    let FETCH_URL = BASE_URL + "bike";
-    let success = false;
-
-    console.log('Token', JWTToken);
-    console.log('usrId', userId);
-
-    request.open('POST', FETCH_URL);
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.setRequestHeader('Authorization', this.state.apiKey);
-    request.setRequestHeader('x-access-token', JWTToken);
-    request.onreadystatechange = function () {
-    if (this.readyState === 4) {
-        console.log('Status:', this.status);
-        console.log('Headers:', this.getAllResponseHeaders());
-        console.log('Body:', this.responseText);
-      }
-    if (this.status === 200) {
-        success = true;
-        }
-    };
-
-    let body = {
-      'userId': userId,
-      'bikeInfo': {
-        'name': name,
-        'color': color,
-        'brand': brand,
-        'tracker' : userId + "Trxr"
-      }
-    };
-    request.send(JSON.stringify(body));
-    setTimeout(function() {
-        if (success) {
-          browserHistory.push('/addSuccess');
-        } else {
-          browserHistory.push('/failure');
-        }
-      }, 3000)
-  }
-
   bikeDetails(bike) {
     bake_cookie('bike', bike);
     browserHistory.push('/bikedetails');
+  }
+
+  addBike() {
+    browserHistory.push('/addbike');
   }
 
   // getName(bikeId) {
@@ -172,137 +130,108 @@ class App extends Component {
     return (
       <div className="App">
         <AppNavbar />
-        <div className="form-inline" style={{margin: '5px'}}>
-          <h2 className="App-intro">Welcome to your personal Biketrack space</h2>
-          <h3 className="intro-text">Bike List</h3>
+        <div className="gen-box">
+          <div className="form-inline" style={{margin: '5px'}}>
+            <h2 className="App-intro">Welcome to your personal Biketrack space</h2>
+            <h3 className="intro-text">Bike List</h3>
 
-          {/* Part 2 of the dynamicity of the code*/}
+            {/* Part 2 of the dynamicity of the code*/}
 
-          {/* <div>
-           {bikeList}
-          </div> */}
+            {/* <div>
+             {bikeList}
+            </div> */}
 
 
-          {/* This is just disgusting, but it's the only way i have now to make it work at the moment */}
-          {/* Remove ASAP from : */}
-          {/* START */}
-          {this.state.bikes[0] &&
-            <div className="bike-box">
-              <img src={bike} role="presentation" className="iconDiv"/>
-              Velo 1 :
-              <button
-                className="SignButton"
-                style={{marginTop: '10px'}}
-                onClick={() => this.bikeDetails(this.state.bikes[0])}
-                >
-                {this.state.bikes[0]}
-              </button>
-              <img src={normal} role="presentation" className="iconDiv"/>
+            {/* This is just disgusting, but it's the only way i have now to make it work at the moment */}
+            {/* Remove ASAP from : */}
+            {/* START */}
+
+            {!this.state.bikes[0] &&
+              <div className="bike-box">
+                <h3 className="intro-text">Get started with BikeTrack and add your first bike!</h3>
+              </div>
+            }
+
+            {this.state.bikes[0] &&
+              <div className="bike-box">
+                <img src={bike} role="presentation" className="iconDiv"/>
+                Velo 1 :
+                <button
+                  className="SignButton"
+                  style={{marginTop: '10px'}}
+                  onClick={() => this.bikeDetails(this.state.bikes[0])}
+                  >
+                  {this.state.bikes[0]}
+                </button>
+                <img src={normal} role="presentation" className="iconDiv"/>
+              </div>
+            }
+
+            {this.state.bikes[1] &&
+              <div className="bike-box">
+                <img src={bike} role="presentation" className="iconDiv" />
+                Velo 2 :
+                <button
+                  className="SignButton"
+                  style={{marginTop: '11px'}}
+                  onClick={() => this.bikeDetails(this.state.bikes[1])}
+                  >
+                  {this.state.bikes[1]}
+                </button>
+                <img src={low} role="presentation" className="iconDiv"/>
+              </div>
+            }
+
+            {this.state.bikes[2] &&
+              <div className="bike-box">
+                <img src={bike} role="presentation" className="iconDiv"/>
+                Velo 3 :
+                <button
+                  className="SignButton"
+                  style={{marginTop: '12px'}}
+                  onClick={() => this.bikeDetails(this.state.bikes[2])}
+                  >
+                  {this.state.bikes[2]}
+                </button>
+                <img src={critical} role="presentation" className="iconDiv"/>
+              </div>
+            }
+
+            {this.state.bikes[3] &&
+              <div className="bike-box">
+                <img src={bike} role="presentation" className="iconDiv"/>
+                     Velo 4 :
+                <button
+                  className="SignButton"
+                  style={{marginTop: '13px'}}
+                  onClick={() => this.bikeDetails(this.state.bikes[3])}
+                  >
+                  {this.state.bikes[3]}
+                </button>
+                <img src={low} role="presentation" className="iconDiv"/>
+              </div>
+            }
+
+            {this.state.bikes[4] &&
+              <div className="bike-box">
+                <img src={bike} role="presentation" className="iconDiv"/>
+                Velo 5 :
+                <button
+                  className="btn"
+                  style={{marginTop: '14px'}}
+                  onClick={() => this.bikeDetails(this.state.bikes[4])}
+                  >
+                  {this.state.bikes[4]}
+                </button>
+                <img src={low} role="presentation" className="iconDiv"/>
+              </div>
+            }
+            <br/><br/><br/>
+            <img src={plus} alt="Add a New Bike"  className="iconDiv plusButton" onClick={() => this.addBike()}/>
             </div>
-          }
-
-          {this.state.bikes[1] &&
-            <div className="bike-box">
-              <img src={bike} role="presentation" className="iconDiv" />
-              Velo 2 :
-              <button
-                className="SignButton"
-                style={{marginTop: '11px'}}
-                onClick={() => this.bikeDetails(this.state.bikes[1])}
-                >
-                {this.state.bikes[1]}
-              </button>
-              <img src={low} role="presentation" className="iconDiv"/>
-            </div>
-          }
-
-          {this.state.bikes[2] &&
-            <div className="bike-box">
-              <img src={bike} role="presentation" className="iconDiv"/>
-              Velo 3 :
-              <button
-                className="SignButton"
-                style={{marginTop: '12px'}}
-                onClick={() => this.bikeDetails(this.state.bikes[2])}
-                >
-                {this.state.bikes[2]}
-              </button>
-              <img src={critical} role="presentation" className="iconDiv"/>
-            </div>
-          }
-
-
-          {this.state.bikes[3] &&
-            <div className="bike-box">
-              <img src={bike} role="presentation" className="iconDiv"/>
-                   Velo 4 :
-              <button
-                className="SignButton"
-                style={{marginTop: '13px'}}
-                onClick={() => this.bikeDetails(this.state.bikes[3])}
-                >
-                {this.state.bikes[3]}
-              </button>
-              <img src={low} role="presentation" className="iconDiv"/>
-            </div>
-          }
-
-
-          {this.state.bikes[4] &&
-            <div className="bike-box">
-              <img src={bike} role="presentation" className="iconDiv"/>
-              Velo 5 :
-              <button
-                className="btn"
-                style={{marginTop: '14px'}}
-                onClick={() => this.bikeDetails(this.state.bikes[4])}
-                >
-                {this.state.bikes[4]}
-              </button>
-              <img src={low} role="presentation" className="iconDiv"/>
-            </div>
-          }
-          {/* END */}
-        <br/><br/><br/>
-          <img src={plus} alt="Add a New Bike"  className="iconDiv"/>
-          <div className="form-group">
-            <input
-              className="form-control"
-              type="text"
-              style={{marginRight: '7px'}}
-              placeholder="name"
-              onChange={event => this.setState({name: event.target.value})}
-            />
-            <input
-              className="form-control"
-              type="text"
-              style={{marginRight: '5px'}}
-              placeholder="color"
-              onChange={event => this.setState({color: event.target.value})}
-            />
-            <input
-              className="form-control"
-              style={{marginRight: '5px'}}
-              placeholder="brand"
-              onChange={event => this.setState({brand: event.target.value})}
-              onKeyPress={event => {
-                if (event.key === "Enter") {
-                this.addBike()
-                }
-              }}
-            />
-          <br/>
-            <button
-              className="SignButton"
-              style={{marginTop: '10px'}}
-              onClick={() => this.addBike()}
-              >
-                Add a New Bike
-            </button>
           </div>
           <div>{this.state.error.message}</div>
         </div>
-      </div>
     )
   }
 }
