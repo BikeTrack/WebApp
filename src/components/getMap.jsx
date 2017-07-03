@@ -1,18 +1,8 @@
 /* global google */
-import _ from "lodash";
-
-import {
-  default as React,
-  Component,
-} from "react";
-
-import Helmet from "react-helmet";
-
-import {
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-} from "react-google-maps";
+import { _ } from "lodash";
+import { default as React, Component} from "react";
+import { Helmet } from "react-helmet";
+import { withGoogleMap, GoogleMap, Marker} from "react-google-maps";
 
 /*
  * This is the modify version of:
@@ -45,8 +35,40 @@ export default class getMap extends Component {
         lat: 50.633333,
         lng: 3.066667,
       },
-      key: `Taiwan`,
-      defaultAnimation: 4,
+      key: `Actual`,
+      defaultAnimation: 1,
+    },
+    {
+      position: {
+        lat: 50.65,
+        lng: 3.0667,
+      },
+      key: `Actual-1`,
+      defaultAnimation: 3,
+    },
+    {
+      position: {
+        lat: 50.633,
+        lng: 3.0467,
+      },
+      key: `Actual-2`,
+      defaultAnimation: 3,
+    },
+    {
+      position: {
+        lat: 50.64,
+        lng: 3.0267,
+      },
+      key: `Actual-3`,
+      defaultAnimation: 3,
+    },
+    {
+      position: {
+        lat: 50.63,
+        lng: 3.0567,
+      },
+      key: `Actual-4`,
+      defaultAnimation: 3,
     }],
   };
 
@@ -102,7 +124,7 @@ export default class getMap extends Component {
     return (
       <div style={{height: `100%`}}>
         <Helmet
-          title="Getting Started"
+          title="Bike Location"
         />
         <GettingStartedGoogleMap
           containerElement={
