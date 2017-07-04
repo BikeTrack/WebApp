@@ -10,7 +10,7 @@ let fra = {
 
     /* Signup.jsx */
     signupHead : "Rejoignez la community de Biketrack",
-    signupSuccess : "Vous etes maintenant inscrit sur BikeTrack ! Profitez du vélo et soyez prudent !",
+    signupSucc : "Vous etes maintenant inscrit sur BikeTrack ! Profitez du vélo et soyez prudent !",
 
     /* General Success / Failure .jsx */
     signFail : "Inscription/Connexion echouéé, certaines des informations que vous avez fourni ne sont pas valides",

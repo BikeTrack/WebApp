@@ -5,6 +5,7 @@ import { browserHistory } from 'react-router';
 import '../img/App.css';
 import { API_KEY, BASE_URL } from '../constants'
 import AppNavbar from './AppNavbar';
+import Battery from './getBattery';
 
 import low from '../img/batteryLow.png';
 import normal from '../img/battery.png';
@@ -50,8 +51,8 @@ class App extends Component {
     let FETCH_URL = BASE_URL + "profile/" + userId;
     let that = this;
 
-    console.log('Token', JWTToken);
-    console.log('usrId', userId);
+    // console.log('Token', JWTToken);
+    // console.log('usrId', userId);
 
     request.open('GET', FETCH_URL);
     request.setRequestHeader('Content-Type', 'application/json');
@@ -72,9 +73,9 @@ class App extends Component {
             updated: myObj.user.updated,
             bikes: myObj.user.bikes
           });
-      console.log('myObj mail : ', myObj.user.mail);
-      console.log('myObj create : ', myObj.user.created);
-      console.log('myObj update : ', myObj.user.updated);
+      // console.log('myObj mail : ', myObj.user.mail);
+      // console.log('myObj create : ', myObj.user.created);
+      // console.log('myObj update : ', myObj.user.updated);
       }
     };
     request.send(JSON.stringify());
@@ -174,7 +175,7 @@ class App extends Component {
                   >
                   {this.state.bikes[0]}
                 </button>
-                <img src={normal} role="presentation" className="iconDiv"/>
+                <Battery style={{display : 'inline-block'}}/>
               </div>
             }
 

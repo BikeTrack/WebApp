@@ -133,10 +133,12 @@ class SignUp extends Component {
                 {activeLang.buttSignup}
             </button>
             <FacebookLogin
-              appId="1088597931155576"
+              appId="195373897663006"
               autoLoad={true}
               fields="name,email,picture"
-              callback={responseFacebook} />
+              callback={responseFacebook}
+              cssClass="my-facebook-button-class"
+              icon="fa-facebook"/>
           </div>
         <div>{this.state.error.message}</div>
         <div type="text" className="center"><Link to={'/signin'}>{activeLang.buttSigninAlt}</Link></div>

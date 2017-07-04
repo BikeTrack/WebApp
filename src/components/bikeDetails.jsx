@@ -3,11 +3,12 @@ import { read_cookie } from 'sfcookies';
 import { browserHistory } from 'react-router';
 
 import '../img/App.css';
-import { API_KEY, BASE_URL } from '../constants'
+import { API_KEY, BASE_URL } from '../constants';
 import AppNavbar from './AppNavbar';
+import Battery from './getBattery';
 import Map from './getMap';
-import fra from '../lang/fr.js'
-import eng from '../lang/en.js'
+import fra from '../lang/fr.js';
+import eng from '../lang/en.js';
 
 let activeLang;
 let lang = read_cookie('lang');
@@ -136,7 +137,8 @@ class bikeDetails extends Component {
       'bikeId': this.state.bikeId,
       'update': {
         name: this.state.name,
-        brand: this.state.brand
+        brand: this.state.brand,
+        updated: Date.now()
       }
     };
     request.send(JSON.stringify(body));
@@ -159,12 +161,14 @@ class bikeDetails extends Component {
           <br/><br/><h3 className="App-intro">{activeLang.detailsHead}</h3>
 
           <div className="bike-detail-box">
+            <div><Battery/></div>
             <div>{activeLang.genName}: {this.state.name}</div>
             <div>{activeLang.genBikeID}: {this.state.bikeId}</div>
             <div>{activeLang.genBrand}: {this.state.brand}</div>
             <div>{activeLang.genTracker}: {this.state.tracker}</div>
             <div>{activeLang.genCreated}: {this.state.created}</div>
             <div>{activeLang.genUpdated}: {this.state.updated}</div>
+
             <button
               className="btn btn-danger"
               style={{marginTop: '10px'}}
@@ -174,7 +178,7 @@ class bikeDetails extends Component {
             </button>
           </div>
           <div className="mapid">
-            <Map />
+          <Map />
           </div><br/>
           <div className="form-group">
             <h4 className="intro-text">{activeLang.detailsEdit}</h4>

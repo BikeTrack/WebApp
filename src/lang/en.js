@@ -10,7 +10,7 @@ let eng = {
 
     /* Signup.jsx */
     signupHead : "Join the biketrack dream !",
-    signupSuccess : "You successfully signed up on BikeTrack! Have fun cycling and be safe !",
+    signupSucc : "You successfully signed up on BikeTrack! Have fun cycling and be safe !",
 
     /* General Success / Failure .jsx */
     signFail : "Signup/signin failed, some of the informations you gave are not valid",

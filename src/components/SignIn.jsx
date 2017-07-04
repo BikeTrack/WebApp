@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
 import { read_cookie, bake_cookie } from 'sfcookies';
+import FacebookLogin from 'react-facebook-login';
 
 import TopNavbar from './Navbar';
 import { API_KEY, BASE_URL } from '../constants'
@@ -14,6 +15,10 @@ if (lang === "FR") {
   activeLang = fra;
 } else {
   activeLang = eng;
+}
+
+const responseFacebook = (response) => {
+  console.log(response);
 }
 
 class SignIn extends Component {
@@ -98,6 +103,13 @@ class SignIn extends Component {
               >
                 {activeLang.buttSignin}
             </button>
+            <FacebookLogin
+              appId="195373897663006"
+              autoLoad={true}
+              fields="name,email,picture"
+              callback={responseFacebook}
+              cssClass="my-facebook-button-class"
+              icon="fa-facebook"/>
           </div>
           <div>{this.state.error.message}</div>
           <div type="text" className="center"><Link to={'/signup'}>{activeLang.buttSignupAlt}</Link></div>

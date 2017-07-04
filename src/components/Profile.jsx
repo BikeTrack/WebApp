@@ -139,7 +139,8 @@ class Profile extends Component {
         mail: this.state.mail,
         name: this.state.fname,
         lastname: this.state.lname,
-        dob: this.state.birthday
+        dob: this.state.birthday,
+        updated: Date.now()
       }
     };
     request.send(JSON.stringify(body));

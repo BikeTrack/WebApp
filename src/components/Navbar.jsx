@@ -3,8 +3,8 @@ import { browserHistory } from 'react-router';
 import { read_cookie, bake_cookie } from 'sfcookies';
 import '../img/App.css';
 import logo from '../img/logo-small.png'
-import fra from '../lang/fr.js'
-import eng from '../lang/en.js'
+import fra from '../lang/fr'
+import eng from '../lang/en'
 
 let activeLang;
 let lang = read_cookie('lang');

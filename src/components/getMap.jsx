@@ -4,6 +4,9 @@ import { default as React, Component} from "react";
 import { Helmet } from "react-helmet";
 import { withGoogleMap, GoogleMap, Marker} from "react-google-maps";
 
+import { API_KEY, BASE_URL } from '../constants';
+import { read_cookie, bake_cookie } from 'sfcookies';
+
 /*
  * This is the modify version of:
  * https://developers.google.com/maps/documentation/javascript/examples/event-arguments
@@ -13,8 +16,8 @@ import { withGoogleMap, GoogleMap, Marker} from "react-google-maps";
 const GettingStartedGoogleMap = withGoogleMap(props => (
   <GoogleMap
     ref={props.onMapLoad}
-    defaultZoom={12}
-    defaultCenter={{ lat: 50.633333, lng: 3.066667 }}
+    defaultZoom={5}
+    defaultCenter={{ lat: read_cookie('lastlat'), lng: read_cookie('lastlng') }}
 
     onClick={props.onMapClick}
   >
@@ -30,47 +33,97 @@ const GettingStartedGoogleMap = withGoogleMap(props => (
 export default class getMap extends Component {
 
   state = {
+    apiKey: API_KEY,
     markers: [{
       position: {
-        lat: 50.633333,
-        lng: 3.066667,
+        lat: "",
+        lng: "",
       },
-      key: `Actual`,
-      defaultAnimation: 1,
-    },
-    {
-      position: {
-        lat: 50.65,
-        lng: 3.0667,
+      key: "",
+      defaultAnimation: "",
       },
-      key: `Actual-1`,
-      defaultAnimation: 3,
-    },
-    {
-      position: {
-        lat: 50.633,
-        lng: 3.0467,
-      },
-      key: `Actual-2`,
-      defaultAnimation: 3,
-    },
-    {
-      position: {
-        lat: 50.64,
-        lng: 3.0267,
-      },
-      key: `Actual-3`,
-      defaultAnimation: 3,
-    },
-    {
-      position: {
-        lat: 50.63,
-        lng: 3.0567,
-      },
-      key: `Actual-4`,
-      defaultAnimation: 3,
-    }],
+    ],
   };
+
+  componentDidMount() {
+    let userId = read_cookie('userId');
+    let JWTToken = read_cookie('token');
+    let request = new XMLHttpRequest();
+    let FETCH_URL = BASE_URL + "tracker/71test";
+    let that = this;
+    console.log('Token', JWTToken);
+    console.log('usrId', userId);
+
+    request.open('GET', FETCH_URL);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.setRequestHeader('Authorization', this.state.apiKey);
+    request.setRequestHeader('x-access-token', JWTToken);
+    request.onreadystatechange = function () {
+    if (this.readyState === 4) {
+        console.log('Status:', this.status);
+        console.log('Headers:', this.getAllResponseHeaders());
+        console.log('Body:', this.responseText);
+      }
+      if (this.status === 200)  {
+
+        let myObj = JSON.parse(this.response);
+
+        // console.log('MyObj locations LAT : ', myObj.tracker.locations[0].coordinates[0]);
+        // console.log('MyObj locations LONG : ', myObj.tracker.locations[0].coordinates[1]);
+        bake_cookie('lastlat', myObj.tracker.locations[0].coordinates[0]);
+        bake_cookie('lastlng', myObj.tracker.locations[0].coordinates[1]);
+
+        const nextMarkers = [
+          ...that.state.markers,
+          {
+            position: {
+              lat : myObj.tracker.locations[0].coordinates[0],
+              lng : myObj.tracker.locations[0].coordinates[1],
+            },
+            defaultAnimation: 1,
+            // key: "Last Position",
+          },
+          {
+            position: {
+              lat : myObj.tracker.locations[1].coordinates[0],
+              lng : myObj.tracker.locations[1].coordinates[1],
+            },
+            defaultAnimation: 2,
+            // key: "Last1",
+          },
+          {
+            position: {
+              lat : myObj.tracker.locations[2].coordinates[0],
+              lng : myObj.tracker.locations[2].coordinates[1],
+            },
+            defaultAnimation: 2,
+            // key: "Last2",
+          },
+          {
+            position: {
+              lat : myObj.tracker.locations[3].coordinates[0],
+              lng : myObj.tracker.locations[3].coordinates[1],
+            },
+            defaultAnimation: 2,
+            // key: "Last3",
+          },
+          {
+            position: {
+              lat : myObj.tracker.locations[4].coordinates[0],
+              lng : myObj.tracker.locations[4].coordinates[1],
+            },
+            defaultAnimation: 2,
+            // key: "Last4",
+          },
+        ];
+        that.setState({
+          markers: nextMarkers,
+        });
+      }
+    };
+    request.send(JSON.stringify());
+  }
+
 
   handleMapLoad = this.handleMapLoad.bind(this);
   handleMapClick = this.handleMapClick.bind(this);
@@ -96,6 +149,8 @@ export default class getMap extends Component {
         key: Date.now(), // Add a key property for: http://fb.me/react-warning-keys
       },
     ];
+    console.log("Event latLng : ", event.latLng);
+    console.log("NextMarkers : ", nextMarkers);
     this.setState({
       markers: nextMarkers,
     });

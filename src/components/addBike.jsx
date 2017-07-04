@@ -108,6 +108,7 @@ class addBike extends Component {
                   }
                 }}
               />
+              <input type="file" />
             <br/>
             </div>
             <button
