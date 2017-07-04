@@ -5,6 +5,16 @@ import { browserHistory } from 'react-router';
 import '../img/App.css';
 import { API_KEY, BASE_URL } from '../constants'
 import AppNavbar from './AppNavbar';
+import fra from '../lang/fr.js'
+import eng from '../lang/en.js'
+
+let activeLang;
+let lang = read_cookie('lang');
+if (lang === "FR") {
+  activeLang = fra;
+} else {
+  activeLang = eng;
+}
 
 class addBike extends Component {
 
@@ -76,7 +86,7 @@ class addBike extends Component {
       <div className="App">
         <AppNavbar />
         <div className="form-inline" style={{margin: '5px'}}>
-          <h2 className="App-intro">Add a new bike</h2>
+          <br/><br/><h2 className="App-intro">{activeLang.appAdd}</h2>
           <div className="gen-box">
             <div className="log-box">
               <input
@@ -84,6 +94,7 @@ class addBike extends Component {
                 type="text"
                 style={{marginRight: '7px'}}
                 placeholder="name"
+                required
                 onChange={event => this.setState({name: event.target.value})}
               /><br/><br/>
               <input
@@ -104,7 +115,7 @@ class addBike extends Component {
               style={{marginTop: '10px'}}
               onClick={() => this.addBike()}
               >
-                Add a Bike
+                {activeLang.buttAddBike}
             </button>
             <div>{this.state.error.message}</div>
           </div>

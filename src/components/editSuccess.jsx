@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
+import { read_cookie } from 'sfcookies';
 
 import TopNavbar from './Navbar';
 import '../img/App.css';
+import fra from '../lang/fr.js'
+import eng from '../lang/en.js'
+
+let activeLang;
+let lang = read_cookie('lang');
+if (lang === "FR") {
+  activeLang = fra;
+} else {
+  activeLang = eng;
+}
 
 class editSuccess extends Component {
 
@@ -15,13 +26,13 @@ class editSuccess extends Component {
       <div className="App">
         <TopNavbar />
         <div className="form-inline" style={{margin: '5px'}}>
-          <div className="successTitle">Your informations were successfully edited ! </div>
+          <div className="successTitle">{activeLang.infoSuccEdit}</div>
           <div style={{textAlign: 'center'}}>
             <button
             className="SignButton"
             type="button"
             onClick={() => this.backPage()}
-            >Back to your list
+            >{activeLang.buttBackList}
             </button>
           </div>
         </div>

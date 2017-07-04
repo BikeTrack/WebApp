@@ -11,6 +11,17 @@ import normal from '../img/battery.png';
 import critical from '../img/batteryCritical.png';
 import plus from '../img/add.png';
 import bike from '../img/bicycle.png';
+import fra from '../lang/fr.js'
+import eng from '../lang/en.js'
+
+let activeLang;
+let lang = read_cookie('lang');
+
+if (lang === "FR") {
+  activeLang = fra;
+} else {
+  activeLang = eng;
+}
 
 class App extends Component {
 
@@ -132,8 +143,8 @@ class App extends Component {
         <AppNavbar />
         <div className="gen-box">
           <div className="form-inline" style={{margin: '5px'}}>
-            <h2 className="App-intro">Welcome to your personal Biketrack space</h2>
-            <h3 className="intro-text">Bike List</h3>
+            <br/><br/><h2 className="App-intro">{activeLang.appHead}</h2>
+            <h3 className="intro-text">{activeLang.appList}</h3>
 
             {/* Part 2 of the dynamicity of the code*/}
 
@@ -148,14 +159,14 @@ class App extends Component {
 
             {!this.state.bikes[0] &&
               <div className="bike-box">
-                <h3 className="intro-text">Get started with BikeTrack and add your first bike!</h3>
+                <h3 className="intro-text">{activeLang.appStarted}</h3>
               </div>
             }
 
             {this.state.bikes[0] &&
               <div className="bike-box">
                 <img src={bike} role="presentation" className="iconDiv"/>
-                Velo 1 :
+                {activeLang.appBike} :
                 <button
                   className="SignButton"
                   style={{marginTop: '10px'}}
@@ -170,7 +181,7 @@ class App extends Component {
             {this.state.bikes[1] &&
               <div className="bike-box">
                 <img src={bike} role="presentation" className="iconDiv" />
-                Velo 2 :
+                {activeLang.appBike} :
                 <button
                   className="SignButton"
                   style={{marginTop: '11px'}}
@@ -185,7 +196,7 @@ class App extends Component {
             {this.state.bikes[2] &&
               <div className="bike-box">
                 <img src={bike} role="presentation" className="iconDiv"/>
-                Velo 3 :
+                {activeLang.appBike} :
                 <button
                   className="SignButton"
                   style={{marginTop: '12px'}}
@@ -200,7 +211,7 @@ class App extends Component {
             {this.state.bikes[3] &&
               <div className="bike-box">
                 <img src={bike} role="presentation" className="iconDiv"/>
-                     Velo 4 :
+                {activeLang.appBike} :
                 <button
                   className="SignButton"
                   style={{marginTop: '13px'}}
@@ -215,9 +226,9 @@ class App extends Component {
             {this.state.bikes[4] &&
               <div className="bike-box">
                 <img src={bike} role="presentation" className="iconDiv"/>
-                Velo 5 :
+                {activeLang.appBike} :
                 <button
-                  className="btn"
+                  className="SignButton"
                   style={{marginTop: '14px'}}
                   onClick={() => this.bikeDetails(this.state.bikes[4])}
                   >
@@ -226,6 +237,23 @@ class App extends Component {
                 <img src={low} role="presentation" className="iconDiv"/>
               </div>
             }
+
+
+            {this.state.bikes[5] &&
+              <div className="bike-box">
+                <img src={bike} role="presentation" className="iconDiv"/>
+                {activeLang.appBike} :
+                <button
+                  className="SignButton"
+                  style={{marginTop: '14px'}}
+                  onClick={() => this.bikeDetails(this.state.bikes[4])}
+                  >
+                  {this.state.bikes[5]}
+                </button>
+                <img src={low} role="presentation" className="iconDiv"/>
+              </div>
+            }
+
             <br/><br/><br/>
             <img src={plus} alt="Add a New Bike"  className="iconDiv plusButton" onClick={() => this.addBike()}/>
             </div>

@@ -6,6 +6,16 @@ import '../img/App.css';
 import { API_KEY, BASE_URL } from '../constants'
 import AppNavbar from './AppNavbar';
 import Map from './getMap';
+import fra from '../lang/fr.js'
+import eng from '../lang/en.js'
+
+let activeLang;
+let lang = read_cookie('lang');
+if (lang === "FR") {
+  activeLang = fra;
+} else {
+  activeLang = eng;
+}
 
 class bikeDetails extends Component {
 
@@ -146,28 +156,28 @@ class bikeDetails extends Component {
         <AppNavbar />
         <div className="form-inline" type="text">
           <div className="center">
-          <h3 className="App-intro">Bike Details</h3>
+          <br/><br/><h3 className="App-intro">{activeLang.detailsHead}</h3>
 
           <div className="bike-detail-box">
-            <div>Name: {this.state.name}</div>
-            <div>Bike ID: {this.state.bikeId}</div>
-            <div>Brand: {this.state.brand}</div>
-            <div>Tracker: {this.state.tracker}</div>
-            <div>Created: {this.state.created}</div>
-            <div>Updated: {this.state.updated}</div>
+            <div>{activeLang.genName}: {this.state.name}</div>
+            <div>{activeLang.genBikeID}: {this.state.bikeId}</div>
+            <div>{activeLang.genBrand}: {this.state.brand}</div>
+            <div>{activeLang.genTracker}: {this.state.tracker}</div>
+            <div>{activeLang.genCreated}: {this.state.created}</div>
+            <div>{activeLang.genUpdated}: {this.state.updated}</div>
             <button
               className="btn btn-danger"
               style={{marginTop: '10px'}}
               onClick={() => this.deleteBike(this.state.bikeId)}
               >
-                Delete bike
+                {activeLang.buttDelBike}
             </button>
           </div>
           <div className="mapid">
             <Map />
           </div><br/>
           <div className="form-group">
-            <h4 className="intro-text">Modify your bike informations</h4>
+            <h4 className="intro-text">{activeLang.detailsEdit}</h4>
             <input
               className="form-control"
               style={{marginRight: '5px'}}
@@ -197,7 +207,7 @@ class bikeDetails extends Component {
               style={{marginTop: '10px'}}
               onClick={() => this.editBike()}
               >
-                Modify Bike
+                {activeLang.buttEditBike}
             </button>
           </div>
         </div>

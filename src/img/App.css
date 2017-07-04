@@ -20,7 +20,7 @@ body {
 
 /* Buttons */
 
-.SignButton, .SignButtonNav, .SignButtonOut {
+.SignButton, .SignButtonNav, .SignButtonOut, .SignButtonLang , .SignButtonFr, .SignButtonEn{
 	padding: 10px 20px;
 	font-size: 18px;
   width: 110px;
@@ -39,11 +39,30 @@ body {
   background-image: url("./addhover.png");
 }
 
-.SignButton:hover, .SignButtonNav:hover, .SignButtonOut:hover{
+.SignButton:hover, .SignButtonNav:hover, .SignButtonOut:hover .SignButtonLang:hover {
   color: #FFD87F ;
 }
-.SignButtonNav {
+.SignButtonNav, .SignButtonLang {
     background-color:	transparent;
+}
+
+.SignButtonLang {
+  float: right;
+  margin-top: 10px;
+}
+
+.SignButtonEn {
+  float: right;
+  background:url(eng.png) no-repeat;
+  margin-top: 20px;
+  height: 100px;
+}
+
+.SignButtonFr {
+  float: right;
+  background:url(fr.png) no-repeat;
+  margin-top: 20px;
+  height: 100px;
 }
 
 .SignButtonOut {

@@ -1,9 +1,25 @@
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
+import { read_cookie } from 'sfcookies';
+import FacebookLogin from 'react-facebook-login';
 
 import { API_KEY, BASE_URL } from '../constants'
 import TopNavbar from './Navbar';
 import '../img/App.css';
+import fra from '../lang/fr.js'
+import eng from '../lang/en.js'
+
+let activeLang;
+let lang = read_cookie('lang');
+if (lang === "FR") {
+  activeLang = fra;
+} else {
+  activeLang = eng;
+}
+
+const responseFacebook = (response) => {
+  console.log(response);
+}
 
 class SignUp extends Component {
   constructor(props){
@@ -66,19 +82,21 @@ class SignUp extends Component {
       <div className="App">
         <TopNavbar />
         <div className="form-inline" style={{margin: '5px'}}>
-          <h2 className="App-intro ">Join the BikeTrack dream!</h2>
+          <br/><br/><h2 className="App-intro ">{activeLang.signupHead}</h2>
           <div className="gen-box">
             <div className="log-box">
               <input
                 className="form-control"
                 type="text"
                 placeholder="First Name"
+                required
                 onChange={event => this.setState({lname: event.target.value})}
               /><br/><br/>
               <input
                 className="form-control"
                 type="text"
                 placeholder="Last Name"
+                required
                 onChange={event => this.setState({fname: event.target.value})}
               /><br/><br/>
               <input
@@ -91,12 +109,14 @@ class SignUp extends Component {
                 className="form-control"
                 type="text"
                 placeholder="email"
+                required
                 onChange={event => this.setState({email: event.target.value})}
               /><br/><br/>
               <input
                 className="form-control"
                 type="password"
                 placeholder="password"
+                required
                 onChange={event => this.setState({password: event.target.value})}
                 onKeyPress={event => {
                   if (event.key === "Enter") {
@@ -110,11 +130,16 @@ class SignUp extends Component {
               type="button"
               onClick={() => this.signUp()}
               >
-                Sign Up
+                {activeLang.buttSignup}
             </button>
+            <FacebookLogin
+              appId="1088597931155576"
+              autoLoad={true}
+              fields="name,email,picture"
+              callback={responseFacebook} />
           </div>
         <div>{this.state.error.message}</div>
-        <div type="text" className="center"><Link to={'/signin'}>Already a user?</Link></div>
+        <div type="text" className="center"><Link to={'/signin'}>{activeLang.buttSigninAlt}</Link></div>
       </div>
     </div>
     )

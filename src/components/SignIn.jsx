@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
-import { bake_cookie} from 'sfcookies';
+import { read_cookie, bake_cookie } from 'sfcookies';
 
 import TopNavbar from './Navbar';
 import { API_KEY, BASE_URL } from '../constants'
 import '../img/App.css';
+import fra from '../lang/fr.js'
+import eng from '../lang/en.js'
+
+let activeLang;
+let lang = read_cookie('lang');
+if (lang === "FR") {
+  activeLang = fra;
+} else {
+  activeLang = eng;
+}
 
 class SignIn extends Component {
   constructor(props){
@@ -60,7 +70,7 @@ class SignIn extends Component {
       <div className="App">
         <TopNavbar />
         <div className="form-inline" style={{margin: '5px'}}>
-          <h2 className="App-intro ">Log on the Biketrack's Web Platform</h2>
+          <br/><br/><h2 className="App-intro ">{activeLang.signinHead}</h2>
           <div className="gen-box">
             <div className="log-box">
               <input
@@ -86,11 +96,11 @@ class SignIn extends Component {
               type="button"
               onClick={() => this.signIn()}
               >
-                Sign In
+                {activeLang.buttSignin}
             </button>
           </div>
           <div>{this.state.error.message}</div>
-          <div type="text" className="center"><Link to={'/signup'}>Signup Instead</Link></div>
+          <div type="text" className="center"><Link to={'/signup'}>{activeLang.buttSignupAlt}</Link></div>
         </div>
       </div>
     )

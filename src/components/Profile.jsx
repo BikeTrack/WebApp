@@ -5,6 +5,16 @@ import { browserHistory } from 'react-router';
 import '../img/App.css';
 import { API_KEY, BASE_URL } from '../constants'
 import AppNavbar from './AppNavbar';
+import fra from '../lang/fr.js'
+import eng from '../lang/en.js'
+
+let activeLang;
+let lang = read_cookie('lang');
+if (lang === "FR") {
+  activeLang = fra;
+} else {
+  activeLang = eng;
+}
 
 class Profile extends Component {
 
@@ -148,26 +158,26 @@ class Profile extends Component {
         <AppNavbar />
         <div className="gen-box">
           <div className="form-inline" style={{margin: '5px'}}>
-            <h2 className="App-intro">Profile Preview</h2>
-            <p className="intro-text">First Name : {this.state.fname}</p>
-            <p className="intro-text">Last Name : {this.state.lname}</p>
-            <p className="intro-text">Birthday : {this.state.birthday}</p>
-            <p className="intro-text">Mail : {this.state.mail}</p>
-            <p className="intro-text">Id : {this.state.id}</p>
-            <p className="intro-text">Creation : {this.state.created}</p>
-            <p className="intro-text">Last Modified : {this.state.updated}</p>
+            <br/><br/><h2 className="App-intro">{activeLang.profileHead}</h2>
+            <p className="intro-text">{activeLang.genFName} : {this.state.fname}</p>
+            <p className="intro-text">{activeLang.genLName} : {this.state.lname}</p>
+            <p className="intro-text">{activeLang.genBday} : {this.state.birthday}</p>
+            <p className="intro-text">{activeLang.genMail} : {this.state.mail}</p>
+            <p className="intro-text">{activeLang.genID} : {this.state.id}</p>
+            <p className="intro-text">{activeLang.genCreated} : {this.state.created}</p>
+            <p className="intro-text">{activeLang.genUpdated} : {this.state.updated}</p>
             <div className="form-group">
               <br/><br/><br/>
               <button
                 className="btn btn-danger"
                 onClick={() => this.deleteUser()}
                 >
-                  Delete User
+                  {activeLang.buttDelUser}
               </button>
             </div>
             <br/>
             <div className="form-group">
-              <h4 className="intro-text">Modify your profile informations</h4>
+              <h4 className="intro-text">{activeLang.profileEdit}</h4>
               <input
                 className="form-control"
                 style={{marginRight: '5px'}}
@@ -218,7 +228,7 @@ class Profile extends Component {
                 style={{marginTop: '10px'}}
                 onClick={() => this.editUser()}
                 >
-                  Modify User
+                  {activeLang.buttEditUser}
               </button>
             </div>
 

@@ -1,11 +1,28 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
+import { read_cookie, bake_cookie } from 'sfcookies';
 import '../img/App.css';
 import TopNavbar from './Navbar';
 import gPlay from '../img/GooglePlay.png'
 import aStore from '../img/AppStore.png'
+import fra from '../lang/fr.js'
+import eng from '../lang/en.js'
+
+let activeLang;
+let lang = read_cookie('lang');
+// eslint-disable-next-line
+if (lang == "") {
+  lang = "FR";
+  bake_cookie('lang', 'FR')
+}
+if (lang === "FR") {
+  activeLang = fra;
+} else {
+  activeLang = eng;
+}
 
 class Welcome extends Component {
+
     changePage(page) {
       browserHistory.push('/sign' + page)
     }
@@ -15,19 +32,16 @@ class Welcome extends Component {
       <div className="App">
             <TopNavbar />
             <div className="form-inline" style={{margin: '5px'}}>
-              <br/><h2 className="App-intro">Welcome on Biketrack's Web Platform</h2>
+              <br/><br/><h2 className="App-intro">{activeLang.welcomeHead}</h2>
               <br/><br/><br/><br/>
-              <p className="intro-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum.</p>
+              <p className="intro-text">{activeLang.welcomeIntro}</p>
                 <br/><br/>
               <div className="stores">
 
                 <button className="SignButton"
-                  onClick={() => this.changePage("up")}>Sign Up</button>
+                  onClick={() => this.changePage("up")}>{activeLang.buttSignup}</button>
                 <button className="SignButton"
-                  onClick={() => this.changePage("in")}>Sign In</button>
+                  onClick={() => this.changePage("in")}>{activeLang.buttSignin}</button>
               </div>
             </div>
             <div className="stores">

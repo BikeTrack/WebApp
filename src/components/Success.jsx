@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
+import { read_cookie } from 'sfcookies';
 
 import TopNavbar from './Navbar';
 import '../img/App.css';
+import fra from '../lang/fr.js'
+import eng from '../lang/en.js'
+
+let activeLang;
+let lang = read_cookie('lang');
+if (lang === "FR") {
+  activeLang = fra;
+} else {
+  activeLang = eng;
+}
 
 class Success extends Component {
 
@@ -15,13 +26,13 @@ class Success extends Component {
       <div className="App">
         <TopNavbar />
         <div className="form-inline" style={{margin: '5px'}}>
-          <div className="successTitle">You successfully signed up on BikeTrack! Have fun cycling and be safe!</div>
+          <div className="successTitle">{activeLang.signupSucc}</div>
           <div style={{textAlign: 'center'}}>
             <button
             className="SignButton center"
             type="button"
             onClick={() => this.backPage()}
-            ><Link to={'/welcome'}>Back to Home Page</Link>
+            ><Link to={'/welcome'}>{activeLang.buttBackHome}</Link>
             </button>
           </div>
         </div>
