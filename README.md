@@ -12,6 +12,10 @@ Web Application for BikeTrack (Epitech Innovative Project) using ReactJS technol
 + Delete Bike : Done
 + Bike Details : Done
 + Bike Location : Done
++ Translation button : Done
++ Modify profile : Done
++ Modify bike : Done
++ FB connection : Work In Progress
 
 ## Current state
 + Working on Dynamycity, Performance / Quality of the code and Design for the App
@@ -29,10 +33,9 @@ git clone git@github.com:BikeTrack/WebApp.git
 + react-bootstrap
 
 ## TODO List
-+ Modify profile
-+ Modify bike
 + Token Renew
-+ Translation button
++ AutoLogin
+
 
 ## Node Version
 Node v7.5.0
