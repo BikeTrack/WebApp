@@ -24,12 +24,13 @@ class addBike extends Component {
       apiKey: API_KEY,
       name: '',
       brand: '',
-      mail:'',
-      id:'',
-      created:'',
-      updated:'',
+      mail: '',
+      id: '',
+      created: '',
+      updated: '',
       bikes: '',
       bName: '',
+      tracker: '',
       error: {
         message: ''
       }
@@ -38,7 +39,7 @@ class addBike extends Component {
 
   addBike() {
     if (this.state.name && this.state.brand) {
-      const { name, brand } = this.state;
+      const { name, brand, tracker } = this.state;
       let userId = read_cookie('userId');
       let JWTToken = read_cookie('token');
       let request = new XMLHttpRequest();
@@ -68,8 +69,8 @@ class addBike extends Component {
         'bikeInfo': {
           'name': name,
           'brand': brand,
-          'tracker': "7462C"
-          // 'tracker' : userId + "Trxr"
+          'tracker': tracker
+          // 'tracker': "7462C"
         }
       };
       request.send(JSON.stringify(body));
@@ -104,6 +105,17 @@ class addBike extends Component {
                 style={{marginRight: '5px'}}
                 placeholder="brand"
                 onChange={event => this.setState({brand: event.target.value})}
+                onKeyPress={event => {
+                  if (event.key === "Enter") {
+                  this.addBike()
+                  }
+                }}
+              /><br/><br/>
+              <input
+                className="form-control"
+                style={{marginRight: '5px'}}
+                placeholder="TrackerID"
+                onChange={event => this.setState({tracker: event.target.value})}
                 onKeyPress={event => {
                   if (event.key === "Enter") {
                   this.addBike()

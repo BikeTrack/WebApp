@@ -168,7 +168,6 @@ class bikeDetails extends Component {
             <div>{activeLang.genTracker}: {this.state.tracker}</div>
             <div>{activeLang.genCreated}: {this.state.created}</div>
             <div>{activeLang.genUpdated}: {this.state.updated}</div>
-
             <button
               className="btn btn-danger"
               style={{marginTop: '10px'}}
