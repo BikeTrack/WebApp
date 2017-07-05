@@ -37,48 +37,50 @@ class addBike extends Component {
   }
 
   addBike() {
-    const { name, brand } = this.state;
-    let userId = read_cookie('userId');
-    let JWTToken = read_cookie('token');
-    let request = new XMLHttpRequest();
-    let FETCH_URL = BASE_URL + "bike";
-    let success = false;
+    if (this.state.name && this.state.brand) {
+      const { name, brand } = this.state;
+      let userId = read_cookie('userId');
+      let JWTToken = read_cookie('token');
+      let request = new XMLHttpRequest();
+      let FETCH_URL = BASE_URL + "bike";
+      let success = false;
 
-    console.log('Token', JWTToken);
-    console.log('usrId', userId);
+      console.log('Token', JWTToken);
+      console.log('usrId', userId);
 
-    request.open('POST', FETCH_URL);
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.setRequestHeader('Authorization', this.state.apiKey);
-    request.setRequestHeader('x-access-token', JWTToken);
-    request.onreadystatechange = function () {
-    if (this.readyState === 4) {
-        console.log('Status:', this.status);
-        console.log('Headers:', this.getAllResponseHeaders());
-        console.log('Body:', this.responseText);
-      }
-    if (this.status === 200) {
-        success = true;
+      request.open('POST', FETCH_URL);
+      request.setRequestHeader('Content-Type', 'application/json');
+      request.setRequestHeader('Authorization', this.state.apiKey);
+      request.setRequestHeader('x-access-token', JWTToken);
+      request.onreadystatechange = function () {
+      if (this.readyState === 4) {
+          console.log('Status:', this.status);
+          console.log('Headers:', this.getAllResponseHeaders());
+          console.log('Body:', this.responseText);
         }
-    };
+      if (this.status === 200) {
+          success = true;
+          }
+      };
 
-    let body = {
-      'userId': userId,
-      'bikeInfo': {
-        'name': name,
-        'brand': brand,
-        'tracker': "7462C"
-        // 'tracker' : userId + "Trxr"
-      }
-    };
-    request.send(JSON.stringify(body));
-    setTimeout(function() {
-        if (success) {
-          browserHistory.push('/addSuccess');
-        } else {
-          browserHistory.push('/failure');
+      let body = {
+        'userId': userId,
+        'bikeInfo': {
+          'name': name,
+          'brand': brand,
+          'tracker': "7462C"
+          // 'tracker' : userId + "Trxr"
         }
+      };
+      request.send(JSON.stringify(body));
+      setTimeout(function() {
+          if (success) {
+            browserHistory.push('/addSuccess');
+          } else {
+            browserHistory.push('/failure');
+          }
       }, 3000)
+    }
   }
 
   render() {
@@ -108,12 +110,11 @@ class addBike extends Component {
                   }
                 }}
               />
-              <input type="file" />
+              {/* <input type="file" /> */}
             <br/>
             </div>
             <button
               className="SignButton"
-              style={{marginTop: '10px'}}
               onClick={() => this.addBike()}
               >
                 {activeLang.buttAddBike}

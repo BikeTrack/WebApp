@@ -153,7 +153,6 @@ class App extends Component {
              {bikeList}
             </div> */}
 
-
             {/* This is just disgusting, but it's the only way i have now to make it work at the moment */}
             {/* Remove ASAP from : */}
             {/* START */}
@@ -242,7 +241,6 @@ class App extends Component {
                 {/* <img src={normal} role="presentation" className="iconDiv"/> */}
               </div>
             }
-
 
             {this.state.bikes[5] &&
               <div className="bike-box">

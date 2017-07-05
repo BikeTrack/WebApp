@@ -38,44 +38,46 @@ class SignUp extends Component {
     }
 
   signUp() {
-    const { email, password, lname, fname, birthday} = this.state;
-    let request = new XMLHttpRequest();
-    let FETCH_URL = BASE_URL + "signup";
-    let success = false;
-    request.open('POST', FETCH_URL);
+    if (this.state.email && this.state.password && this.state.fname && this.state.lname) {
+      const { email, password, lname, fname, birthday} = this.state;
+      let request = new XMLHttpRequest();
+      let FETCH_URL = BASE_URL + "signup";
+      let success = false;
+      request.open('POST', FETCH_URL);
 
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.setRequestHeader('Authorization', this.state.apiKey);
-    request.onreadystatechange = function () {
-      if (this.readyState === 4) {
-        console.log('Status:', this.status);
-        console.log('Headers:', this.getAllResponseHeaders());
-        console.log('Body:', this.responseText);
-      }
-      if (this.status === 200) {
-          success = true;
-      }
-    };
-    console.log('this.state.apiKey', this.state.apiKey);
-    console.log('this.state.email', this.state.email);
-    console.log('this.state.password', this.state.password);
-
-    let body = {
-      'mail': email,
-      'password': password,
-      'lastname': lname,
-      'name': fname,
-      'dob': birthday,
-    };
-    request.send(JSON.stringify(body));
-    setTimeout(function() {
-        if (success) {
-          browserHistory.push('/success');
-        } else {
-          browserHistory.push('/failure');
+      request.setRequestHeader('Content-Type', 'application/json');
+      request.setRequestHeader('Authorization', this.state.apiKey);
+      request.onreadystatechange = function () {
+        if (this.readyState === 4) {
+          console.log('Status:', this.status);
+          console.log('Headers:', this.getAllResponseHeaders());
+          console.log('Body:', this.responseText);
         }
-      }, 3000)
-  }
+        if (this.status === 200) {
+            success = true;
+        }
+      };
+      console.log('this.state.apiKey', this.state.apiKey);
+      console.log('this.state.email', this.state.email);
+      console.log('this.state.password', this.state.password);
+
+      let body = {
+        'mail': email,
+        'password': password,
+        'lastname': lname,
+        'name': fname,
+        'dob': birthday,
+      };
+      request.send(JSON.stringify(body));
+      setTimeout(function() {
+          if (success) {
+            browserHistory.push('/success');
+          } else {
+            browserHistory.push('/failure');
+          }
+        }, 3000)
+      }
+    }
 
   render() {
     return (
