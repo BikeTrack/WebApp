@@ -1,23 +1,10 @@
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
-import { read_cookie, bake_cookie } from 'sfcookies';
+import { read_cookie } from 'sfcookies';
 import { API_KEY, BASE_URL } from '../constants'
 import '../img/App.css';
-import logo from '../img/logo-small.png'
-import fra from '../lang/fr'
-import eng from '../lang/en'
 import normal from '../img/battery.png';
 import critical from '../img/batteryCritical.png';
 import low from '../img/batteryLow.png';
-
-let activeLang;
-let lang = read_cookie('lang');
-if (lang === "FR") {
-  activeLang = fra;
-} else {
-  activeLang = eng;
-}
-
 
 class Battery extends Component {
   constructor(props){
@@ -33,15 +20,12 @@ class Battery extends Component {
   }
 
   componentDidMount() {
+  	let JWTToken = read_cookie('token');
+  	let request = new XMLHttpRequest();
+  	let FETCH_URL = BASE_URL + "tracker/7462C";
+  	// let FETCH_URL = BASE_URL + "tracker/71test";
+  	let that = this;
 
-	let userId = read_cookie('userId');
-	let JWTToken = read_cookie('token');
-	let request = new XMLHttpRequest();
-	let FETCH_URL = BASE_URL + "tracker/71test";
-	let that = this;
-	console.log('Token', JWTToken);
-	console.log('usrId', userId);
-    console.log(' DIOCANE : ');
     request.open('GET', FETCH_URL);
     request.setRequestHeader('Content-Type', 'application/json');
     request.setRequestHeader('Authorization', this.state.apiKey);
@@ -53,9 +37,12 @@ class Battery extends Component {
         console.log('Body:', this.responseText);
       }
       if (this.status === 200)  {
-
         let myObj = JSON.parse(this.response);
-        let perc =  myObj.tracker.battery[0].pourcentage;
+
+        let perc =  myObj.tracker.battery;
+        let lastperc = perc[perc.length - 1];
+        perc = lastperc.pourcentage;
+
         let stat;
         if (perc < 10) {
           stat = -1
@@ -64,8 +51,6 @@ class Battery extends Component {
         } else {
           stat = 1
         }
-        console.log('stat : ', stat);
-        console.log('perc : ', perc);
         that.setState({
           batteryP: perc,
           batteryS : stat,
@@ -74,8 +59,6 @@ class Battery extends Component {
       }
       request.send(JSON.stringify());
     }
-
-
 
   render() {
     return (

@@ -89,14 +89,14 @@ class SignUp extends Component {
                 className="form-control"
                 type="text"
                 placeholder="First Name"
-                required
+                required="required"
                 onChange={event => this.setState({lname: event.target.value})}
               /><br/><br/>
               <input
                 className="form-control"
                 type="text"
                 placeholder="Last Name"
-                required
+                required="required"
                 onChange={event => this.setState({fname: event.target.value})}
               /><br/><br/>
               <input
@@ -109,14 +109,14 @@ class SignUp extends Component {
                 className="form-control"
                 type="text"
                 placeholder="email"
-                required
+                required="required"
                 onChange={event => this.setState({email: event.target.value})}
               /><br/><br/>
               <input
                 className="form-control"
                 type="password"
                 placeholder="password"
-                required
+                required="required"
                 onChange={event => this.setState({password: event.target.value})}
                 onKeyPress={event => {
                   if (event.key === "Enter") {

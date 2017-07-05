@@ -49,7 +49,7 @@ export default class getMap extends Component {
     let userId = read_cookie('userId');
     let JWTToken = read_cookie('token');
     let request = new XMLHttpRequest();
-    let FETCH_URL = BASE_URL + "tracker/71test";
+    let FETCH_URL = BASE_URL + "tracker/7462C";
     let that = this;
     console.log('Token', JWTToken);
     console.log('usrId', userId);
@@ -65,52 +65,55 @@ export default class getMap extends Component {
         console.log('Body:', this.responseText);
       }
       if (this.status === 200)  {
-
         let myObj = JSON.parse(this.response);
 
         // console.log('MyObj locations LAT : ', myObj.tracker.locations[0].coordinates[0]);
         // console.log('MyObj locations LONG : ', myObj.tracker.locations[0].coordinates[1]);
-        bake_cookie('lastlat', myObj.tracker.locations[0].coordinates[0]);
-        bake_cookie('lastlng', myObj.tracker.locations[0].coordinates[1]);
+
+        let i = myObj.tracker.locations.length - 2;
+        bake_cookie('lastlat', myObj.tracker.locations[i].coordinates[1]);
+        bake_cookie('lastlng', myObj.tracker.locations[i].coordinates[0]);
+
+        // console.log("lastpos DIOCANE : ", myObj.tracker.locations[i].coordinates[1], myObj.tracker.locations[i].coordinates[0],);
 
         const nextMarkers = [
           ...that.state.markers,
           {
             position: {
-              lat : myObj.tracker.locations[0].coordinates[0],
-              lng : myObj.tracker.locations[0].coordinates[1],
+              lat : myObj.tracker.locations[i].coordinates[1],
+              lng : myObj.tracker.locations[i].coordinates[0],
             },
             defaultAnimation: 1,
             // key: "Last Position",
           },
           {
             position: {
-              lat : myObj.tracker.locations[1].coordinates[0],
-              lng : myObj.tracker.locations[1].coordinates[1],
+              lat : myObj.tracker.locations[i-1].coordinates[1],
+              lng : myObj.tracker.locations[i-1].coordinates[0],
             },
             defaultAnimation: 2,
             // key: "Last1",
           },
           {
             position: {
-              lat : myObj.tracker.locations[2].coordinates[0],
-              lng : myObj.tracker.locations[2].coordinates[1],
+              lat : myObj.tracker.locations[i-2].coordinates[1],
+              lng : myObj.tracker.locations[i-2].coordinates[0],
             },
             defaultAnimation: 2,
             // key: "Last2",
           },
           {
             position: {
-              lat : myObj.tracker.locations[3].coordinates[0],
-              lng : myObj.tracker.locations[3].coordinates[1],
+              lat : myObj.tracker.locations[i-3].coordinates[1],
+              lng : myObj.tracker.locations[i-3].coordinates[0],
             },
             defaultAnimation: 2,
             // key: "Last3",
           },
           {
             position: {
-              lat : myObj.tracker.locations[4].coordinates[0],
-              lng : myObj.tracker.locations[4].coordinates[1],
+              lat : myObj.tracker.locations[i-4].coordinates[1],
+              lng : myObj.tracker.locations[i-4].coordinates[0],
             },
             defaultAnimation: 2,
             // key: "Last4",

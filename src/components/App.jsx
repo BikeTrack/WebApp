@@ -175,7 +175,7 @@ class App extends Component {
                   >
                   {this.state.bikes[0]}
                 </button>
-                <Battery style={{display : 'inline-block'}}/>
+                <Battery />
               </div>
             }
 
@@ -190,7 +190,8 @@ class App extends Component {
                   >
                   {this.state.bikes[1]}
                 </button>
-                <img src={low} role="presentation" className="iconDiv"/>
+                <Battery />
+                {/* <img src={low} role="presentation" className="iconDiv"/> */}
               </div>
             }
 
@@ -205,7 +206,8 @@ class App extends Component {
                   >
                   {this.state.bikes[2]}
                 </button>
-                <img src={critical} role="presentation" className="iconDiv"/>
+                <Battery />
+                {/* <img src={critical} role="presentation" className="iconDiv"/> */}
               </div>
             }
 
@@ -220,7 +222,8 @@ class App extends Component {
                   >
                   {this.state.bikes[3]}
                 </button>
-                <img src={low} role="presentation" className="iconDiv"/>
+                <Battery />
+                {/* <img src={low} role="presentation" className="iconDiv"/> */}
               </div>
             }
 
@@ -235,7 +238,8 @@ class App extends Component {
                   >
                   {this.state.bikes[4]}
                 </button>
-                <img src={low} role="presentation" className="iconDiv"/>
+                <Battery />
+                {/* <img src={normal} role="presentation" className="iconDiv"/> */}
               </div>
             }
 
@@ -251,7 +255,8 @@ class App extends Component {
                   >
                   {this.state.bikes[5]}
                 </button>
-                <img src={low} role="presentation" className="iconDiv"/>
+                <Battery />
+                {/* <img src={low} role="presentation" className="iconDiv"/> */}
               </div>
             }
 

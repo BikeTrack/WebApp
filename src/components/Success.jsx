@@ -25,14 +25,14 @@ class Success extends Component {
     return (
       <div className="App">
         <TopNavbar />
-        <div className="form-inline" style={{margin: '5px'}}>
+        <div className="form-inline">
           <div className="successTitle">{activeLang.signupSucc}</div>
           <div style={{textAlign: 'center'}}>
             <button
             className="SignButton center"
             type="button"
             onClick={() => this.backPage()}
-            ><Link to={'/welcome'}>{activeLang.buttBackHome}</Link>
+            >{activeLang.buttBackHome}
             </button>
           </div>
         </div>

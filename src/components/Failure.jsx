@@ -26,17 +26,16 @@ class Failure extends Component {
       <div className="App">
         <TopNavbar />
         <div className="form-inline">
-          <div className="successTitle">Signup/signin failed, some of the informations you gave are not valid.</div>
-          <div className="form-group">
+          <div className="successTitle">{activeLang.signFail}</div>
           <div style={{textAlign: 'center'}}>
             <button
-              className="SignButton"
+              className="SignButton center"
               type="button"
               onClick={() => this.changePage("welcome")}
               >{activeLang.buttBackHome}
             </button>
             <button
-              className="SignButton"
+              className="SignButton center"
               type="button"
               onClick={() => this.changePage("signup")}
               >{activeLang.buttBackSignup}
@@ -44,7 +43,6 @@ class Failure extends Component {
           </div>
         </div>
       </div>
-    </div>
     )
   }
 }

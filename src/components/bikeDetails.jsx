@@ -56,7 +56,7 @@ class bikeDetails extends Component {
     if (this.readyState === 4) {
         console.log('Status:', this.status);
         console.log('Headers:', this.getAllResponseHeaders());
-        console.log('Body:', this.responseText);
+        // console.log('Body:', this.responseText);
       }
     if (this.status === 200)  {
 
@@ -92,7 +92,7 @@ class bikeDetails extends Component {
     if (this.readyState === 4) {
         console.log('Status:', this.status);
         console.log('Headers:', this.getAllResponseHeaders());
-        console.log('Body:', this.responseText);
+        // console.log('Body:', this.responseText);
       }
     if (this.status === 200) {
         success = true;
@@ -127,7 +127,7 @@ class bikeDetails extends Component {
     if (this.readyState === 4) {
         console.log('Status:', this.status);
         console.log('Headers:', this.getAllResponseHeaders());
-        console.log('Body:', this.responseText);
+        // console.log('Body:', this.responseText);
       }
     if (this.status === 200) {
         success = true;

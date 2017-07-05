@@ -39,6 +39,10 @@ body {
   background-image: url("./addhover.png");
 }
 
+[required] {
+   border: 2px solid red;
+}
+
 .SignButton:hover, .SignButtonNav:hover, .SignButtonOut:hover .SignButtonLang:hover {
   color: #FFD87F ;
 }
@@ -220,8 +224,9 @@ body {
   text-align: left;
   /*border: 2px solid black;*/
   padding: 30px;
-  color: red;
+  color: #004e66;
   margin:auto;
+  font-size: 15px;  
 }
 
 /* Map Boxes */
