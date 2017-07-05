@@ -23,9 +23,17 @@ if (lang === "FR") {
 
 class Welcome extends Component {
 
-    changePage(page) {
-      browserHistory.push('/sign' + page)
+  componentDidMount() {
+  	let token = read_cookie('token');
+    let usr = read_cookie('userId');
+    if (token !== "" && usr != ""){
+      browserHistory.push('app');
     }
+  }
+
+  changePage(page) {
+    browserHistory.push(page);
+  }
 
   render() {
     return (
@@ -39,9 +47,9 @@ class Welcome extends Component {
               <div className="stores">
 
                 <button className="SignButton"
-                  onClick={() => this.changePage("up")}>{activeLang.buttSignup}</button>
+                  onClick={() => this.changePage("signup")}>{activeLang.buttSignup}</button>
                 <button className="SignButton"
-                  onClick={() => this.changePage("in")}>{activeLang.buttSignin}</button>
+                  onClick={() => this.changePage("signin")}>{activeLang.buttSignin}</button>
               </div>
             </div>
             <div className="stores">

@@ -24,7 +24,7 @@ class TopNavbar extends Component {
       if (lang) {
         bake_cookie('lang', lang);
       }
-      location.reload();
+      location.reload(); 
     }
 
   render() {

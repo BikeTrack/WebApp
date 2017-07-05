@@ -23,8 +23,7 @@ class AppNavbar extends Component {
     if (lang) {
       bake_cookie('lang', lang);
     }
-
-    browserHistory.push("app")
+    location.reload();
   }
 
   destroyToken() {
