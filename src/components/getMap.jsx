@@ -16,7 +16,7 @@ import { read_cookie, bake_cookie } from 'sfcookies';
 const GettingStartedGoogleMap = withGoogleMap(props => (
   <GoogleMap
     ref={props.onMapLoad}
-    defaultZoom={5}
+    defaultZoom={10}
     defaultCenter={{ lat: read_cookie('lastlat'), lng: read_cookie('lastlng') }}
 
     onClick={props.onMapClick}
@@ -114,6 +114,22 @@ export default class getMap extends Component {
             position: {
               lat : myObj.tracker.locations[i-4].coordinates[1],
               lng : myObj.tracker.locations[i-4].coordinates[0],
+            },
+            defaultAnimation: 2,
+            // key: "Last4",
+          },
+          {
+            position: {
+              lat : myObj.tracker.locations[i-5].coordinates[1],
+              lng : myObj.tracker.locations[i-5].coordinates[0],
+            },
+            defaultAnimation: 2,
+            // key: "Last4",
+          },
+          {
+            position: {
+              lat : myObj.tracker.locations[i-6].coordinates[1],
+              lng : myObj.tracker.locations[i-6].coordinates[0],
             },
             defaultAnimation: 2,
             // key: "Last4",
