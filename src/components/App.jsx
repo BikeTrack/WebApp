@@ -7,19 +7,18 @@ import { API_KEY, BASE_URL } from '../constants'
 import AppNavbar from './AppNavbar';
 import Battery from './getBattery';
 
-import low from '../img/batteryLow.png';
-import normal from '../img/battery.png';
-import critical from '../img/batteryCritical.png';
 import plus from '../img/add.png';
 import bike from '../img/bicycle.png';
-import fra from '../lang/fr.js'
-import eng from '../lang/en.js'
+import fra from '../lang/fr'
+import eng from '../lang/en'
+import ita from '../lang/it-IT';
 
 let activeLang;
 let lang = read_cookie('lang');
-
 if (lang === "FR") {
   activeLang = fra;
+} else if (lang === "IT") {
+  activeLang = ita;
 } else {
   activeLang = eng;
 }
@@ -190,7 +189,6 @@ class App extends Component {
                   {this.state.bikes[1]}
                 </button>
                 <Battery />
-                {/* <img src={low} role="presentation" className="iconDiv"/> */}
               </div>
             }
 
@@ -206,7 +204,6 @@ class App extends Component {
                   {this.state.bikes[2]}
                 </button>
                 <Battery />
-                {/* <img src={critical} role="presentation" className="iconDiv"/> */}
               </div>
             }
 
@@ -222,7 +219,6 @@ class App extends Component {
                   {this.state.bikes[3]}
                 </button>
                 <Battery />
-                {/* <img src={low} role="presentation" className="iconDiv"/> */}
               </div>
             }
 
@@ -238,7 +234,6 @@ class App extends Component {
                   {this.state.bikes[4]}
                 </button>
                 <Battery />
-                {/* <img src={normal} role="presentation" className="iconDiv"/> */}
               </div>
             }
 
@@ -254,7 +249,6 @@ class App extends Component {
                   {this.state.bikes[5]}
                 </button>
                 <Battery />
-                {/* <img src={low} role="presentation" className="iconDiv"/> */}
               </div>
             }
 

@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
-import { read_cookie } from 'sfcookies';
+import { read_cookie, delete_cookie } from 'sfcookies';
 import { browserHistory } from 'react-router';
 
 import '../img/App.css';
 import { API_KEY, BASE_URL } from '../constants'
 import AppNavbar from './AppNavbar';
-import fra from '../lang/fr.js'
-import eng from '../lang/en.js'
+import fra from '../lang/fr'
+import eng from '../lang/en'
+import ita from '../lang/it-IT';
 
 let activeLang;
 let lang = read_cookie('lang');
 if (lang === "FR") {
   activeLang = fra;
+} else if (lang === "IT") {
+  activeLang = ita;
 } else {
   activeLang = eng;
 }
@@ -106,6 +109,8 @@ class Profile extends Component {
     setTimeout(function() {
         if (success) {
           browserHistory.push('/delSuccess');
+          delete_cookie("token");
+          delete_cookie("userId");
         } else {
           browserHistory.push('/failure');
         }
@@ -140,7 +145,7 @@ class Profile extends Component {
         name: this.state.fname,
         lastname: this.state.lname,
         dob: this.state.birthday,
-        updated: Date.now()
+        // updated: Date.now()
       }
     };
     request.send(JSON.stringify(body));

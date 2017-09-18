@@ -17,7 +17,7 @@ let fra = {
     infoSuccEdit : "Vos modifications ont bien été prises en compte !",
 
     /* App.jsx */
-    appHead : "Bienvenus dans votre espace Biketrack",
+    appHead : "Bienvenue dans votre espace Biketrack",
     appList : "Liste des vélos",
     appStarted : "Commencez par ajouter votre premier vélo !",
     appAddSucc : "vous avez bien ajouté le vélo à votre liste !",

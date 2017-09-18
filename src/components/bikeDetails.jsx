@@ -7,13 +7,16 @@ import { API_KEY, BASE_URL } from '../constants';
 import AppNavbar from './AppNavbar';
 import Battery from './getBattery';
 import Map from './getMap';
-import fra from '../lang/fr.js';
-import eng from '../lang/en.js';
+import fra from '../lang/fr';
+import eng from '../lang/en';
+import ita from '../lang/it-IT';
 
 let activeLang;
 let lang = read_cookie('lang');
 if (lang === "FR") {
   activeLang = fra;
+} else if (lang === "IT") {
+  activeLang = ita;
 } else {
   activeLang = eng;
 }
@@ -138,7 +141,7 @@ class bikeDetails extends Component {
       'update': {
         name: this.state.name,
         brand: this.state.brand,
-        updated: Date.now()
+        // updated: Date.now()
       }
     };
     request.send(JSON.stringify(body));

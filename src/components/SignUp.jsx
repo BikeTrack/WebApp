@@ -6,13 +6,16 @@ import FacebookLogin from 'react-facebook-login';
 import { API_KEY, BASE_URL } from '../constants'
 import TopNavbar from './Navbar';
 import '../img/App.css';
-import fra from '../lang/fr.js'
-import eng from '../lang/en.js'
+import fra from '../lang/fr'
+import eng from '../lang/en'
+import ita from '../lang/it-IT';
 
 let activeLang;
 let lang = read_cookie('lang');
 if (lang === "FR") {
   activeLang = fra;
+} else if (lang === "IT") {
+  activeLang = ita;
 } else {
   activeLang = eng;
 }
@@ -27,6 +30,7 @@ class SignUp extends Component {
     this.state = {
       email: '',
       password: '',
+      passwordCheck: '',
       lname: '',
       fname: '',
       birthday: '',
@@ -37,9 +41,13 @@ class SignUp extends Component {
       }
     }
 
+    myFunction() {
+        document.getElementById("checked").classList.toggle("checked");
+    }
+
   signUp() {
-    if (this.state.email && this.state.password && this.state.fname && this.state.lname) {
-      const { email, password, lname, fname, birthday} = this.state;
+    const { email, password, passwordCheck, lname, fname, birthday} = this.state;
+    if (email && password && fname && lname && password === passwordCheck) {
       let request = new XMLHttpRequest();
       let FETCH_URL = BASE_URL + "signup";
       let success = false;
@@ -92,14 +100,14 @@ class SignUp extends Component {
                 type="text"
                 placeholder="First Name"
                 required="required"
-                onChange={event => this.setState({lname: event.target.value})}
+                onChange={event => this.setState({fname: event.target.value})}
               /><br/><br/>
               <input
                 className="form-control"
                 type="text"
                 placeholder="Last Name"
                 required="required"
-                onChange={event => this.setState({fname: event.target.value})}
+                onChange={event => this.setState({lname: event.target.value})}
               /><br/><br/>
               <input
                 className="form-control"
@@ -120,6 +128,19 @@ class SignUp extends Component {
                 placeholder="password"
                 required="required"
                 onChange={event => this.setState({password: event.target.value})}
+                onKeyPress={event => {
+                  if (event.key === "Enter") {
+                  this.signUp()
+                  }
+                }}
+              /><br/><br/>
+              <input
+                id="checked"
+                className="form-control"
+                type="password"
+                placeholder="Repeat password"
+                required="required"
+                onChange={event => this.setState({passwordCheck: event.target.value})}
                 onKeyPress={event => {
                   if (event.key === "Enter") {
                   this.signUp()

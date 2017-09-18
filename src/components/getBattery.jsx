@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { read_cookie } from 'sfcookies';
-import { API_KEY, BASE_URL } from '../constants'
+import { API_KEY, BASE_URL } from '../constants';
 import '../img/App.css';
 import normal from '../img/battery.png';
 import critical from '../img/batteryCritical.png';
@@ -18,12 +18,10 @@ class Battery extends Component {
       }
     }
   }
-
   componentDidMount() {
   	let JWTToken = read_cookie('token');
   	let request = new XMLHttpRequest();
   	let FETCH_URL = BASE_URL + "tracker/7462C";
-  	// let FETCH_URL = BASE_URL + "tracker/71test";
   	let that = this;
 
     request.open('GET', FETCH_URL);

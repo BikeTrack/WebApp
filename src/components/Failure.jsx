@@ -6,11 +6,14 @@ import TopNavbar from './Navbar';
 import '../img/App.css';
 import fra from '../lang/fr.js'
 import eng from '../lang/en.js'
+import ita from '../lang/it-IT';
 
 let activeLang;
 let lang = read_cookie('lang');
 if (lang === "FR") {
   activeLang = fra;
+} else if (lang === "IT") {
+  activeLang = ita;
 } else {
   activeLang = eng;
 }

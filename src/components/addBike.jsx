@@ -5,13 +5,16 @@ import { browserHistory } from 'react-router';
 import '../img/App.css';
 import { API_KEY, BASE_URL } from '../constants'
 import AppNavbar from './AppNavbar';
-import fra from '../lang/fr.js'
-import eng from '../lang/en.js'
+import fra from '../lang/fr'
+import eng from '../lang/en'
+import ita from '../lang/it-IT';
 
 let activeLang;
 let lang = read_cookie('lang');
 if (lang === "FR") {
   activeLang = fra;
+} else if (lang === "IT") {
+  activeLang = ita;
 } else {
   activeLang = eng;
 }
@@ -38,7 +41,7 @@ class addBike extends Component {
   }
 
   addBike() {
-    if (this.state.name && this.state.brand) {
+    if (this.state.name && this.state.tracker) {
       const { name, brand, tracker } = this.state;
       let userId = read_cookie('userId');
       let JWTToken = read_cookie('token');
@@ -115,6 +118,7 @@ class addBike extends Component {
                 className="form-control"
                 style={{marginRight: '5px'}}
                 placeholder="TrackerID"
+                required
                 onChange={event => this.setState({tracker: event.target.value})}
                 onKeyPress={event => {
                   if (event.key === "Enter") {

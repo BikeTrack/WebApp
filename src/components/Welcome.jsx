@@ -5,8 +5,9 @@ import '../img/App.css';
 import TopNavbar from './Navbar';
 import gPlay from '../img/GooglePlay.png'
 import aStore from '../img/AppStore.png'
-import fra from '../lang/fr.js'
-import eng from '../lang/en.js'
+import fra from '../lang/fr'
+import eng from '../lang/en'
+import ita from '../lang/it-IT';
 
 let activeLang;
 let lang = read_cookie('lang');
@@ -17,10 +18,11 @@ if (lang == "") {
 }
 if (lang === "FR") {
   activeLang = fra;
+} else if (lang === "IT") {
+  activeLang = ita;
 } else {
   activeLang = eng;
 }
-
 class Welcome extends Component {
 
   componentDidMount() {
@@ -37,15 +39,14 @@ class Welcome extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App testtest">
             <TopNavbar />
-            <div className="form-inline" style={{margin: '5px'}}>
+            <div className="form-inline">
               <br/><br/><h2 className="App-intro">{activeLang.welcomeHead}</h2>
               <br/><br/><br/><br/>
               <p className="intro-text">{activeLang.welcomeIntro}</p>
                 <br/><br/>
               <div className="stores">
-
                 <button className="SignButton"
                   onClick={() => this.changePage("signup")}>{activeLang.buttSignup}</button>
                 <button className="SignButton"
