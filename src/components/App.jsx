@@ -7,7 +7,6 @@ import { API_KEY, BASE_URL } from '../constants'
 import AppNavbar from './AppNavbar';
 import Battery from './getBattery';
 
-import plus from '../img/add.png';
 import bike from '../img/design/bike3.png';
 import fra from '../lang/fr'
 import eng from '../lang/en'

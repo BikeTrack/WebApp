@@ -157,7 +157,7 @@ class SignUp extends Component {
                 {activeLang.buttSignup}
             </button>
             <FacebookLogin
-              appId="195373897663006"
+              appId="126603321331623"
               autoLoad={true}
               fields="name,email,picture"
               callback={responseFacebook}

@@ -24,6 +24,11 @@ const responseFacebook = (response) => {
   console.log(response);
 }
 
+
+// FB.getLoginStatus(function(response) {
+//     statusChangeCallback(response);
+// });
+
 class SignIn extends Component {
   constructor(props){
     super(props);
@@ -111,8 +116,12 @@ class SignIn extends Component {
               >
                 {activeLang.buttSignin}
             </button>
+            {/* <fb:login-button
+              scope="public_profile,email"
+              onlogin="checkLoginState();">
+            </fb:login-button> */}
             <FacebookLogin
-              appId="195373897663006"
+              appId="126603321331623"
               autoLoad={true}
               fields="name,email,picture"
               callback={responseFacebook}
