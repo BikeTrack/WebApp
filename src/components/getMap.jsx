@@ -19,12 +19,11 @@ const GettingStartedGoogleMap = withGoogleMap(props => (
     defaultZoom={10}
     defaultCenter={{ lat: read_cookie('lastlat'), lng: read_cookie('lastlng') }}
 
-    onClick={props.onMapClick}
   >
     {props.markers.map(marker => (
       <Marker
         {...marker}
-        onRightClick={() => props.onMarkerRightClick(marker)}
+
       />
     ))}
   </GoogleMap>
@@ -65,26 +64,28 @@ export default class getMap extends Component {
         console.log('Body:', this.responseText);
       }
       if (this.status === 200)  {
-        let myObj = JSON.parse(this.response);
+        let myObj = JSON.parse(this.responseText);
 
         let i = myObj.tracker.locations.length - 1;
         bake_cookie('lastlat', myObj.tracker.locations[i].coordinates[1]);
         bake_cookie('lastlng', myObj.tracker.locations[i].coordinates[0]);
 
         let count = 0;
-
-
         while (count !== 20) {
-        console.log("BEFORE POS DIOCANE : ", "count", count, "   ", myObj.tracker.locations[i - count].coordinates[1], myObj.tracker.locations[i - count].coordinates[0]);
+        // console.log("BEFORE POS DIOCANE : ", "count", count, "   ", myObj.tracker.locations[i - count].coordinates[1], myObj.tracker.locations[i - count].coordinates[0]);
           if (myObj.tracker.locations[i - count].coordinates[1] === null) {
             myObj.tracker.locations[i - count].coordinates[1] = myObj.tracker.locations[i - count - 1].coordinates[1];
           }
           if (myObj.tracker.locations[i - count].coordinates[0] === null) {
             myObj.tracker.locations[i - count].coordinates[0] = myObj.tracker.locations[i - count - 1].coordinates[0];
           }
-          console.log("AFTER POS DIOCANE : ", "count", count, "   ", myObj.tracker.locations[i - count].coordinates[1], myObj.tracker.locations[i - count].coordinates[0]);
+          // console.log("AFTER POS DIOCANE : ", "count", count, "   ", myObj.tracker.locations[i - count].coordinates[1], myObj.tracker.locations[i - count].coordinates[0]);
           count++;
         }
+
+        /*
+         * Plutot que de faire ça en dur créer dans une boucle les Marker et les push dans une liste ( limiter à 10 )
+        */
 
         const nextMarkers = [
           ...that.state.markers,

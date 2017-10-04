@@ -5,6 +5,7 @@ import '../img/App.css';
 import TopNavbar from './Navbar';
 import gPlay from '../img/GooglePlay.png'
 import aStore from '../img/AppStore.png'
+import blLogo from '../img/bigBlackLogo1.png'
 import fra from '../lang/fr'
 import eng from '../lang/en'
 import ita from '../lang/it-IT';
@@ -28,6 +29,7 @@ class Welcome extends Component {
   componentDidMount() {
   	let token = read_cookie('token');
     let usr = read_cookie('userId');
+    // eslint-disable-next-line
     if (token !== "" && usr != ""){
       browserHistory.push('app');
     }
@@ -37,21 +39,29 @@ class Welcome extends Component {
     browserHistory.push(page);
   }
 
+ /*
+ *  Diviser en blocks l'affichage de la page de façon que ce soit géré comme sur le site paypal
+ */
+
+
   render() {
     return (
-      <div className="App testtest">
+      <div className="App bgGen bgHome">
             <TopNavbar />
             <div className="form-inline">
-              <br/><br/><h2 className="App-intro">{activeLang.welcomeHead}</h2>
-              <br/><br/><br/><br/>
-              <p className="intro-text">{activeLang.welcomeIntro}</p>
-                <br/><br/>
+              <div className="princLogo">
+                <img src={blLogo} role="presentation"/>
+              </div>
+              <h2 className="App-intro">{activeLang.welcomeHead}</h2>
+              {/* <p className="intro-text">{activeLang.welcomeIntro}</p> */}
+                <br/>
               <div className="stores">
                 <button className="SignButton"
                   onClick={() => this.changePage("signup")}>{activeLang.buttSignup}</button>
                 <button className="SignButton"
                   onClick={() => this.changePage("signin")}>{activeLang.buttSignin}</button>
               </div>
+              <div style={{textAlign:'center', color:'red'}}>Forgot your password?</div>
             </div>
             <div className="stores">
               <img src={gPlay} alt="Google Play" style={{padding: '50px'}}/>

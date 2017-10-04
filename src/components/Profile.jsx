@@ -160,11 +160,12 @@ class Profile extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App bgGen bgProfile">
         <AppNavbar />
         <div className="gen-box">
           <div className="form-inline" style={{margin: '5px'}}>
             <br/><br/><h2 className="App-intro">{activeLang.profileHead}</h2>
+            <br/><br/><br/><br/><br/><br/>INSERER IMAGE UTILISATEUR ICI<br/><br/><br/><br/><br/><br/><br/><br/>
             <p className="intro-text">{activeLang.genFName} : {this.state.fname}</p>
             <p className="intro-text">{activeLang.genLName} : {this.state.lname}</p>
             <p className="intro-text">{activeLang.genBday} : {this.state.birthday}</p>

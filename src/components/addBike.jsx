@@ -89,10 +89,11 @@ class addBike extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App bgGen bgBike">
         <AppNavbar />
         <div className="form-inline" style={{margin: '5px'}}>
           <br/><br/><h2 className="App-intro">{activeLang.appAdd}</h2>
+          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
           <div className="gen-box">
             <div className="log-box">
               <input
@@ -136,7 +137,7 @@ class addBike extends Component {
                 {activeLang.buttAddBike}
             </button>
             <div>{this.state.error.message}</div>
-          </div>
+          </div><br/><br/>
         </div>
       </div>
     )

@@ -77,10 +77,11 @@ class SignIn extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App bgGen bgSign">
         <TopNavbar />
         <div className="form-inline" style={{margin: '5px'}}>
           <br/><br/><h2 className="App-intro ">{activeLang.signinHead}</h2>
+          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
           <div className="gen-box">
             <div className="log-box">
               <input
@@ -120,6 +121,7 @@ class SignIn extends Component {
           </div>
           <div>{this.state.error.message}</div>
           <div type="text" className="center"><Link to={'/signup'}>{activeLang.buttSignupAlt}</Link></div>
+          <br/><br/><br/><br/><br/>
         </div>
       </div>
     )

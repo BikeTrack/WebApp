@@ -157,12 +157,12 @@ class bikeDetails extends Component {
   render() {
     return (
 
-      <div className="App">
+      <div className="App bgGen bgTrack">
         <AppNavbar />
         <div className="form-inline" type="text">
           <div className="center">
           <br/><br/><h3 className="App-intro">{activeLang.detailsHead}</h3>
-
+          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
           <div className="bike-detail-box">
             <div><Battery/></div>
             <div>{activeLang.genName}: {this.state.name}</div>

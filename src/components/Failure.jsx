@@ -26,9 +26,10 @@ class Failure extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App bgGen bgFail">
         <TopNavbar />
         <div className="form-inline">
+          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
           <div className="successTitle">{activeLang.signFail}</div>
           <div style={{textAlign: 'center'}}>
             <button

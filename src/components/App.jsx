@@ -8,7 +8,7 @@ import AppNavbar from './AppNavbar';
 import Battery from './getBattery';
 
 import plus from '../img/add.png';
-import bike from '../img/bicycle.png';
+import bike from '../img/design/bike3.png';
 import fra from '../lang/fr'
 import eng from '../lang/en'
 import ita from '../lang/it-IT';
@@ -73,8 +73,6 @@ class App extends Component {
             bikes: myObj.user.bikes
           });
       // console.log('myObj mail : ', myObj.user.mail);
-      // console.log('myObj create : ', myObj.user.created);
-      // console.log('myObj update : ', myObj.user.updated);
       }
     };
     request.send(JSON.stringify());
@@ -111,7 +109,6 @@ class App extends Component {
   //   if (this.status === 200)  {
   //
   //     let myObj = JSON.parse(this.response);
-  //
   //     console.log('PITRIPITRIPITRIPITRIPITRIPITRIPITRIPITRIPITRIPITRI');
   //     return (myObj.bike.brand + "-" + myObj.bike.name);
   //     }
@@ -139,13 +136,13 @@ class App extends Component {
     // }
 
     return (
-      <div className="App">
+      <div className="App bgGen bgList">
         <AppNavbar />
         <div className="gen-box">
           <div className="form-inline" style={{margin: '5px'}}>
             <br/><br/><h2 className="App-intro">{activeLang.appHead}</h2>
             <h3 className="intro-text">{activeLang.appList}</h3>
-
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             {/* Part 2 of the dynamicity of the code*/}
 
             {/* <div>
@@ -251,9 +248,9 @@ class App extends Component {
                 <Battery />
               </div>
             }
-
             <br/><br/><br/>
-            <img src={plus} alt="Add a New Bike"  className="iconDiv plusButton" onClick={() => this.addBike()}/>
+            <button  className=" plusButton" onClick={() => this.addBike()} style={{fontSize:'50px'}}>+
+            </button>
             </div>
           </div>
           <div>{this.state.error.message}</div>

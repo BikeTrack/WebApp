@@ -30,13 +30,12 @@ class Battery extends Component {
     request.setRequestHeader('x-access-token', JWTToken);
     request.onreadystatechange = function () {
     if (this.readyState === 4) {
-        console.log('Status:', this.status);
-        console.log('Headers:', this.getAllResponseHeaders());
-        console.log('Body:', this.responseText);
+        // console.log('Status:', this.status);
+        // console.log('Headers:', this.getAllResponseHeaders());
+        // console.log('Body:', this.responseText);
       }
       if (this.status === 200)  {
         let myObj = JSON.parse(this.response);
-
         let perc =  myObj.tracker.battery;
         let lastperc = perc[perc.length - 1];
         perc = lastperc.pourcentage;

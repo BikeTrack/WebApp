@@ -4,74 +4,145 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-image: url("./body-bg.png");
-  /*background-color: #e1eef6;*/
-  /*background-image: url("./Hiking-Biking-1.jpg");*/
+  /*background-image: url("./body-bg.png");*/
   opacity: 1;
   background-attachment: fixed;
   position: relative;
 }
 
+.bgGen{
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: 100% auto;
+
+}
+
+.bgHome {
+  background-image: url("./design/backtest.png");
+  /*background-image: url("./design/body-bg.png");*/
+}
+
+.bgSign {
+  background-image: url("./design/bgSign.png");
+}
+
+.bgList {
+  background-image: url("./design/bgList.png");
+}
+
+.bgProfile {
+    background-image: url("./design/bgProfile.png");
+}
+
+
+/*.bgSettings {
+  background-image: url("./design/settings.png");
+}*/
+
+
+.bgBike {
+  background-image: url("./design/bgList.png");
+}
+
+.bgTrack {
+  background-image: url("./design/bgTrack.png");
+}
+
+.bgFail {
+  background-image: url("./design/bgFail.png");
+}
+
 /* Images */
+
 .iconDiv {
+  width:130px;
+  height:110px;
+  border-color: black;
   margin-right: 15px;
   margin-left: 15px;
 }
 
 /* Buttons */
 
-.SignButton, .SignButtonNav, .SignButtonOut, .SignButtonLang , .SignButtonFr, .SignButtonEn{
+.SignButton, .SignButtonNav, .SignButtonOut, .SignButtonLang , .SignButtonFr, .SignButtonEn, .dropbtn, .SignButtonIt{
 	padding: 10px 20px;
 	font-size: 18px;
-  width: 110px;
-	background-color:	#004e66;
+  width: auto;
+	background-color:	transparent;
   font-weight: bold;
-	color: #fcbe32;
+  color: white;
   border: 1px;
   border-radius: 17px;
 }
 
 .plusButton {
-  background-image: url("./add.png");
+  background-color: #FD3568;
+  display:block;
+  margin: auto;
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  border: 1px solid red;
+  color: white;
 }
 
 .plusButton:hover {
-  background-image: url("./addhover.png");
+background-color: #e32f5d;
 }
 
 [required] {
    border: 2px solid red;
 }
 
-.SignButton:hover, .SignButtonNav:hover, .SignButtonOut:hover .SignButtonLang:hover {
-  color: #FFD87F ;
+.dropdown:hover .dropdown-content {
+    display: block;
 }
+
+.SignButton:hover, .SignButtonNav:hover, .SignButtonOut:hover .SignButtonLang:hover {
+  background-color: #e32f5d;
+}
+
 .SignButtonNav, .SignButtonLang {
     background-color:	transparent;
+    border: 2px solid #ffffff;
+    border-radius: 25px;
+    margin-right:15px;
 }
 
 .SignButtonLang {
   float: right;
-  margin-top: 10px;
+  margin-top: 15px;
+}
+
+.SignButton {
+    background-color:	#FD3568;
+    opacity: 1;
+}
+
+.SignButtonIt {
+  float: right;
+  background:url("ita.png") no-repeat;
+  margin-top: 5px;
+  height: 40px;
 }
 
 .SignButtonEn {
   float: right;
-  background:url(eng.png) no-repeat;
-  margin-top: 20px;
-  height: 100px;
+  background:url("eng.png") no-repeat;
+  margin-top: 5px;
+  height: 40px;
 }
 
 .SignButtonFr {
   float: right;
-  background:url(fr.png) no-repeat;
-  margin-top: 20px;
-  height: 100px;
+  background:url("fr.png") no-repeat;
+  margin-top: 5px;
+  height: 40px;
 }
 
 .SignButtonOut {
   float: right;
-  background:url(power.png) no-repeat;
+  background:url("power.png") no-repeat;
   margin-top: 20px;
   height: 100px;
 }
@@ -100,21 +171,69 @@ body {
 
 /* Navbar */
 
+.princLogo {
+  text-align: center;
+}
+
+/* Dropdown Button */
+.dropbtn {
+    background:url("lang.png") no-repeat;
+    margin-top: 10px;
+    cursor: pointer;
+    height : 32px;
+  }
+
+.dropbtn:hover, .dropbtn:focus {
+    color: #FFD87F;
+}
+
+.dropdown {
+    float: right;
+    display: inline-block;
+    margin-right: 50px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333333;
+    opacity : 0.8;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1
+}
+
+.show {
+  display:block;
+}
+
 .App-logo {
-  display:inline-block;
+  display:none;
+  /*display:inline-block;*/
   margin-top: 2px;
 }
 
 .App-header {
   /*background-color: #004e66;*/
   /*background-image: url("./navbar-bg.png");*/
-  background: rgb(0,78,102); /* Old browsers */
-  background: -moz-linear-gradient(top, rgba(0,78,102,1) 0%, rgba(0,78,102,1) 50%, rgba(46,111,130,1) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, rgba(0,78,102,1) 0%,rgba(0,78,102,1) 50%,rgba(46,111,130,1) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, rgba(0,78,102,1) 0%,rgba(0,78,102,1) 50%,rgba(46,111,130,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  /*background: rgb(0,78,102); /* Old browsers */*/
+  /*background: -moz-linear-gradient(top, rgba(0,78,102,1) 0%, rgba(0,78,102,1) 50%, rgba(46,111,130,1) 100%); /* FF3.6-15 */*/
+  /*background: -webkit-linear-gradient(top, rgba(0,78,102,1) 0%,rgba(0,78,102,1) 50%,rgba(46,111,130,1) 100%); /* Chrome10-25,Safari5.1-6 */*/
+  /*background: linear-gradient(to bottom, rgba(0,78,102,1) 0%,rgba(0,78,102,1) 50%,rgba(46,111,130,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */*/
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004e66', endColorstr='#2e6f82',GradientType=0 ); /* IE6-9 */
-  height: 75px;
-  padding: 5px;
+  /*height: 75px;*/
+  padding: 10px;
 }
 
 .App-footer {
@@ -142,13 +261,18 @@ body {
 /* Home Text */
 
 .App-intro {
+  margin-top : 140px;
   text-align: center;
   font-weight: bold;
   font-size: 35px;
-  color: #ff5f2e;
-  background: -webkit-linear-gradient(#ff5f2e, #FFAA2E);
+  color : black;
+  background: -webkit-linear-gradient(#000000, #666666);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  /*color: #ff5f2e;
+  background: -webkit-linear-gradient(#ff5f2e, #FFAA2E);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;*/
 }
 
 .successTitle {
@@ -169,12 +293,12 @@ body {
   padding: 10px;
   margin-left: 200px;
   margin-right: 200px;
-  color: #004e66;
+  color: black;
 }
 
 .stores {
   text-align: center;
-  padding: 100px;
+  padding: 30px;
   opacity: 1;
 }
 
@@ -192,29 +316,33 @@ body {
 /* Login Boxes */
 .log-box {
   width: 400px;
-  border: 3px solid #004e66;
-  border-radius: 17px;
+  border: 3px solid black;
+  border-radius: 25px;
   display: block;
   padding: 30px;
   margin:auto;
-  background: rgb(0,78,102); /* Old browsers */
-  background: -moz-linear-gradient(left, rgba(0,78,102,1) 0%, rgba(0,78,102,1) 50%, rgba(46,111,130,1) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left, rgba(0,78,102,1) 0%,rgba(0,78,102,1) 50%,rgba(46,111,130,1) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, rgba(0,78,102,1) 0%,rgba(0,78,102,1) 50%,rgba(46,111,130,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004e66', endColorstr='#2e6f82',GradientType=1 ); /* IE6-9 */
+  background-color: black;
+  opacity:0.85;
+
+  /*background: rgb(0,78,102); /* Old browsers */*/
+  /*background: -moz-linear-gradient(left, rgba(0,78,102,1) 0%, rgba(0,78,102,1) 50%, rgba(46,111,130,1) 100%); /* FF3.6-15 */*/
+  /*background: -webkit-linear-gradient(left, rgba(0,78,102,1) 0%,rgba(0,78,102,1) 50%,rgba(46,111,130,1) 100%); /* Chrome10-25,Safari5.1-6 */*/
+  /*background: linear-gradient(to right, rgba(0,78,102,1) 0%,rgba(0,78,102,1) 50%,rgba(46,111,130,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */*/
+  /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004e66', endColorstr='#2e6f82',GradientType=1 ); /* IE6-9 */*/
   text-align:center;
-  opacity: 0.8;
 }
 
 /* Bike View Boxes */
 .bike-box {
   width: 800px;
-  border: 2px;
-  /*border: 2px solid black;*/
-  margin: 5px;
+  background-color:white;
+  opacity : 0.8;
+  border: 2px solid gray;
+  border-radius: 25px;
   padding: 30px;
   color: red;
   margin:auto;
+  margin-bottom: 15px;
 }
 
 /* Bike Detail Boxes */
@@ -226,7 +354,7 @@ body {
   padding: 30px;
   color: #004e66;
   margin:auto;
-  font-size: 15px;  
+  font-size: 15px;
 }
 
 /* Map Boxes */
