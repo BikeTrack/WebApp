@@ -139,9 +139,9 @@ class App extends Component {
         <AppNavbar />
         <div className="gen-box">
           <div className="form-inline" style={{margin: '5px'}}>
-            <br/><br/><h2 className="App-intro">{activeLang.appHead}</h2>
+            <div className="bgSpacer"></div>
+            <h2 className="App-intro">{activeLang.appHead}</h2>
             <h3 className="intro-text">{activeLang.appList}</h3>
-            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             {/* Part 2 of the dynamicity of the code*/}
 
             {/* <div>

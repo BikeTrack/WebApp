@@ -57,7 +57,6 @@ class TopNavbar extends Component {
             <button className="SignButtonNav" onClick={() => this.changePage("welcome")}>{activeLang.buttHome}</button>
             <button className="SignButtonNav" onClick={() => this.changePage("signin")}>{activeLang.buttSignin}</button>
             <button className="SignButtonNav" onClick={() => this.changePage("signup")}>{activeLang.buttSignup}</button>
-            <li className="header-text-website"><a href="http://eip.epitech.eu/2018/biketrack/">{activeLang.buttWebSite}</a></li>
             <div className="dropdown">
                <button className="dropbtn" onClick={() => this.myFunction()}></button>
                <div className="dropdown-content" id="myDropdown">
@@ -66,6 +65,8 @@ class TopNavbar extends Component {
                  <button className="SignButtonIt" onClick={() => this.changeLanguage("IT")}></button>
                </div>
              </div>
+            <button className="dropdown SignButtonNav" onClick={() => this.changePage("products")}>{activeLang.buttProducts}</button>
+            <button className="dropdown SignButtonNav" onClick={() => this.changePage("homepage")}>{activeLang.buttTeam}</button>
           </ul>
         </div>
       </div>

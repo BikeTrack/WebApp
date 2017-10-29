@@ -71,6 +71,8 @@ class AppNavbar extends Component {
                  <button className="SignButtonIt" onClick={() => this.changeLanguage("IT")}></button>
                </div>
              </div>
+             <button className="dropdown SignButtonNav" onClick={() => this.changePage("products")}>{activeLang.buttProducts}</button>
+             <button className="dropdown SignButtonNav" onClick={() => this.changePage("homepage")}>{activeLang.buttTeam}</button>
           </ul>
         </div>
       </div>

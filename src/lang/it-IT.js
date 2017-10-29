@@ -70,6 +70,12 @@ let ita = {
 
   buttDelBike : "Cancellare bici",
   buttDelUser : "Cancellare utilizzatore",
+
+  buttForgot : "Password dimenticata?",
+
+  /* WEBSITES TEXT */
+  buttTeam : "La squadra",
+  buttProducts : "Prodotti"
 };
 
 export default ita;

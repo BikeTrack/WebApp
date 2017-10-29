@@ -29,6 +29,9 @@ class Welcome extends Component {
   componentDidMount() {
   	let token = read_cookie('token');
     let usr = read_cookie('userId');
+
+    // Test Webpage: take next line out when finished
+    // browserHistory.push('products');
     // eslint-disable-next-line
     if (token !== "" && usr != ""){
       browserHistory.push('app');
@@ -52,6 +55,7 @@ class Welcome extends Component {
               <div className="princLogo">
                 <img src={blLogo} role="presentation"/>
               </div>
+              <div className="bgSpacerMini"></div>
               <h2 className="App-intro">{activeLang.welcomeHead}</h2>
               {/* <p className="intro-text">{activeLang.welcomeIntro}</p> */}
                 <br/>
@@ -61,7 +65,7 @@ class Welcome extends Component {
                 <button className="SignButton"
                   onClick={() => this.changePage("signin")}>{activeLang.buttSignin}</button>
               </div>
-              <div style={{textAlign:'center', color:'red'}}>Forgot your password?</div>
+              <div style={{textAlign:'center', color:'red'}}>{activeLang.buttForgot}</div>
             </div>
             <div className="stores">
               <img src={gPlay} alt="Google Play" style={{padding: '50px'}}/>

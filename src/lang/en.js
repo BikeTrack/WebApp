@@ -70,6 +70,12 @@ let eng = {
 
   buttDelBike : "Delete Bike",
   buttDelUser : "Delete user",
+
+  buttForgot : "Forgot your password?",
+
+  /* WEBSITES TEXT */
+  buttTeam : "Our Team",
+  buttProducts : "Products"
 };
 
 export default eng;

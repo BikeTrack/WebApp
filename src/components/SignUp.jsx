@@ -91,9 +91,9 @@ class SignUp extends Component {
     return (
       <div className="App bgGen bgSign">
         <TopNavbar />
+        <div className="bgSignSpacer"></div>
         <div className="form-inline" style={{margin: '5px'}}>
-          <br/><br/><h2 className="App-intro ">{activeLang.signupHead}</h2>
-          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+          <h2 className="App-intro ">{activeLang.signupHead}</h2>
           <div className="gen-box">
             <div className="log-box">
               <input

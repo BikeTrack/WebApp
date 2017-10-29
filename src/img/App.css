@@ -3,23 +3,24 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Lato', sans-serif;
   /*background-image: url("./body-bg.png");*/
   opacity: 1;
   background-attachment: fixed;
   position: relative;
 }
 
+
+  /* Backgrounds of the different pages */
 .bgGen{
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-size: 100% auto;
-
+  border: solid 3px black;
 }
 
 .bgHome {
-  background-image: url("./design/backtest.png");
-  /*background-image: url("./design/body-bg.png");*/
+  background-image: url("./design/bgHome.png");
 }
 
 .bgSign {
@@ -46,6 +47,31 @@ body {
   background-image: url("./design/bgFail.png");
 }
 
+.bgWebsite {
+  background-image: url("./design/bgWebsite.png");
+}
+
+/* Spacer for the IMG */
+.bgSpacer {
+  height: 575px;
+  width: 100%;
+}
+
+.bgSpacerSmall {
+  height: 420px;
+  width: 100%;
+}
+
+.bgSpacerMini {
+  height: 150px;
+  width: 100%;
+}
+
+.bgSignSpacer {
+  height: 425px;
+  width: 100%;
+}
+
 /* Images */
 
 .iconDiv {
@@ -61,12 +87,22 @@ body {
 .SignButton, .SignButtonNav, .SignButtonOut, .SignButtonLang , .SignButtonFr, .SignButtonEn, .dropbtn, .SignButtonIt{
 	padding: 10px 20px;
 	font-size: 18px;
-  width: auto;
 	background-color:	transparent;
   font-weight: bold;
   color: white;
   border: 1px;
   border-radius: 17px;
+}
+
+.SignButton {
+    background-color:	#FD3568;
+    width: 200px;
+    height: 70px;
+    border-radius: 35px;
+    font-weight: bold;
+    font-size: 25px;
+    opacity: 1;
+    margin: 10px;
 }
 
 .plusButton {
@@ -108,11 +144,6 @@ background-color: #e32f5d;
   margin-top: 15px;
 }
 
-.SignButton {
-    background-color:	#FD3568;
-    opacity: 1;
-}
-
 .SignButtonIt {
   float: right;
   background:url("ita.png") no-repeat;
@@ -141,11 +172,7 @@ background-color: #e32f5d;
   height: 100px;
 }
 
-.SignButton{
-    width: 130px;
-  	font-size: 14px;
-    margin: 10px;
-}
+
 
 .bck-btn {
   display: inline-block;
@@ -255,7 +282,6 @@ background-color: #e32f5d;
 /* Home Text */
 
 .App-intro {
-  margin-top : 140px;
   text-align: center;
   font-weight: bold;
   font-size: 35px;

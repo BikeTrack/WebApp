@@ -29,6 +29,7 @@ class addSuccess extends Component {
     return (
       <div className="App">
         <TopNavbar />
+        <div className="bgSpacer"></div>
         <div className="form-inline" style={{margin: '5px'}}>
           <div className="successTitle">{activeLang.appAddSucc}</div>
           <div style={{textAlign: 'center'}}>

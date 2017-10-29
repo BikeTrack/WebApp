@@ -92,8 +92,8 @@ class addBike extends Component {
       <div className="App bgGen bgBike">
         <AppNavbar />
         <div className="form-inline" style={{margin: '5px'}}>
-          <br/><br/><h2 className="App-intro">{activeLang.appAdd}</h2>
-          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+          <div className="bgSpacer"></div>
+          <h2 className="App-intro">{activeLang.appAdd}</h2>
           <div className="gen-box">
             <div className="log-box">
               <input

@@ -1,0 +1,174 @@
+.iconsLiner {
+  text-align: center;
+}
+
+.statPres {
+  font-size: 25px;
+  margin-bottom: 2%;
+}
+
+.contBlock150 {
+  height: 150px;
+  width: 100%;
+}
+
+.contBlock200 {
+  height: 200px;
+  width: 100%;
+}
+
+.contBlock300 {
+  height: 300px;
+  width: 100%;
+}
+
+.insiderBlock25 {
+  height: 100%;
+  width: 25%;
+  display: inline-block;
+  margin-top: 30px;
+  /*border: solid #4b4b4b;*/
+}
+
+.insiderBlock33 {
+  width: 33%;
+  display: inline-block;
+  margin-top: 30px;
+  /*border: solid #4b4b4b;*/
+}
+
+.BlockW {
+  background-color: white;
+}
+
+.BlockB {
+  background-color: #4b4b4b;
+  color: white;
+  margin: auto;
+}
+
+/* BUBBLE IMG STYLE */
+.bubbleImg{
+  height : 150px;
+  width : 150px;
+  border: solid black;
+  border-radius: 50%;
+  margin-left: 37%;
+}
+
+
+/* ICONS STYLE */
+
+.flaticons {
+  margin-left: 5%;
+  margin-top: 5px;
+  margin-bottom: -35px;
+  height: 64px;
+  width: 69px;
+  display: inline-block;
+}
+
+.iconText {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+/* Text Sizes */
+.textSize30{
+  font-size: 30px;
+}
+
+.textSize25{
+  font-size: 25px;
+}
+
+.textSize20{
+  font-size: 20px;
+}
+
+.textSize15{
+  font-size: 15px;
+}
+
+
+    /* #IMG Imports# */
+
+/* Icons */
+.flaticonSuitcase {
+  background:url("./icons/stolen.png") no-repeat;
+}
+
+.flaticonEuro {
+  background:url("./icons/euro.png") no-repeat;
+}
+
+.flaticonBought {
+  background:url("./icons/bought.png") no-repeat;
+}
+
+.flaticonLike {
+  background:url("./icons/like.png") no-repeat;
+}
+
+/* Personal Photos */
+.adrienImg {
+  background:url("../www/img/adrien150.png") no-repeat;
+}
+
+.felixImg {
+  background:url("../www/img/felix150.png") no-repeat;
+}
+
+.alexImg {
+  background:url("../www/img/alex150.png") no-repeat;
+}
+
+.damienImg {
+  background:url("../www/img/damien150.png") no-repeat;
+}
+
+.valentinImg {
+  background:url("../www/img/valentin150.png") no-repeat;
+}
+
+.gabrieleImg {
+  background:url("../www/img/gabriele150.png") no-repeat;
+}
+
+/* Others */
+
+.specializedIcon {
+  background:url("../www/img/specialized.png") no-repeat;
+  margin-left: 5%;
+  margin-top: 5px;
+  margin-bottom: -35px;
+  height: 90px;
+  width: 90px;
+  display: inline-block;
+}
+
+.epitechIcon {
+  background:url("../www/img/epitech.png") no-repeat;
+  margin-left: 5%;
+  margin-top: 5px;
+  margin-bottom: -35px;
+  height: 90px;
+  width: 90px;
+  display: inline-block;
+}
+
+.imgPotence {
+  background:url("../www/img/potence.png") no-repeat;
+  margin-bottom: -150px;
+  height: 450px;
+  width: 450px;
+  display: inline-block;
+}
+
+.imgStick {
+  background:url("../www/img/stick.png") no-repeat;
+  margin-bottom: -150px;
+  height: 500px;
+  width: 250px;
+  display: inline-block;
+}

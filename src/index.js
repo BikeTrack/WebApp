@@ -20,6 +20,9 @@ import Failure from './components/Failure';
 import bikeDetails from './components/bikeDetails';
 import addBike from './components/addBike';
 
+import Products from './www/products';
+import HomePage from './www/homepage';
+
 const store = createStore(reducer);
 browserHistory.replace('/welcome');
 
@@ -39,6 +42,8 @@ ReactDOM.render(
       <Route path="/addsuccess" component={addSuccess} />
       <Route path="/bikedetails" component={bikeDetails} />
       <Route path="/addbike" component={addBike} />
+      <Route path="/homepage" component={HomePage} />
+      <Route path="/products" component={Products} />
     </Router>
   </Provider>,
   document.getElementById('root')

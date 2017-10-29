@@ -161,24 +161,24 @@ class bikeDetails extends Component {
         <AppNavbar />
         <div className="form-inline" type="text">
           <div className="center">
-          <br/><br/><h3 className="App-intro">{activeLang.detailsHead}</h3>
-          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-          <div className="bike-detail-box">
-            <div><Battery/></div>
-            <div>{activeLang.genName}: {this.state.name}</div>
-            <div>{activeLang.genBikeID}: {this.state.bikeId}</div>
-            <div>{activeLang.genBrand}: {this.state.brand}</div>
-            <div>{activeLang.genTracker}: {this.state.tracker}</div>
-            <div>{activeLang.genCreated}: {this.state.created}</div>
-            <div>{activeLang.genUpdated}: {this.state.updated}</div>
-            <button
-              className="btn btn-danger"
-              style={{marginTop: '10px'}}
-              onClick={() => this.deleteBike(this.state.bikeId)}
-              >
-                {activeLang.buttDelBike}
-            </button>
-          </div>
+            <div className="bgSpacer"></div>
+            <h3 className="App-intro">{activeLang.detailsHead}</h3>
+            <div className="bike-detail-box">
+              <div><Battery/></div>
+              <div>{activeLang.genName}: {this.state.name}</div>
+              <div>{activeLang.genBikeID}: {this.state.bikeId}</div>
+              <div>{activeLang.genBrand}: {this.state.brand}</div>
+              <div>{activeLang.genTracker}: {this.state.tracker}</div>
+              <div>{activeLang.genCreated}: {this.state.created}</div>
+              <div>{activeLang.genUpdated}: {this.state.updated}</div>
+              <button
+                className="btn btn-danger"
+                style={{marginTop: '10px'}}
+                onClick={() => this.deleteBike(this.state.bikeId)}
+                >
+                  {activeLang.buttDelBike}
+              </button>
+            </div>
           <div className="mapid">
           <Map />
           </div><br/>
