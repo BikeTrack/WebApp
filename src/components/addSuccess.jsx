@@ -27,7 +27,7 @@ class addSuccess extends Component {
 
   render() {
     return (
-      <div className="App bgGen bgSuccess">
+      <div className="App bgGen bgSucc">
         <AppNavbar />
         <div className="bgSpacer"></div>
         <div className="form-inline" style={{margin: '5px'}}>

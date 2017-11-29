@@ -24,7 +24,6 @@ if (lang === "FR") {
 }
 
 class bikeDetails extends Component {
-
   constructor(props){
     super(props);
     this.state = {
@@ -50,24 +49,22 @@ class bikeDetails extends Component {
     let FETCH_URL = BASE_URL + "bike/" + bikeId;
     let that = this;
 
-    console.log('Token', JWTToken);
-    console.log('usrId', userId);
-
+    // console.log('Token', JWTToken);
+    // console.log('usrId', userId);
     request.open('GET', FETCH_URL);
     request.setRequestHeader('Content-Type', 'application/json');
     request.setRequestHeader('Authorization', this.state.apiKey);
     request.setRequestHeader('x-access-token', JWTToken);
     request.onreadystatechange = function () {
     if (this.readyState === 4) {
-        console.log('Status:', this.status);
-        console.log('Headers:', this.getAllResponseHeaders());
+        // DEBUGGING
+        // console.log('Status:', this.status);
+        // console.log('Headers:', this.getAllResponseHeaders());
         // console.log('Body:', this.responseText);
       }
     if (this.status === 200)  {
-
       let myObj = JSON.parse(this.response);
-
-      console.log('MyObj : ', myObj);
+      // console.log('MyObj : ', myObj);
       that.setState({
             userID: userId,
             bikeId: myObj.bike._id,
@@ -95,8 +92,9 @@ class bikeDetails extends Component {
     request.setRequestHeader('x-access-token', JWTToken);
     request.onreadystatechange = function () {
     if (this.readyState === 4) {
-        console.log('Status:', this.status);
-        console.log('Headers:', this.getAllResponseHeaders());
+        // DEBUGGING
+        // console.log('Status:', this.status);
+        // console.log('Headers:', this.getAllResponseHeaders());
         // console.log('Body:', this.responseText);
       }
     if (this.status === 200) {
@@ -130,8 +128,9 @@ class bikeDetails extends Component {
     request.setRequestHeader('x-access-token', JWTToken);
     request.onreadystatechange = function () {
     if (this.readyState === 4) {
-        console.log('Status:', this.status);
-        console.log('Headers:', this.getAllResponseHeaders());
+        //DEBUGGING
+        // console.log('Status:', this.status);
+        // console.log('Headers:', this.getAllResponseHeaders());
         // console.log('Body:', this.responseText);
       }
     if (this.status === 200) {
@@ -143,7 +142,6 @@ class bikeDetails extends Component {
       'update': {
         name: this.state.name,
         brand: this.state.brand,
-        // updated: Date.now()
       }
     };
     request.send(JSON.stringify(body));
@@ -173,12 +171,13 @@ class bikeDetails extends Component {
 
       <div className="App bgGen bgTrack">
         <AppNavbar />
+
         <div className="form-inline" type="text">
           <div className="center">
             <div className="bgSpacer"></div>
             <h3 className="App-intro">{activeLang.detailsHead}</h3>
             <div className="bike-detail-box">
-              <div><Battery/></div>
+              <Battery/>
               <div>{activeLang.genName}: {this.state.name}</div>
               <div>{activeLang.genBikeID}: {this.state.bikeId}</div>
               <div>{activeLang.genBrand}: {this.state.brand}</div>
@@ -225,7 +224,7 @@ class bikeDetails extends Component {
             <button
               className="SignButton"
               style={{marginTop: '10px'}}
-              onClick={this.submit}>
+              onClick={() => this.editBike()}>
                 {activeLang.buttEditBike}
             </button>
           </div>

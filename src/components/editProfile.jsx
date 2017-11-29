@@ -21,7 +21,7 @@ if (lang === "FR") {
   activeLang = eng;
 }
 
-class Profile extends Component {
+class editProfile extends Component {
 
   constructor(props){
     super(props);
@@ -78,11 +78,6 @@ class Profile extends Component {
       }
     };
     request.send(JSON.stringify());
-  }
-
-  /* Push new page */
-  changePage(page) {
-    browserHistory.push(page);
   }
 
   deleteUser() {
@@ -183,19 +178,77 @@ class Profile extends Component {
         <AppNavbar />
         <div className="gen-box">
           <div className="form-inline" style={{margin: '5px'}}>
-            <button className="editButton" onClick={() => this.changePage("editprofile")}></button>
-            <div className="bgSpacerMicro"></div>
-            <h2 className="App-intro">{activeLang.profileHead}</h2>
+            <div className="bgSpacer"></div>
+            <h2 className="App-intro">{activeLang.profileEdit}</h2>
             {/* <br/><br/><br/><br/><br/><br/>INSERER IMAGE UTILISATEUR ICI<br/><br/><br/><br/><br/><br/><br/><br/> */}
-            <p className="intro-text profileInfo">{activeLang.genFName} : {this.state.fname}</p>
-            <p className="intro-text profileInfo">{activeLang.genLName} : {this.state.lname}</p>
-            <p className="intro-text profileInfo">{activeLang.genBday} : {this.state.birthday}</p>
-            <p className="intro-text profileInfo">{activeLang.genMail} : {this.state.email}</p>
-            <p className="intro-text profileInfo">{activeLang.genID} : {this.state.id}</p>
-            <p className="intro-text profileInfo">{activeLang.genCreated} : {this.state.created}</p>
-            <p className="intro-text profileInfo">{activeLang.genUpdated} : {this.state.updated}</p>
             <div className="form-group">
+              <p className="intro-text profileInfo">{activeLang.genFName} : {this.state.fname}</p>
+              <input
+                className="form-control"
+                style={{marginRight: '5px'}}
+                placeholder="First Name"
+                onChange={event => this.setState({fname: event.target.value})}
+                onKeyPress={event => {
+                  if (event.key === "Enter") {
+                  this.editUser()
+                  }
+                }}
+              />
+            <p className="intro-text profileInfo">{activeLang.genLName} : {this.state.lname}</p>
+              <input
+                className="form-control"
+                style={{marginRight: '5px'}}
+                placeholder="Last Name"
+                onChange={event => this.setState({lname: event.target.value})}
+                onKeyPress={event => {
+                  if (event.key === "Enter") {
+                  this.editUser()
+                  }
+                }}
+              />
+            <p className="intro-text profileInfo">{activeLang.genBday} : {this.state.birthday}</p>
+              <input
+                className="form-control"
+                style={{marginRight: '5px'}}
+                placeholder="Birthday"
+                onChange={event => this.setState({birthday: event.target.value})}
+                onKeyPress={event => {
+                  if (event.key === "Enter") {
+                  this.editUser()
+                  }
+                }}
+              />
+            <p className="intro-text profileInfo">{activeLang.genMail} : {this.state.email}</p>
+              <input
+                className="form-control"
+                style={{marginRight: '5px'}}
+                placeholder="Email"
+                onChange={event => this.setState({email: event.target.value})}
+                onKeyPress={event => {
+                  if (event.key === "Enter") {
+                  this.editUser()
+                  }
+                }}
+              />
+              <div className="bgSpacerMicro"></div>
+              <button
+                className="SignButton"
+                style={{marginTop: '10px'}}
+                onClick={() => this.editUser()}
+                >
+                  {activeLang.buttEditUser}
+              </button>
             </div>
+            <div className="form-group">
+              <button
+                className="deleteUser"
+                onClick={this.submit}
+                >
+                  {/* {activeLang.buttDelUser} */}
+              </button>
+            </div>
+
+            <div>{this.state.error.message}</div>
           </div>
         </div>
       </div>
@@ -203,4 +256,4 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+export default editProfile;

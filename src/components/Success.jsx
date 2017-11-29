@@ -26,8 +26,9 @@ class Success extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App bgGen bgSucc">
         <TopNavbar />
+        <div className="bgSpacer"></div>
         <div className="form-inline">
           <div className="successTitle">{activeLang.signupSucc}</div>
           <div style={{textAlign: 'center'}}>
@@ -37,6 +38,7 @@ class Success extends Component {
             onClick={() => this.backPage()}
             >{activeLang.buttBackHome}
             </button>
+            <div className="bgSpacerMini"></div>
           </div>
         </div>
       </div>

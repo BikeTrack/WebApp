@@ -29,8 +29,8 @@ class editSuccess extends Component {
       <div className="App bgGen bgSucc">
         <AppNavbar />
         <div className="form-inline" style={{margin: '5px'}}>
-          <div className="successTitle">{activeLang.infoSuccEdit}</div>
           <div className="bgSpacer"></div>
+          <div className="successTitle">{activeLang.infoSuccEdit}</div>
           <div className="bgSpacerMini"></div>
           <div style={{textAlign: 'center'}}>
             <button

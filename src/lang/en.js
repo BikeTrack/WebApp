@@ -73,6 +73,16 @@ let eng = {
 
   buttForgot : "Forgot your password?",
 
+  /* POPUP DIALOGS SIGNIN */
+  sInWelcBack : "Welcome back!",
+  sInWelcMsg : "Connection to your personal space",
+  sInConfirmButt : "Connection",
+
+  /* POPUP DIALOGS SIGNUP */
+  sUpWelcBack : "Signup on Biketrack",
+  sUpWelcMsg : "Locate your bike anywhere!",
+  sUpConfirmButt : "Signup",
+
   /* WEBSITES TEXT */
   buttTeam : "Our Team",
   buttProducts : "Products"

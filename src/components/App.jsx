@@ -175,6 +175,12 @@ class App extends Component {
                   {this.state.bikes[0]}
                 </button>
                 <Battery />
+                <button
+                  className="deleteBike"
+                  // onClick={this.submit}
+                  >
+                    {/* {activeLang.buttDelUser} */}
+                </button>
               </div>
             }
 
@@ -190,6 +196,12 @@ class App extends Component {
                   {this.state.bikes[1]}
                 </button>
                 <Battery />
+                <button
+                  className="deleteBike"
+                  // onClick={this.submit}
+                  >
+                    {/* {activeLang.buttDelUser} */}
+                </button>
               </div>
             }
 
@@ -205,6 +217,12 @@ class App extends Component {
                   {this.state.bikes[2]}
                 </button>
                 <Battery />
+                <button
+                  className="deleteBike"
+                  // onClick={this.submit}
+                  >
+                    {/* {activeLang.buttDelUser} */}
+                </button>
               </div>
             }
 
@@ -220,6 +238,12 @@ class App extends Component {
                   {this.state.bikes[3]}
                 </button>
                 <Battery />
+                <button
+                  className="deleteBike"
+                  // onClick={this.submit}
+                  >
+                    {/* {activeLang.buttDelUser} */}
+                </button>
               </div>
             }
 
@@ -235,6 +259,12 @@ class App extends Component {
                   {this.state.bikes[4]}
                 </button>
                 <Battery />
+                <button
+                  className="deleteBike"
+                  // onClick={this.submit}
+                  >
+                    {/* {activeLang.buttDelUser} */}
+                </button>
               </div>
             }
 
@@ -250,6 +280,12 @@ class App extends Component {
                   {this.state.bikes[5]}
                 </button>
                 <Battery />
+                <button
+                  className="deleteBike"
+                  // onClick={this.submit}
+                  >
+                    {/* {activeLang.buttDelUser} */}
+                </button>
               </div>
             }
             <br/><br/><br/>

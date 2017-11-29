@@ -19,6 +19,7 @@ import editSuccess from './components/editSuccess';
 import Failure from './components/Failure';
 import bikeDetails from './components/bikeDetails';
 import addBike from './components/addBike';
+import editProfile from './components/editProfile';
 
 import Products from './www/products';
 import HomePage from './www/homepage';
@@ -42,6 +43,8 @@ ReactDOM.render(
       <Route path="/addsuccess" component={addSuccess} />
       <Route path="/bikedetails" component={bikeDetails} />
       <Route path="/addbike" component={addBike} />
+      <Route path="/editprofile" component={editProfile} />
+
       <Route path="/homepage" component={HomePage} />
       <Route path="/products" component={Products} />
     </Router>

@@ -49,8 +49,8 @@ let ita = {
 
   /* BUTTONS */
 
-  buttSignup : "Iscriz.",
-  buttSignin : "Conness.",
+  buttSignup : "Iscrizione",
+  buttSignin : "Connessione",
   buttSignupAlt : "Iscriversi ?",
   buttSigninAlt : "Connettersi ?",
   buttHome : "Home",
@@ -72,6 +72,16 @@ let ita = {
   buttDelUser : "Cancellare utilizzatore",
 
   buttForgot : "Password dimenticata?",
+
+  /* POPUP DIALOGS SIGNIN */
+  sInWelcBack : "Ben tornato!",
+  sInWelcMsg : "Connessione allo spazio personale",
+  sInConfirmButt : "Connessione",
+
+  /* POPUP DIALOGS SIGNUP */
+  sUpWelcBack : "Iscrizione su Biketrack",
+  sUpWelcMsg : "Trovate la vostra bici dovunque!",
+  sUpConfirmButt : "Iscrizione",
 
   /* WEBSITES TEXT */
   buttTeam : "La squadra",

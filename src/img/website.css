@@ -58,6 +58,34 @@
   height: 45px;
 }
 
+.signupBlockRoundLeft {
+  border-top-left-radius: 23px;
+  border-bottom-left-radius: 23px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  margin-left: 1%;
+  margin-right: 0px;
+  height: 45px;
+  border: solid black 1px;
+}
+
+.signupBlockRoundRight {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 23px;
+  border-bottom-right-radius: 23px;
+  height: 45px;
+  border: solid black 1px;
+}
+
+.signupBlockRoundRight:empty, .signupBlockRoundLeft:empty {
+  border: solid red 1px;
+}
+
+.signupBlockRoundRight:empty:not, .signupBlockRoundLeft:empty:not {
+  border: solid black 3px;
+}
+
 .BlockW {
   background-color: white;
 }

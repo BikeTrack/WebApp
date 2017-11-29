@@ -3,13 +3,13 @@ import { browserHistory } from 'react-router';
 import { read_cookie, bake_cookie } from 'sfcookies';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import FacebookLogin from 'react-facebook-login';
 
 import { API_KEY, BASE_URL } from '../constants'
 import '../img/App.css';
 import TopNavbar from './Navbar';
 import gPlay from '../img/GooglePlay.png'
 import aStore from '../img/AppStore.png'
-import blLogo from '../img/bigBlackLogo1.png'
 import fra from '../lang/fr'
 import eng from '../lang/en'
 import ita from '../lang/it-IT';
@@ -30,6 +30,12 @@ if (lang === "FR") {
 } else {
   activeLang = eng;
 }
+
+/* Response for FB framework */
+const responseFacebook = (response) => {
+  console.log(response);
+}
+
 class Welcome extends Component {
 
   constructor(props){
@@ -48,6 +54,7 @@ class Welcome extends Component {
     }
   }
 
+  /* Check wether user is already logged or not */
   componentDidMount() {
   	let token = read_cookie('token');
     let usr = read_cookie('userId');
@@ -58,14 +65,12 @@ class Welcome extends Component {
     }
   }
 
+  /* Push new page */
   changePage(page) {
     browserHistory.push(page);
   }
 
- /*
- *  Diviser en blocks l'affichage de la page de façon que ce soit géré comme sur le site paypal
- */
-
+  /* Send form to signin */
  signInReq() {
    if (this.state.email && this.state.password) {
      const { email, password } = this.state;
@@ -91,7 +96,7 @@ class Welcome extends Component {
        }
      };
      let body = {
-       'mail': email,
+       'email': email,
        'password': password
      };
      request.send(JSON.stringify(body));
@@ -105,7 +110,7 @@ class Welcome extends Component {
      }
    }
 
-
+  /* Send form to signup */
    signUpReq() {
      const { email, password, passwordCheck, lname, fname, birthday} = this.state;
      if (email && password && fname && lname && password === passwordCheck) {
@@ -119,9 +124,9 @@ class Welcome extends Component {
        request.onreadystatechange = function () {
          if (this.readyState === 4) {
            // Debugging
-           console.log('Status:', this.status);
-           console.log('Headers:', this.getAllResponseHeaders());
-           console.log('Body:', this.responseText);
+           // console.log('Status:', this.status);
+           // console.log('Headers:', this.getAllResponseHeaders());
+           // console.log('Body:', this.responseText);
          }
          if (this.status === 200) {
              success = true;
@@ -132,7 +137,7 @@ class Welcome extends Component {
        // console.log('this.state.email', this.state.email);
        // console.log('this.state.password', this.state.password);
        let body = {
-         'mail': email,
+         'email': email,
          'password': password,
          'lastname': lname,
          'name': fname,
@@ -149,117 +154,168 @@ class Welcome extends Component {
        }
      }
 
-closeChange = (sign) => {
-  var target = document.getElementById('react-confirm-alert');
-  _reactDom.unmountComponentAtNode(target);
-  target.parentNode.removeChild(target);
-  var svg = document.getElementById('react-confirm-alert-firm-svg');
-  svg.parentNode.removeChild(svg);
-  document.body.children[0].classList.remove('react-confirm-alert-blur');
-  if (sign === "in") {
-    this.signin();
-  } else {
-    this.signup();
+  /* Popup window for signin */
+     signin = () => {
+       var title = activeLang.sInWelcBack;
+       var msg = activeLang.sInWelcMsg;
+       var conf = activeLang.sInConfirmButt;
+       confirmAlert({
+         title: title,
+         message: msg,
+         childrenElement: () =>
+              <div className="form-inline contBlock350 iconsLiner">
+                <div className="miniBike"></div>
+                <FacebookLogin
+                  appId="126603321331623"
+                  autoLoad={true}
+                  fields="name,email,picture"
+                  callback={responseFacebook}
+                  cssClass="fbButtConnect"
+                  icon="fa-facebook"/>
+                  <button className="googleButtConnect">Google Connection</button>
+                  <br/>
+                <input
+                   className="form-control insiderBlock33 signupBlockRound"
+                   type="text"
+                   placeholder="Email"
+                   required
+                   onChange={event => this.setState({email: event.target.value})}
+                /><br/>
+                <input
+                   className="form-control insiderBlock33 signupBlockRound"
+                   type="password"
+                   placeholder="Password"
+                   required
+                   onChange={event => this.setState({password: event.target.value})}
+                 /><br/>
+                <button className="linkButton" onClick={() => this.closeChange("up")} >{activeLang.buttSignupAlt}</button>
+            </div>, // Custom UI or Component
+         confirmLabel: conf,
+         // cancelLabel: 'No',
+         onConfirm: () => this.signInReq(),
+         // onCancel:
+       })
+     };
+
+     /* Popup window for signup */
+     signup = () => {
+       var title = activeLang.sUpWelcBack;
+       var msg = activeLang.sUpWelcMsg;
+       var conf = activeLang.sUpConfirmButt;
+       confirmAlert({
+         title: title,
+         message: msg,
+         childrenElement: () =>
+              <div className="form-inline contBlock350 iconsLiner">
+                <div className="miniBike"></div>
+                <FacebookLogin
+                  appId="126603321331623"
+                  autoLoad={true}
+                  fields="name,email,picture"
+                  callback={responseFacebook}
+                  cssClass="fbButtConnect"
+                  icon="fa-facebook"/>
+                  <button className="googleButtConnect">Google Connection</button>
+                  <br/>
+                <input
+                  className="form-control insiderBlock33 signupBlockRound"
+                  type="text"
+                  placeholder="First Name"
+                  // required="required"
+                  onChange={event => this.setState({fname: event.target.value})}
+                />
+                <input
+                  className="form-control insiderBlock33 signupBlockRound"
+                  type="text"
+                  placeholder="Last Name"
+                  // required="required"
+                  onChange={event => this.setState({lname: event.target.value})}
+                /><br/>
+                <input
+                  className="form-control insiderBlock33 signupBlockRound"
+                  type="text"
+                  placeholder="Bithday"
+                  onChange={event => this.setState({birthday: event.target.value})}
+                />
+                <input
+                  className="form-control insiderBlock33 signupBlockRound"
+                  type="text"
+                  placeholder="email"
+                  // required="required"
+                  onChange={event => this.setState({email: event.target.value})}
+                /><br/>
+                <input
+                  className="form-control insiderBlock33 signupBlockRoundLeft"
+                  type="password"
+                  placeholder="password"
+                  // required="required"
+                  onChange={event => this.setState({password: event.target.value})}
+                />
+                <input
+                  id="checked"
+                  className="form-control insiderBlock33 signupBlockRoundRight"
+                  type="password"
+                  placeholder="Repeat password"
+                  // required="required"
+                  onChange={event => this.setState({passwordCheck: event.target.value})}
+                /><br/>
+                <button className="linkButton" onClick={() => this.closeChange("in")} >{activeLang.buttSigninAlt}</button>
+            </div>, // Custom UI or Component
+         confirmLabel: conf,
+         // cancelLabel: 'No',
+         onConfirm: () => this.signUpReq(),
+         // onCancel:
+       })
+     };
+
+  /* Close popup window and destroy blur */
+  closeChange = (sign) => {
+    var target = document.getElementById('react-confirm-alert');
+    _reactDom.unmountComponentAtNode(target);
+    target.parentNode.removeChild(target);
+    var svg = document.getElementById('react-confirm-alert-firm-svg');
+    svg.parentNode.removeChild(svg);
+    document.body.children[0].classList.remove('react-confirm-alert-blur');
+    if (sign === "in") {
+      this.signin();
+    } else {
+      this.signup();
+    }
   }
 
-}
-
- signin = () => {
-   confirmAlert({
-     title: 'Bien retournés!',
-     message: 'Connexion à l\'espace personnel',
-     childrenElement: () =>
-          <div className="form-inline contBlock150 iconsLiner">
-            <input
-               className="form-control insiderBlock33 signupBlockRound"
-               type="text"
-               placeholder="Email"
-               required
-               onChange={event => this.setState({email: event.target.value})}
-            /><br/>
-            <input
-               className="form-control insiderBlock33 signupBlockRound"
-               type="password"
-               placeholder="Password"
-               required
-               onChange={event => this.setState({password: event.target.value})}
-             /><br/>
-            <button className="linkButton" onClick={() => this.closeChange("up")} >{activeLang.buttSignupAlt}</button>
-        </div>, // Custom UI or Component
-     confirmLabel: 'Connexion',
-     // cancelLabel: 'No',
-     onConfirm: () => this.signInReq(),
-     // onCancel:
-   })
- };
-
- signup = () => {
-   confirmAlert({
-     title: 'Inscription Biketrack!',
-     message: 'Trouvez votre vélo partout',
-     childrenElement: () =>
-          <div className="form-inline contBlock350 iconsLiner">
-            <br/>
-            <input
-              className="form-control insiderBlock33 signupBlockRound"
-              type="text"
-              placeholder="First Name"
-              required="required"
-              onChange={event => this.setState({fname: event.target.value})}
-            />
-            <input
-              className="form-control insiderBlock33 signupBlockRound"
-              type="text"
-              placeholder="Last Name"
-              required="required"
-              onChange={event => this.setState({lname: event.target.value})}
-            /><br/>
-            <input
-              className="form-control insiderBlock33 signupBlockRound"
-              type="text"
-              placeholder="Bithday"
-              onChange={event => this.setState({birthday: event.target.value})}
-            />
-            <input
-              className="form-control insiderBlock33 signupBlockRound"
-              type="text"
-              placeholder="email"
-              required="required"
-              onChange={event => this.setState({email: event.target.value})}
-            /><br/>
-            <input
-              className="form-control insiderBlock33 signupBlockRound"
-              type="password"
-              placeholder="password"
-              required="required"
-              onChange={event => this.setState({password: event.target.value})}
-            />
-            <input
-              id="checked"
-              className="form-control insiderBlock33 signupBlockRound"
-              type="password"
-              placeholder="Repeat password"
-              required="required"
-              onChange={event => this.setState({passwordCheck: event.target.value})}
-            /><br/>
-            <button className="linkButton" onClick={() => this.closeChange("in")} >{activeLang.buttSigninAlt}</button>
-        </div>, // Custom UI or Component
-     confirmLabel: 'Connexion',
-     // cancelLabel: 'No',
-     onConfirm: () => this.signUpReq(),
-     // onCancel:
-   })
- };
-
   render() {
+
+
+
+
+
+    // var bikeList = [];
+    //
+    // for (var i = 0; this.state.bikes[i]; i++) {
+    //   bikeList.push(
+    //
+    //     <div className="bike-box">
+    //       <img src={bike} role="presentation" className="iconDiv"/>
+    //       {activeLang.appBike} :
+    //       <button
+    //         className="SignButton"
+    //         style={{marginTop: '10px'}}
+    //         onClick={() => this.bikeDetails(this.state.bikes[0])}
+    //         >
+    //         {this.state.bNames}
+    //       </button>
+    //       <Battery />
+    //     </div>
+    //             );
+    // }
+
     return (
       <div className="App bgGen bgHome">
             <TopNavbar />
             <div className="form-inline">
               <div className="princLogo">
-                <img src={blLogo} role="presentation"/>
               </div>
-              <div className="bgSpacerMini"></div>
+              <div className="bgSpacer"></div>
               <h2 className="App-intro">{activeLang.welcomeHead}</h2>
               <p className="intro-text">{activeLang.welcomeIntro}</p>
                 <br/>

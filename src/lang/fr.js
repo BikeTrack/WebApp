@@ -66,16 +66,25 @@ let fra = {
   buttAddBike : "Ajouter le vélo",
 
   buttEditBike : "Modifier",
-  buttEditUser : "Modifier le profil",
+  buttEditUser : "Modifier",
 
   buttDelBike : "Effacer le vélo",
   buttDelUser : "Effacer le compte",
 
   buttForgot : "Mot de passe oublié?",
 
+  /* POPUP DIALOGS SIGNIN */
+  sInWelcBack : "Bien retrouvés!",
+  sInWelcMsg : "Connexion à l'espace personnel",
+  sInConfirmButt : "Connexion",
+
+  /* POPUP DIALOGS SIGNUP */
+  sUpWelcBack : "Inscription à Biketrack",
+  sUpWelcMsg : "Trouvez votre vélo partout!",
+  sUpConfirmButt : "Inscription",
 
   /* WEBSITES TEXT */
-  buttTeam : "Notre Equipe",
+  buttTeam : "L' équipe",
   buttProducts : "Produits"
 
 };
