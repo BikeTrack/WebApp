@@ -58,6 +58,10 @@ body {
   background-image: url("./design/bgWebsite.png");
 }
 
+.bgBill {
+  background-image: url("./design/bikeBillTest.png");
+}
+
 /* Spacer for the IMG */
 .bgSpacer {
   height: 575px;

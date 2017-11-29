@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { read_cookie, delete_cookie } from 'sfcookies';
+import { read_cookie } from 'sfcookies';
 import { browserHistory } from 'react-router';
-import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css';
 
 import '../img/App.css';
 import { API_KEY, BASE_URL } from '../constants'
@@ -47,24 +45,20 @@ class Profile extends Component {
     let request = new XMLHttpRequest();
     let FETCH_URL = BASE_URL + "profile/" + userId;
     let that = this;
-
-    console.log('Token', JWTToken);
-    console.log('usrId', userId);
-
+    // console.log('Token', JWTToken);
+    // console.log('usrId', userId);
     request.open('GET', FETCH_URL);
     request.setRequestHeader('Content-Type', 'application/json');
     request.setRequestHeader('Authorization', this.state.apiKey);
     request.setRequestHeader('x-access-token', JWTToken);
     request.onreadystatechange = function () {
     if (this.readyState === 4) {
-        console.log('Status:', this.status);
-        console.log('Headers:', this.getAllResponseHeaders());
-        console.log('Body:', this.responseText);
+        // console.log('Status:', this.status);
+        // console.log('Headers:', this.getAllResponseHeaders());
+        // console.log('Body:', this.responseText);
       }
     if (this.status === 200)  {
-
       let myObj = JSON.parse(this.response);
-
       that.setState({
             id: myObj.user._id,
             email: myObj.user.email,
@@ -84,98 +78,6 @@ class Profile extends Component {
   changePage(page) {
     browserHistory.push(page);
   }
-
-  deleteUser() {
-    let userId = read_cookie('userId');
-    let JWTToken = read_cookie('token');
-    let request = new XMLHttpRequest();
-    let FETCH_URL = BASE_URL + "profile";
-    let success = false;
-
-    /*console.log('Token', JWTToken);
-    console.log('usrId', userId);*/
-
-    request.open('DELETE', FETCH_URL);
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.setRequestHeader('Authorization', this.state.apiKey);
-    request.setRequestHeader('x-access-token', JWTToken);
-    request.onreadystatechange = function () {
-    if (this.readyState === 4) {
-        console.log('Status:', this.status);
-        console.log('Headers:', this.getAllResponseHeaders());
-        console.log('Body:', this.responseText);
-      }
-    if (this.status === 200) {
-        success = true;
-        }
-    };
-    let body = {
-      'userId': userId,
-    };
-    request.send(JSON.stringify(body));
-    setTimeout(function() {
-        if (success) {
-          browserHistory.push('/delSuccess');
-          delete_cookie("token");
-          delete_cookie("userId");
-        } else {
-          browserHistory.push('/failure');
-        }
-      }, 2000)
-  }
-
-  editUser() {
-    let userId = read_cookie('userId');
-    let JWTToken = read_cookie('token');
-    let request = new XMLHttpRequest();
-    let FETCH_URL = BASE_URL + "profile";
-    let success = false;
-
-    request.open('PATCH', FETCH_URL);
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.setRequestHeader('Authorization', this.state.apiKey);
-    request.setRequestHeader('x-access-token', JWTToken);
-    request.onreadystatechange = function () {
-    if (this.readyState === 4) {
-        console.log('Status:', this.status);
-        console.log('Headers:', this.getAllResponseHeaders());
-        console.log('Body:', this.responseText);
-      }
-    if (this.status === 200) {
-        success = true;
-        }
-    };
-    let body = {
-      'userId': userId,
-      'update': {
-        email: this.state.email,
-        name: this.state.fname,
-        lastname: this.state.lname,
-        dob: this.state.birthday,
-        // updated: Date.now()
-      }
-    };
-    request.send(JSON.stringify(body));
-    setTimeout(function() {
-        if (success) {
-          browserHistory.push('/editSuccess');
-        } else {
-          browserHistory.push('/failure');
-        }
-      }, 2000)
-  }
-
-  submit = () => {
-    confirmAlert({
-      title: 'Confirm to submit',
-      message: 'Do you really want to delete your biketrack account?',
-      // childrenElement: () => <div>Custom UI</div>,           // Custom UI or Component
-      confirmLabel: 'Yes',
-      cancelLabel: 'No',
-      onConfirm: () => this.deleteUser(),
-      // onCancel:
-    })
-  };
 
   render() {
     return (

@@ -91,29 +91,21 @@ class bikeDetails extends Component {
     request.setRequestHeader('Authorization', this.state.apiKey);
     request.setRequestHeader('x-access-token', JWTToken);
     request.onreadystatechange = function () {
-    if (this.readyState === 4) {
+    if (this.readyState === 4 && this.status === 200) {
         // DEBUGGING
         // console.log('Status:', this.status);
         // console.log('Headers:', this.getAllResponseHeaders());
         // console.log('Body:', this.responseText);
+          browserHistory.push('/delBikeSuccess');
+      } else if (this.readyState === 4 && this.status !== 200) {
+        browserHistory.push('/failure');
       }
-    if (this.status === 200) {
-        success = true;
-        }
     };
-
     let body = {
       'userId' : userId,
       'bikeId': bike
     };
     request.send(JSON.stringify(body));
-    setTimeout(function() {
-        if (success) {
-          browserHistory.push('/delBikeSuccess');
-        } else {
-          browserHistory.push('/failure');
-        }
-      }, 3000)
   }
 
   editBike() {
@@ -127,15 +119,15 @@ class bikeDetails extends Component {
     request.setRequestHeader('Authorization', this.state.apiKey);
     request.setRequestHeader('x-access-token', JWTToken);
     request.onreadystatechange = function () {
-    if (this.readyState === 4) {
+    if (this.readyState === 4 && this.status === 200) {
         //DEBUGGING
         // console.log('Status:', this.status);
         // console.log('Headers:', this.getAllResponseHeaders());
         // console.log('Body:', this.responseText);
+          browserHistory.push('/editSuccess');
+      } else if (this.readyState === 4 && this.status === 200) {
+        browserHistory.push('/failure');
       }
-    if (this.status === 200) {
-        success = true;
-        }
     };
     let body = {
       'bikeId': this.state.bikeId,
@@ -145,13 +137,11 @@ class bikeDetails extends Component {
       }
     };
     request.send(JSON.stringify(body));
-    setTimeout(function() {
-        if (success) {
-          browserHistory.push('/editSuccess');
-        } else {
-          browserHistory.push('/failure');
-        }
-      }, 3000)
+  }
+
+  /* Push new page */
+  changePage(page) {
+    browserHistory.push(page);
   }
 
     submit = () => {
@@ -228,6 +218,13 @@ class bikeDetails extends Component {
                 {activeLang.buttEditBike}
             </button>
           </div>
+          <button
+            className="SignButton"
+            style={{marginTop: '10px'}}
+            onClick={() => this.changePage('bikebill')}
+          >
+              Bike Bill Element
+          </button>
         </div>
         </div>
       </div>

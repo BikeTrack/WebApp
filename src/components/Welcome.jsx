@@ -58,7 +58,6 @@ class Welcome extends Component {
   componentDidMount() {
   	let token = read_cookie('token');
     let usr = read_cookie('userId');
-
     // eslint-disable-next-line
     if (token !== "" && usr != ""){
       browserHistory.push('app');
@@ -82,17 +81,17 @@ class Welcome extends Component {
      request.setRequestHeader('Content-Type', 'application/json');
      request.setRequestHeader('Authorization', this.state.apiKey);
      request.onreadystatechange = function () {
-     if (this.readyState === 4) {
+     if (this.readyState === 4 && this.status === 200) {
        // Debugging
          // console.log('Status:', this.status);
          // console.log('Headers:', this.getAllResponseHeaders());
          // console.log('Body:', this.responseText);
-       }
-     if (this.status === 200) {
-         success = true;
          let myObj = JSON.parse(this.response);
          bake_cookie('token', myObj.token);
          bake_cookie('userId', myObj.userId);
+         browserHistory.push('/app');
+       } else if (this.readyState === 4 && this.status !== 200) {
+         browserHistory.push('/failure');
        }
      };
      let body = {
@@ -100,13 +99,6 @@ class Welcome extends Component {
        'password': password
      };
      request.send(JSON.stringify(body));
-     setTimeout(function() {
-         if (success) {
-           browserHistory.push('/app');
-         } else {
-           browserHistory.push('/failure');
-         }
-       }, 3000)
      }
    }
 
@@ -122,14 +114,14 @@ class Welcome extends Component {
        request.setRequestHeader('Content-Type', 'application/json');
        request.setRequestHeader('Authorization', this.state.apiKey);
        request.onreadystatechange = function () {
-         if (this.readyState === 4) {
+         if (this.readyState === 4 && this.status === 200) {
            // Debugging
            // console.log('Status:', this.status);
            // console.log('Headers:', this.getAllResponseHeaders());
            // console.log('Body:', this.responseText);
-         }
-         if (this.status === 200) {
-             success = true;
+          browserHistory.push('/success');
+         } else if (this.readyState === 4 && this.status !== 200) {
+           browserHistory.push('/failure');
          }
        };
        // Debugging
@@ -144,13 +136,6 @@ class Welcome extends Component {
          'dob': birthday,
        };
        request.send(JSON.stringify(body));
-       setTimeout(function() {
-           if (success) {
-             browserHistory.push('/success');
-           } else {
-             browserHistory.push('/failure');
-           }
-         }, 3000)
        }
      }
 

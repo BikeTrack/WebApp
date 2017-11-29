@@ -20,6 +20,7 @@ import Failure from './components/Failure';
 import bikeDetails from './components/bikeDetails';
 import addBike from './components/addBike';
 import editProfile from './components/editProfile';
+import bikeBill from './components/bikeBill';
 
 import Products from './www/products';
 import HomePage from './www/homepage';
@@ -44,6 +45,7 @@ ReactDOM.render(
       <Route path="/bikedetails" component={bikeDetails} />
       <Route path="/addbike" component={addBike} />
       <Route path="/editprofile" component={editProfile} />
+      <Route path="/bikebill" component={bikeBill} />
 
       <Route path="/homepage" component={HomePage} />
       <Route path="/products" component={Products} />

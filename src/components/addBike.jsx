@@ -57,16 +57,16 @@ class addBike extends Component {
       request.setRequestHeader('Authorization', this.state.apiKey);
       request.setRequestHeader('x-access-token', JWTToken);
       request.onreadystatechange = function () {
-      if (this.readyState === 4) {
-          console.log('Status:', this.status);
-          console.log('Headers:', this.getAllResponseHeaders());
-          console.log('Body:', this.responseText);
+      if (this.readyState === 4 && this.status === 200) {
+          // DEBUGGING
+          // console.log('Status:', this.status);
+          // console.log('Headers:', this.getAllResponseHeaders());
+          // console.log('Body:', this.responseText);
+          browserHistory.push('/addSuccess');
+        } else if (this.readyState === 4 && this.status !== 200){
+          browserHistory.push('/failure');
         }
-      if (this.status === 200) {
-          success = true;
-          }
       };
-
       let body = {
         'userId': userId,
         'bikeInfo': {
@@ -77,13 +77,6 @@ class addBike extends Component {
         }
       };
       request.send(JSON.stringify(body));
-      setTimeout(function() {
-          if (success) {
-            browserHistory.push('/addSuccess');
-          } else {
-            browserHistory.push('/failure');
-          }
-      }, 3000)
     }
   }
 

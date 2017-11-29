@@ -48,8 +48,8 @@ class editProfile extends Component {
     let FETCH_URL = BASE_URL + "profile/" + userId;
     let that = this;
 
-    console.log('Token', JWTToken);
-    console.log('usrId', userId);
+    // console.log('Token', JWTToken);
+    // console.log('usrId', userId);
 
     request.open('GET', FETCH_URL);
     request.setRequestHeader('Content-Type', 'application/json');
@@ -57,9 +57,9 @@ class editProfile extends Component {
     request.setRequestHeader('x-access-token', JWTToken);
     request.onreadystatechange = function () {
     if (this.readyState === 4) {
-        console.log('Status:', this.status);
-        console.log('Headers:', this.getAllResponseHeaders());
-        console.log('Body:', this.responseText);
+        // console.log('Status:', this.status);
+        // console.log('Headers:', this.getAllResponseHeaders());
+        // console.log('Body:', this.responseText);
       }
     if (this.status === 200)  {
 
@@ -95,28 +95,22 @@ class editProfile extends Component {
     request.setRequestHeader('Authorization', this.state.apiKey);
     request.setRequestHeader('x-access-token', JWTToken);
     request.onreadystatechange = function () {
-    if (this.readyState === 4) {
-        console.log('Status:', this.status);
-        console.log('Headers:', this.getAllResponseHeaders());
-        console.log('Body:', this.responseText);
+    if (this.readyState === 4 & this.status === 200) {
+        // DEBUGGING
+        // console.log('Status:', this.status);
+        // console.log('Headers:', this.getAllResponseHeaders());
+        // console.log('Body:', this.responseText);
+        browserHistory.push('/delSuccess');
+        delete_cookie("token");
+        delete_cookie("userId");
+      } else if (this.readyState === 4 & this.status !== 200) {
+        browserHistory.push('/failure');
       }
-    if (this.status === 200) {
-        success = true;
-        }
     };
     let body = {
       'userId': userId,
     };
     request.send(JSON.stringify(body));
-    setTimeout(function() {
-        if (success) {
-          browserHistory.push('/delSuccess');
-          delete_cookie("token");
-          delete_cookie("userId");
-        } else {
-          browserHistory.push('/failure');
-        }
-      }, 2000)
   }
 
   editUser() {
@@ -131,14 +125,15 @@ class editProfile extends Component {
     request.setRequestHeader('Authorization', this.state.apiKey);
     request.setRequestHeader('x-access-token', JWTToken);
     request.onreadystatechange = function () {
-    if (this.readyState === 4) {
-        console.log('Status:', this.status);
-        console.log('Headers:', this.getAllResponseHeaders());
-        console.log('Body:', this.responseText);
+    if (this.readyState === 4 && this.status === 200) {
+        // DEBUGGING
+        // console.log('Status:', this.status);
+        // console.log('Headers:', this.getAllResponseHeaders());
+        // console.log('Body:', this.responseText);
+        browserHistory.push('/editSuccess');
+      } else if (this.readyState === 4 && this.status === 200) {
+        browserHistory.push('/failure');
       }
-    if (this.status === 200) {
-        success = true;
-        }
     };
     let body = {
       'userId': userId,
@@ -147,17 +142,9 @@ class editProfile extends Component {
         name: this.state.fname,
         lastname: this.state.lname,
         dob: this.state.birthday,
-        // updated: Date.now()
       }
     };
     request.send(JSON.stringify(body));
-    setTimeout(function() {
-        if (success) {
-          browserHistory.push('/editSuccess');
-        } else {
-          browserHistory.push('/failure');
-        }
-      }, 2000)
   }
 
   submit = () => {
