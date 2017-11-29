@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
-import { read_cookie } from 'sfcookies';
+// import { read_cookie } from 'sfcookies';
 
 import TopNavbar from '../components/Navbar';
 
 import '../img/App.css';
 import '../img/website.css';
 
-import fra from '../lang/fr.js'
+/*import fra from '../lang/fr.js'
 import eng from '../lang/en.js'
 import ita from '../lang/it-IT';
 
@@ -19,7 +18,7 @@ if (lang === "FR") {
   activeLang = ita;
 } else {
   activeLang = eng;
-}
+}*/
 
 class Products extends Component {
 

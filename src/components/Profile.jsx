@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { read_cookie, delete_cookie } from 'sfcookies';
 import { browserHistory } from 'react-router';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 import '../img/App.css';
 import { API_KEY, BASE_URL } from '../constants'
@@ -158,6 +160,18 @@ class Profile extends Component {
       }, 2000)
   }
 
+  submit = () => {
+    confirmAlert({
+      title: 'Confirm to submit',
+      message: 'Do you really want to delete your biketrack account?',
+      // childrenElement: () => <div>Custom UI</div>,           // Custom UI or Component
+      confirmLabel: 'Yes',
+      cancelLabel: 'No',
+      onConfirm: () => this.deleteUser(),
+      // onCancel: 
+    })
+  };
+
   render() {
     return (
       <div className="App bgGen bgProfile">
@@ -178,7 +192,7 @@ class Profile extends Component {
               <br/><br/><br/>
               <button
                 className="btn btn-danger"
-                onClick={() => this.deleteUser()}
+                onClick={this.submit}
                 >
                   {activeLang.buttDelUser}
               </button>

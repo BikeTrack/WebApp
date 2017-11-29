@@ -35,22 +35,19 @@ class App extends Component {
       created:'',
       updated:'',
       bikes: '',
-      bName: '',
+      bNames: '',
       error: {
         message: ''
       }
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     let userId = read_cookie('userId');
     let JWTToken = read_cookie('token');
     let request = new XMLHttpRequest();
     let FETCH_URL = BASE_URL + "profile/" + userId;
     let that = this;
-
-    // console.log('Token', JWTToken);
-    // console.log('usrId', userId);
 
     request.open('GET', FETCH_URL);
     request.setRequestHeader('Content-Type', 'application/json');
@@ -58,9 +55,10 @@ class App extends Component {
     request.setRequestHeader('x-access-token', JWTToken);
     request.onreadystatechange = function () {
     if (this.readyState === 4) {
-        console.log('Status:', this.status);
-        console.log('Headers:', this.getAllResponseHeaders());
-        console.log('Body:', this.responseText);
+        // Debugging
+        // console.log('Status:', this.status);
+        // console.log('Headers:', this.getAllResponseHeaders());
+        // console.log('Body:', this.responseText);
       }
     if (this.status === 200)  {
       let myObj = JSON.parse(this.response);
@@ -71,7 +69,6 @@ class App extends Component {
             updated: myObj.user.updated,
             bikes: myObj.user.bikes
           });
-      // console.log('myObj mail : ', myObj.user.mail);
       }
     };
     request.send(JSON.stringify());
@@ -86,53 +83,61 @@ class App extends Component {
     browserHistory.push('/addbike');
   }
 
-  // getName(bikeId) {
-  //   let userId = read_cookie('userId');
-  //   let JWTToken = read_cookie('token');
-  //   let request = new XMLHttpRequest();
-  //   let FETCH_URL = BASE_URL + "bike/" + bikeId;
-  //
-  //   console.log('Token', JWTToken);
-  //   console.log('usrId', userId);
-  //
-  //   request.open('GET', FETCH_URL);
-  //   request.setRequestHeader('Content-Type', 'application/json');
-  //   request.setRequestHeader('Authorization', this.state.apiKey);
-  //   request.setRequestHeader('x-access-token', JWTToken);
-  //   request.onreadystatechange = function () {
-  //   if (this.readyState === 4) {
-  //       console.log('Status:', this.status);
-  //       console.log('Headers:', this.getAllResponseHeaders());
-  //       console.log('Body:', this.responseText);
-  //     }
-  //   if (this.status === 200)  {
-  //
-  //     let myObj = JSON.parse(this.response);
-  //     console.log('PITRIPITRIPITRIPITRIPITRIPITRIPITRIPITRIPITRIPITRI');
-  //     return (myObj.bike.brand + "-" + myObj.bike.name);
-  //     }
-  //   };
-  //   request.send(JSON.stringify());
-  // }
+  componentDidMount() {
+    let that = this;
+    // let userId = read_cookie('userId');
+    let JWTToken = read_cookie('token');
+    let request = new XMLHttpRequest();
+    let FETCH_URL = BASE_URL + "bike/" + that.state.bikes[0];
+    // console.log('fetch url :    ', FETCH_URL);
 
+    request.open('GET', FETCH_URL);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.setRequestHeader('Authorization', this.state.apiKey);
+    request.setRequestHeader('x-access-token', JWTToken);
+    request.onreadystatechange = function () {
+    if (this.readyState === 4) {
+        // Debugging
+        // console.log('Status:', this.status);
+        // console.log('Headers:', this.getAllResponseHeaders());
+        // console.log('Body:', this.responseText);
+      }
+    if (this.status === 200)  {
+      let myObj = JSON.parse(this.response);
+      that.setState({
+          bNames : myObj.bike.name
+          });
+          // Debugging
+          // console.log('state bnames :    ', that.state.bNames);
+
+      // return(myObj.bike.name);
+      }
+    };
+    request.send(JSON.stringify());
+  }
 
   render() {
-    /* This brings dynamicity and performance to the code but still don't know how to implement it properly for it to work on DELETES and DETAILS of bikes */
 
     // var bikeList = [];
+    //
     // for (var i = 0; this.state.bikes[i]; i++) {
-    //   bikeList.push(            <div className="bike-box">
-    //                 Velo {i + 1}:
-    //                 <button
-    //                   className="btn"
-    //                   style={{marginTop: '10px'}}
-    //                   // onClick={() => this.bikeDetails(this.state.bikes[0])}
-    //                   >
-    //                   {this.state.bikes[i]}
-    //                 </button>
-    //               </div>
+    //   bikeList.push(
+    //
+    //     <div className="bike-box">
+    //       <img src={bike} role="presentation" className="iconDiv"/>
+    //       {activeLang.appBike} :
+    //       <button
+    //         className="SignButton"
+    //         style={{marginTop: '10px'}}
+    //         onClick={() => this.bikeDetails(this.state.bikes[0])}
+    //         >
+    //         {this.state.bNames}
+    //       </button>
+    //       <Battery />
+    //     </div>
     //             );
     // }
+
 
     return (
       <div className="App bgGen bgList">

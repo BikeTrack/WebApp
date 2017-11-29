@@ -65,7 +65,7 @@ let fra = {
 
   buttAddBike : "Ajouter le vélo",
 
-  buttEditBike : "Modifier le vélo",
+  buttEditBike : "Modifier",
   buttEditUser : "Modifier le profil",
 
   buttDelBike : "Effacer le vélo",

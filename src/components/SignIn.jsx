@@ -54,9 +54,10 @@ class SignIn extends Component {
       request.setRequestHeader('Authorization', this.state.apiKey);
       request.onreadystatechange = function () {
       if (this.readyState === 4) {
-          console.log('Status:', this.status);
-          console.log('Headers:', this.getAllResponseHeaders());
-          console.log('Body:', this.responseText);
+        // Debugging
+          // console.log('Status:', this.status);
+          // console.log('Headers:', this.getAllResponseHeaders());
+          // console.log('Body:', this.responseText);
         }
       if (this.status === 200) {
           success = true;
@@ -66,7 +67,7 @@ class SignIn extends Component {
         }
       };
       let body = {
-        'mail': email,
+        'email': email,
         'password': password
       };
       request.send(JSON.stringify(body));
@@ -85,6 +86,7 @@ class SignIn extends Component {
       <div className="App bgGen bgSign">
         <TopNavbar />
         <div className="bgSignSpacer"></div>
+        <div className="bgSpacerMini"></div>
         <div className="form-inline" style={{margin: '5px'}}>
           <h2 className="App-intro ">{activeLang.signinHead}</h2>
           <div className="gen-box">

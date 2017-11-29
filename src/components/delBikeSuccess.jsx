@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import { read_cookie } from 'sfcookies';
 
-import TopNavbar from './Navbar';
+import AppNavbar from './AppNavbar';
 import '../img/App.css';
 import fra from '../lang/fr'
 import eng from '../lang/en'
@@ -26,9 +26,10 @@ class delBikeSuccess extends Component {
 
   render() {
     return (
-      <div className="App">
-        <TopNavbar />
+      <div className="App bgGen bgSucc">
+        <AppNavbar />
         <div className="form-inline" style={{margin: '5px'}}>
+          <div className="bgSpacer"></div>
           <div className="successTitle">{activeLang.detailsRemove}</div>
           <div style={{textAlign: 'center'}}>
             <button
@@ -37,6 +38,7 @@ class delBikeSuccess extends Component {
             onClick={() => this.backPage()}
             >{activeLang.buttBackBike}
             </button>
+            <div className="bgSpacerMini"></div>
           </div>
         </div>
       </div>

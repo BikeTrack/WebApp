@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import { read_cookie } from 'sfcookies';
 
-import TopNavbar from './Navbar';
+import AppNavbar from './AppNavbar';
 import '../img/App.css';
 import fra from '../lang/fr'
 import eng from '../lang/en'
@@ -27,8 +27,8 @@ class addSuccess extends Component {
 
   render() {
     return (
-      <div className="App">
-        <TopNavbar />
+      <div className="App bgGen bgSuccess">
+        <AppNavbar />
         <div className="bgSpacer"></div>
         <div className="form-inline" style={{margin: '5px'}}>
           <div className="successTitle">{activeLang.appAddSucc}</div>
@@ -39,6 +39,7 @@ class addSuccess extends Component {
             onClick={() => this.backPage()}
             >{activeLang.buttBackList}
             </button>
+            <div className="bgSpacerMini"></div>
           </div>
         </div>
       </div>

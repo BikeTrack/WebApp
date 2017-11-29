@@ -10,7 +10,6 @@ body {
   position: relative;
 }
 
-
   /* Backgrounds of the different pages */
 .bgGen{
   background-repeat: no-repeat;
@@ -45,6 +44,14 @@ body {
 
 .bgFail {
   background-image: url("./design/bgFail.png");
+}
+
+.bgFail1 {
+  background-image: url("./design/bgFail1.png");
+}
+
+.bgSucc {
+  background-image: url("./design/bgSuccess.png");
 }
 
 .bgWebsite {
@@ -84,9 +91,9 @@ body {
 
 /* Buttons */
 
-.SignButton, .SignButtonNav, .SignButtonOut, .SignButtonLang , .SignButtonFr, .SignButtonEn, .dropbtn, .SignButtonIt{
+.SignButton, .linkButton, .SignButtonNav, .SignButtonOut, .SignButtonLang , .SignButtonFr, .SignButtonEn, .dropbtn, .SignButtonIt{
 	padding: 10px 20px;
-	font-size: 18px;
+	font-size: 16px;
 	background-color:	transparent;
   font-weight: bold;
   color: white;
@@ -94,13 +101,19 @@ body {
   border-radius: 17px;
 }
 
+.linkButton {
+  color: black;
+  font-size: 12px;
+}
+
+
 .SignButton {
     background-color:	#FD3568;
     width: 200px;
     height: 70px;
     border-radius: 35px;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 22px;
     opacity: 1;
     margin: 10px;
 }
@@ -121,11 +134,11 @@ background-color: #e32f5d;
 }
 
 [required] {
-   border: 2px solid red;
+   border: 1px solid red;
 }
 
 .dropdown:hover .dropdown-content {
-    display: block;
+    display:inline-grid;
 }
 
 .SignButton:hover, .SignButtonNav:hover, .SignButtonOut:hover .SignButtonLang:hover {
@@ -149,6 +162,7 @@ background-color: #e32f5d;
   background:url("ita.png") no-repeat;
   margin-top: 5px;
   height: 40px;
+  margin-left: 10%;
 }
 
 .SignButtonEn {
@@ -156,6 +170,7 @@ background-color: #e32f5d;
   background:url("eng.png") no-repeat;
   margin-top: 5px;
   height: 40px;
+  margin-left: 10%;
 }
 
 .SignButtonFr {
@@ -163,6 +178,7 @@ background-color: #e32f5d;
   background:url("fr.png") no-repeat;
   margin-top: 5px;
   height: 40px;
+  margin-left: 10%;
 }
 
 .SignButtonOut {
@@ -210,24 +226,22 @@ background-color: #e32f5d;
 
 .dropdown {
     float: right;
-    display: inline-block;
-    margin-right: 50px;
+    margin-right: 2%;
 }
 
 .dropdown-content {
+    margin-top: 20%;
     display: none;
     position: absolute;
-    background-color: #333333;
-    opacity : 0.8;
-    min-width: 120px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background-color: #ffffff;
+    border-radius: 5px;
+    opacity : 1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.9);
     z-index: 1;
 }
 
 .dropdown-content a {
-    color: black;
     padding: 12px 16px;
-    text-decoration: none;
     display: block;
 }
 
@@ -336,13 +350,14 @@ background-color: #e32f5d;
 /* Login Boxes */
 .log-box {
   width: 400px;
-  border: 3px solid black;
+  border: 3px solid #FD3568;
   border-radius: 25px;
   display: block;
   padding: 30px;
   margin:auto;
-  background-color: black;
+  background-color: #D8D8D8;
   opacity:0.85;
+
 
   /*background: rgb(0,78,102); /* Old browsers */*/
   /*background: -moz-linear-gradient(left, rgba(0,78,102,1) 0%, rgba(0,78,102,1) 50%, rgba(46,111,130,1) 100%); /* FF3.6-15 */*/

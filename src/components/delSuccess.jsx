@@ -23,12 +23,13 @@ class delSuccess extends Component {
   backPage() {
     browserHistory.replace('/welcome');
   }
-
   render() {
     return (
-      <div className="App">
+      <div className="App bgGen bgSucc">
         <TopNavbar />
         <div className="form-inline" style={{margin: '5px'}}>
+          <div className="bgSpacer"></div>
+          <div className="bgSpacerMini"></div>
           <div className="successTitle">{activeLang.profileDelete}</div>
           <div style={{textAlign: 'center'}}>
             <button

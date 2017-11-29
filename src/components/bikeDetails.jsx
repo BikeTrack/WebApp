@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { read_cookie } from 'sfcookies';
 import { browserHistory } from 'react-router';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 import '../img/App.css';
 import { API_KEY, BASE_URL } from '../constants';
@@ -154,6 +156,18 @@ class bikeDetails extends Component {
       }, 3000)
   }
 
+    submit = () => {
+      confirmAlert({
+        title: 'Bike deletion',
+        message: 'Do you really want to delete your bike?',
+        // childrenElement: () => <div>Custom UI</div>,           // Custom UI or Component
+        confirmLabel: 'Yes',
+        cancelLabel: 'No',
+        onConfirm: () => this.deleteBike(this.state.bikeId),
+        // onCancel:
+      })
+    };
+
   render() {
     return (
 
@@ -174,10 +188,11 @@ class bikeDetails extends Component {
               <button
                 className="btn btn-danger"
                 style={{marginTop: '10px'}}
-                onClick={() => this.deleteBike(this.state.bikeId)}
+                onClick={this.submit}
                 >
                   {activeLang.buttDelBike}
               </button>
+
             </div>
           <div className="mapid">
           <Map />
@@ -206,13 +221,11 @@ class bikeDetails extends Component {
                 }
               }}
             />
-
           <br/>
             <button
               className="SignButton"
               style={{marginTop: '10px'}}
-              onClick={() => this.editBike()}
-              >
+              onClick={this.submit}>
                 {activeLang.buttEditBike}
             </button>
           </div>

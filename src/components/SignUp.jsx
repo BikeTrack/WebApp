@@ -57,20 +57,22 @@ class SignUp extends Component {
       request.setRequestHeader('Authorization', this.state.apiKey);
       request.onreadystatechange = function () {
         if (this.readyState === 4) {
-          console.log('Status:', this.status);
-          console.log('Headers:', this.getAllResponseHeaders());
-          console.log('Body:', this.responseText);
+          // Debugging
+          // console.log('Status:', this.status);
+          // console.log('Headers:', this.getAllResponseHeaders());
+          // console.log('Body:', this.responseText);
         }
         if (this.status === 200) {
             success = true;
         }
       };
-      console.log('this.state.apiKey', this.state.apiKey);
-      console.log('this.state.email', this.state.email);
-      console.log('this.state.password', this.state.password);
+      // Debugging
+      // console.log('this.state.apiKey', this.state.apiKey);
+      // console.log('this.state.email', this.state.email);
+      // console.log('this.state.password', this.state.password);
 
       let body = {
-        'mail': email,
+        'email': email,
         'password': password,
         'lastname': lname,
         'name': fname,
@@ -92,6 +94,7 @@ class SignUp extends Component {
       <div className="App bgGen bgSign">
         <TopNavbar />
         <div className="bgSignSpacer"></div>
+        <div className="bgSpacerMini"></div>
         <div className="form-inline" style={{margin: '5px'}}>
           <h2 className="App-intro ">{activeLang.signupHead}</h2>
           <div className="gen-box">

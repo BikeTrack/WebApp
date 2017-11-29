@@ -22,6 +22,21 @@
   width: 100%;
 }
 
+.contBlock400 {
+  height: 400px;
+  width: 100%;
+}
+
+.contBlock450 {
+  height: 450px;
+  width: 100%;
+}
+
+.contBlock500 {
+  height: 500px;
+  width: 100%;
+}
+
 .insiderBlock25 {
   height: 100%;
   width: 25%;
@@ -33,8 +48,14 @@
 .insiderBlock33 {
   width: 33%;
   display: inline-block;
-  margin-top: 30px;
+  margin-top: 10px;
   /*border: solid #4b4b4b;*/
+}
+
+.signupBlockRound {
+  border-radius: 23px;
+  margin-left: 1%;
+  height: 45px;
 }
 
 .BlockW {
